@@ -1201,4 +1201,30 @@ Next milestone:
 
 Build the real FarmPay AI farmer interface, then incrementally add the backend functionality behind it.
 
+Step 1 — Open your project
+
+Open VS Code and select File → Open Folder. Choose:
+
+C:\Users\DELL-PC\FarmPay-AI
+
+Step 2 — Start the backend
+
+Open a new terminal and run:
+cd C:\Users\DELL-PC\FarmPay-AI\backend
+.\.venv\Scripts\Activate.ps1
+python -m uvicorn app.main:app --reload
+
+
+Step 3 — Start the frontend
+
+Open a second terminal and run:
+cd C:\Users\DELL-PC\FarmPay-AI\frontend
+npm run dev
+
+
+Step 4 — Open your website
+
+Visit http://localhost:5173/.
+
+Your backend will be available at http://127.0.0.1:8000/.
 Last updated: 23 October 2026
