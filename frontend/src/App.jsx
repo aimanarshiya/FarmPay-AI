@@ -415,10 +415,10 @@ function App() {
               </div>
 
               <div className="confirmation-disclaimer">
-                This is a demo offer. Confirming creates a
-                pending order only. No payment will be taken.
+                Your order is saved in FarmPay AI. Payment has
+                not been completed. This is a demo marketplace
+                using illustrative buyer offers.
               </div>
-
               <button
                 className="primary-button confirm-button"
                 type="button"

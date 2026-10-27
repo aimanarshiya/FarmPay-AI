@@ -1,4 +1,4 @@
-
+from app.payments import router as paypal_router
 from uuid import uuid4
 from datetime import datetime, timezone
 
@@ -6,8 +6,11 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from app.database import get_connection
+
 
 app = FastAPI(title="FarmPay AI API")
+app.include_router(paypal_router)
 
 
 app.add_middleware(
@@ -79,13 +82,6 @@ DEMO_BUYERS = [
         "transport_cost": 200.00,
     },
 ]
-
-
-# --------------------------------------------------
-# TEMPORARY IN-MEMORY ORDER STORAGE
-# --------------------------------------------------
-
-orders = {}
 
 
 # --------------------------------------------------
@@ -168,7 +164,7 @@ class OrderRequest(BaseModel):
 
 
 # --------------------------------------------------
-# CREATE ORDER
+# CREATE ORDER - MYSQL PERSISTENCE
 # --------------------------------------------------
 
 @app.post("/api/orders")
@@ -194,7 +190,7 @@ def create_order(request: OrderRequest):
 
     quantity = request.quantity_kg
 
-    # Recalculate all monetary values on the backend.
+    # Backend recalculates all monetary values.
     gross_amount = round(
         quantity * buyer["price_per_kg"],
         2,
@@ -212,6 +208,12 @@ def create_order(request: OrderRequest):
 
     order_id = f"FP-{uuid4().hex[:12].upper()}"
 
+    created_at = datetime.now(timezone.utc)
+
+    # MySQL DATETIME does not store timezone information.
+    # Store the UTC timestamp as a naive datetime.
+    db_created_at = created_at.replace(tzinfo=None)
+
     order = {
         "order_id": order_id,
         "buyer_id": buyer["buyer_id"],
@@ -227,12 +229,77 @@ def create_order(request: OrderRequest):
         "offer_type": "DEMO",
         "status": "PENDING_PAYMENT",
         "payment_status": "NOT_PAID",
-        "created_at": datetime.now(
-            timezone.utc
-        ).isoformat(),
+        "created_at": created_at.isoformat(),
     }
 
-    orders[order_id] = order
+    connection = None
+
+    try:
+
+        connection = get_connection()
+
+        with connection.cursor() as cursor:
+
+            cursor.execute(
+                """
+                INSERT INTO orders (
+                    order_id,
+                    buyer_id,
+                    buyer_name,
+                    crop,
+                    quantity_kg,
+                    location,
+                    price_per_kg,
+                    gross_amount,
+                    transport_cost,
+                    net_proceeds,
+                    currency,
+                    offer_type,
+                    status,
+                    payment_status,
+                    created_at
+                )
+                VALUES (
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
+                )
+                """,
+                (
+                    order["order_id"],
+                    order["buyer_id"],
+                    order["buyer_name"],
+                    order["crop"],
+                    order["quantity_kg"],
+                    order["location"],
+                    order["price_per_kg"],
+                    order["gross_amount"],
+                    order["transport_cost"],
+                    order["net_proceeds"],
+                    order["currency"],
+                    order["offer_type"],
+                    order["status"],
+                    order["payment_status"],
+                    db_created_at,
+                ),
+            )
+
+        connection.commit()
+
+    except Exception:
+
+        if connection is not None:
+            connection.rollback()
+
+        raise HTTPException(
+            status_code=500,
+            detail="Could not save order. Please try again.",
+        )
+
+    finally:
+
+        if connection is not None:
+            connection.close()
 
     return {
         "success": True,
@@ -242,18 +309,87 @@ def create_order(request: OrderRequest):
 
 
 # --------------------------------------------------
-# GET ORDER
+# GET ORDER - MYSQL PERSISTENCE
 # --------------------------------------------------
 
 @app.get("/api/orders/{order_id}")
 def get_order(order_id: str):
 
-    order = orders.get(order_id)
+    connection = None
+
+    try:
+
+        connection = get_connection()
+
+        with connection.cursor() as cursor:
+
+            cursor.execute(
+                """
+                SELECT
+                    order_id,
+                    buyer_id,
+                    buyer_name,
+                    crop,
+                    quantity_kg,
+                    location,
+                    price_per_kg,
+                    gross_amount,
+                    transport_cost,
+                    net_proceeds,
+                    currency,
+                    offer_type,
+                    status,
+                    payment_status,
+                    created_at
+                FROM orders
+                WHERE order_id = %s
+                """,
+                (order_id,),
+            )
+
+            order = cursor.fetchone()
+
+    except Exception:
+
+        raise HTTPException(
+            status_code=500,
+            detail="Could not retrieve order. Please try again.",
+        )
+
+    finally:
+
+        if connection is not None:
+            connection.close()
 
     if order is None:
+
         raise HTTPException(
             status_code=404,
             detail="Order not found.",
+        )
+
+    # Convert MySQL Decimal values to JSON-friendly numbers.
+    numeric_fields = [
+        "quantity_kg",
+        "price_per_kg",
+        "gross_amount",
+        "transport_cost",
+        "net_proceeds",
+    ]
+
+    for field in numeric_fields:
+
+        if order[field] is not None:
+            order[field] = float(order[field])
+
+    # MySQL DATETIME is returned without timezone information.
+    # Our stored timestamps are UTC.
+    if order["created_at"] is not None:
+
+        order["created_at"] = (
+            order["created_at"]
+            .replace(tzinfo=timezone.utc)
+            .isoformat()
         )
 
     return {

@@ -1200,31 +1200,40 @@ React frontend running + FastAPI backend running + successful HTTP/JSON communic
 Next milestone:
 
 Build the real FarmPay AI farmer interface, then incrementally add the backend functionality behind it.
+  
+------------------------------------------------------------------------------
 
-Step 1 — Open your project
-
-Open VS Code and select File → Open Folder. Choose:
-
-C:\Users\DELL-PC\FarmPay-AI
-
-Step 2 — Start the backend
-
-Open a new terminal and run:
-cd C:\Users\DELL-PC\FarmPay-AI\backend
-.\.venv\Scripts\Activate.ps1
-python -m uvicorn app.main:app --reload
+Terminal 1 — MySQL (Administrator PowerShell)
+net start MySQL80
 
 
-Step 3 — Start the frontend
+Terminal 2 — Backend
+cd C:\Users\DELL-PC\FarmPay-AI
+.\backend\.venv\Scripts\Activate.ps1
+cd backend
+uvicorn app.main:app --reload
 
-Open a second terminal and run:
+
+Terminal 3 — Frontend
 cd C:\Users\DELL-PC\FarmPay-AI\frontend
 npm run dev
 
 
-Step 4 — Open your website
+Open frontend
 
-Visit http://localhost:5173/.
+http://localhost:5173/
 
-Your backend will be available at http://127.0.0.1:8000/.
-Last updated: 23 October 2026
+Backend API docs
+
+http://127.0.0.1:8000/docs
+
+Backend health check
+
+http://127.0.0.1:8000/health
+
+Check MySQL connection
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u farmpay_app -p -D farmpay_ai -e "SELECT DATABASE(), VERSION();"
+
+
+Test PayPal checkout
+Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:8000/api/payments/paypal/create/FP-77072F946E94"
