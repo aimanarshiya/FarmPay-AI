@@ -5,6 +5,10 @@
 
 FarmPay AI is a voice-first, AI-powered agricultural selling assistant designed to help Indian farmers compare crop buyer offers, calculate estimated net earnings, and manage orders and digital payment status.
 
+## Project Status
+
+Active development — Phase 0 (Foundation) complete. Phase 1 (Full Payment Flow) next.
+
 ## Planned Features
 
 - Voice and text interaction with multilingual support.
@@ -16,19 +20,115 @@ FarmPay AI is a voice-first, AI-powered agricultural selling assistant designed 
 
 ## Technology Stack
 
-- Frontend: React, Vite, Tailwind CSS
-- Backend: Python, FastAPI
-- Database: MySQL
-- Payments: PayPal JavaScript SDK and Orders API
-- Source control: Git and GitHub
+- **Frontend:** React 19, Vite 8 (custom CSS, no Tailwind yet)
+- **Backend:** Python 3.13, FastAPI, Uvicorn
+- **Database:** MySQL 8.0
+- **Payments:** PayPal Orders REST API v2 (Sandbox)
+- **Source control:** Git and GitHub
 
-## Project Status
+## Prerequisites
 
-Initial development setup. Features are planned and will be implemented and tested incrementally.
+- Python 3.11+
+- Node.js 20+ LTS
+- MySQL 8.0 (running locally)
+- Git
+
+## First-Time Setup
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/aimanarshiya/FarmPay-AI.git
+cd FarmPay-AI
+```
+
+### 2. Configure the backend
+
+```
+cd backend
+copy .env.example .env
+```
+
+Edit `backend/.env` and fill in your MySQL credentials and PayPal Sandbox API credentials.
+
+Create the database schema (run once):
+
+```
+mysql -u root -p < app/schema.sql
+```
+
+Create and activate the Python virtual environment:
+
+```
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1   # Windows PowerShell
+source .venv/bin/activate       # macOS / Linux
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 3. Configure the frontend
+
+```
+cd ../frontend
+copy .env.example .env.local
+```
+
+The default value (`VITE_API_URL=http://127.0.0.1:8000`) works for local development without changes.
+
+Install frontend dependencies:
+
+```
+npm install
+```
+
+## Running the Application
+
+Open **three terminals** from the project root.
+
+### Terminal 1 — MySQL (Administrator PowerShell, Windows only)
+
+```
+net start MySQL80
+```
+
+### Terminal 2 — Backend
+
+```
+cd backend
+.\.venv\Scripts\Activate.ps1
+uvicorn app.main:app --reload
+```
+
+### Terminal 3 — Frontend
+
+```
+cd frontend
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Useful URLs
+
+| URL | Description |
+|-----|-------------|
+| `http://localhost:5173` | React frontend |
+| `http://127.0.0.1:8000` | FastAPI root |
+| `http://127.0.0.1:8000/health` | Backend health check |
+| `http://127.0.0.1:8000/docs` | Auto-generated API documentation |
 
 ## Demo Data and Payments
 
-Initial buyer offers will be clearly labelled as demonstration data. PayPal Sandbox transactions are tests and do not represent real payments.
+- Buyer offers are clearly labelled as **DEMO** data with illustrative prices.
+- PayPal Sandbox transactions use a **$1.00 USD test charge** and do not represent real payments.
+- The $1 test charge does not settle the INR FarmPay order. This is intentional prototype behaviour.
+
+## Security Notes
+
+- **Never commit `backend/.env`** — it contains database credentials and PayPal API keys.
+- `.env` is excluded from Git tracking by `.gitignore`.
+- Use `backend/.env.example` as a safe template for onboarding.
 
 ## License
 

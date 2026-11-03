@@ -1,12 +1,15 @@
 from app.payments import router as paypal_router
 from uuid import uuid4
 from datetime import datetime, timezone
+import logging
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from app.database import get_connection
+
+logger = logging.getLogger(__name__)
 
 
 app = FastAPI(title="FarmPay AI API")
@@ -288,6 +291,8 @@ def create_order(request: OrderRequest):
 
     except Exception:
 
+        logger.exception("create_order: database error")
+
         if connection is not None:
             connection.rollback()
 
@@ -350,6 +355,8 @@ def get_order(order_id: str):
             order = cursor.fetchone()
 
     except Exception:
+
+        logger.exception("get_order: database error")
 
         raise HTTPException(
             status_code=500,

@@ -2,7 +2,9 @@
 import { useState } from "react";
 import "./App.css";
 
-const API_URL = "http://127.0.0.1:8000";
+// Backend base URL is configured via VITE_API_URL in frontend/.env.local
+// (see frontend/.env.example). Falls back to the local development default.
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 function formatINR(value) {
   return new Intl.NumberFormat("en-IN", {
