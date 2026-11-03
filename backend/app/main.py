@@ -167,6 +167,40 @@ class OrderRequest(BaseModel):
 
 
 # --------------------------------------------------
+# HELPER: NORMALIZE ORDER DICT
+# --------------------------------------------------
+
+def normalize_order(order: dict) -> dict:
+    if not order:
+        return None
+
+    result = dict(order)
+
+    numeric_fields = [
+        "quantity_kg",
+        "price_per_kg",
+        "gross_amount",
+        "transport_cost",
+        "net_proceeds",
+    ]
+
+    for field in numeric_fields:
+        if result.get(field) is not None:
+            result[field] = float(result[field])
+
+    if result.get("created_at") is not None:
+        created = result["created_at"]
+        if hasattr(created, "replace") and hasattr(created, "isoformat"):
+            result["created_at"] = (
+                created.replace(tzinfo=timezone.utc).isoformat()
+            )
+        elif isinstance(created, str) and not created.endswith("Z") and "+" not in created:
+            result["created_at"] = f"{created}+00:00"
+
+    return result
+
+
+# --------------------------------------------------
 # CREATE ORDER - MYSQL PERSISTENCE
 # --------------------------------------------------
 
@@ -233,6 +267,8 @@ def create_order(request: OrderRequest):
         "status": "PENDING_PAYMENT",
         "payment_status": "NOT_PAID",
         "created_at": created_at.isoformat(),
+        "paypal_order_id": None,
+        "paypal_capture_id": None,
     }
 
     connection = None
@@ -314,6 +350,87 @@ def create_order(request: OrderRequest):
 
 
 # --------------------------------------------------
+# LIST ORDERS - MYSQL PERSISTENCE (PAGINATED)
+# --------------------------------------------------
+
+@app.get("/api/orders")
+def list_orders(limit: int = 50, offset: int = 0):
+    """
+    Retrieve past orders with pagination, sorted by created_at descending.
+    Note: Phase 1 provides public listing; Phase 2 introduces farmer identity isolation.
+    """
+    if limit < 1 or limit > 100:
+        raise HTTPException(
+            status_code=400,
+            detail="limit must be between 1 and 100",
+        )
+    if offset < 0:
+        raise HTTPException(
+            status_code=400,
+            detail="offset must be greater than or equal to 0",
+        )
+
+    connection = None
+
+    try:
+        connection = get_connection()
+
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT COUNT(*) AS total FROM orders")
+            count_row = cursor.fetchone()
+            total = count_row["total"] if count_row else 0
+
+            cursor.execute(
+                """
+                SELECT
+                    order_id,
+                    buyer_id,
+                    buyer_name,
+                    crop,
+                    quantity_kg,
+                    location,
+                    price_per_kg,
+                    gross_amount,
+                    transport_cost,
+                    net_proceeds,
+                    currency,
+                    offer_type,
+                    status,
+                    payment_status,
+                    created_at,
+                    paypal_order_id,
+                    paypal_capture_id
+                FROM orders
+                ORDER BY created_at DESC
+                LIMIT %s OFFSET %s
+                """,
+                (limit, offset),
+            )
+            raw_orders = cursor.fetchall() or []
+
+        orders = [normalize_order(row) for row in raw_orders]
+
+        return {
+            "success": True,
+            "orders": orders,
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+        }
+
+    except Exception:
+        logger.exception("list_orders: database error")
+        raise HTTPException(
+            status_code=500,
+            detail="Could not retrieve orders. Please try again.",
+        )
+
+    finally:
+        if connection is not None:
+            connection.close()
+
+
+# --------------------------------------------------
 # GET ORDER - MYSQL PERSISTENCE
 # --------------------------------------------------
 
@@ -345,7 +462,9 @@ def get_order(order_id: str):
                     offer_type,
                     status,
                     payment_status,
-                    created_at
+                    created_at,
+                    paypal_order_id,
+                    paypal_capture_id
                 FROM orders
                 WHERE order_id = %s
                 """,
@@ -375,31 +494,7 @@ def get_order(order_id: str):
             detail="Order not found.",
         )
 
-    # Convert MySQL Decimal values to JSON-friendly numbers.
-    numeric_fields = [
-        "quantity_kg",
-        "price_per_kg",
-        "gross_amount",
-        "transport_cost",
-        "net_proceeds",
-    ]
-
-    for field in numeric_fields:
-
-        if order[field] is not None:
-            order[field] = float(order[field])
-
-    # MySQL DATETIME is returned without timezone information.
-    # Our stored timestamps are UTC.
-    if order["created_at"] is not None:
-
-        order["created_at"] = (
-            order["created_at"]
-            .replace(tzinfo=timezone.utc)
-            .isoformat()
-        )
-
     return {
         "success": True,
-        "order": order,
+        "order": normalize_order(order),
     }

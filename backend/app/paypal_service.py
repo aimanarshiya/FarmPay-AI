@@ -14,6 +14,11 @@ PAYPAL_BASE_URL = os.getenv(
 PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
 PAYPAL_CLIENT_SECRET = os.getenv("PAYPAL_CLIENT_SECRET")
 
+FRONTEND_BASE_URL = os.getenv(
+    "FRONTEND_BASE_URL",
+    "http://localhost:5173",
+).rstrip("/")
+
 
 def get_access_token():
     if not PAYPAL_CLIENT_ID or not PAYPAL_CLIENT_SECRET:
@@ -59,8 +64,8 @@ def create_paypal_order(order_id, amount, currency="USD"):
             "application_context": {
                 "brand_name": "FarmPay AI",
                 "user_action": "PAY_NOW",
-                "return_url": "http://localhost:5173/payment/success",
-                "cancel_url": "http://localhost:5173/payment/cancel",
+                "return_url": f"{FRONTEND_BASE_URL}/payment/success?order_id={order_id}",
+                "cancel_url": f"{FRONTEND_BASE_URL}/payment/cancel?order_id={order_id}",
             },
         },
         timeout=30,
@@ -68,6 +73,8 @@ def create_paypal_order(order_id, amount, currency="USD"):
 
     response.raise_for_status()
     return response.json()
+
+
 def capture_paypal_order(paypal_order_id):
     token = get_access_token()
 
