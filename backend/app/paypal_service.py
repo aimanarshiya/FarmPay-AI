@@ -85,6 +85,7 @@ def capture_paypal_order(paypal_order_id):
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
             "PayPal-Request-Id": f"capture-{paypal_order_id}",
+            "Prefer": "return=representation",
         },
         json={},
         timeout=30,

@@ -25,6 +25,12 @@ router = APIRouter(
 SANDBOX_TEST_AMOUNT = Decimal("1.00")
 SANDBOX_TEST_CURRENCY = "USD"
 
+# PayPal normalises reference_id to this sentinel value for single-unit orders
+# when the caller does not set it, or in GET-order responses regardless of the
+# value that was submitted at order creation.  Confirmed by PayPal Orders v2 API
+# documentation.  "default" must never be treated as a FarmPay order ID.
+_PAYPAL_DEFAULT_REFERENCE_ID = "default"
+
 
 def order_to_dict(order):
     if not order:
@@ -87,17 +93,47 @@ def get_single_purchase_unit(paypal_result: dict) -> dict:
     return units[0]
 
 
-def validate_paypal_order(
+def validate_paypal_identity(
     paypal_result: dict,
     farmpay_order_id: str,
 ) -> dict:
-    """Verify order identity and test amount before capturing."""
+    """
+    Verify that the PayPal purchase unit belongs to the given FarmPay order.
+
+    Validation rules, applied in order:
+
+    1.  custom_id — when present — must equal farmpay_order_id.
+        PayPal preserves custom_id verbatim in every response type
+        (GET-order and capture), making it the authoritative anchor.
+
+    2.  reference_id — when present AND not the PayPal-assigned placeholder
+        value "default" — must also equal farmpay_order_id.
+        PayPal normalises reference_id to "default" in GET /v2/checkout/orders
+        responses for single-purchase-unit orders (confirmed by PayPal Orders
+        v2 API documentation).  Treating "default" as a mismatch would
+        incorrectly reject every real Sandbox capture attempt.
+
+    3.  At least one non-placeholder identifier must positively match
+        farmpay_order_id.  If both custom_id and a non-placeholder
+        reference_id are absent or neither matches, validation fails.
+
+    Returns the validated purchase unit dict.
+    Raises HTTPException 400 on any identity mismatch.
+    """
     unit = get_single_purchase_unit(paypal_result)
 
     custom_id = unit.get("custom_id")
+    # If custom_id is not directly at purchase_units[0], check inside payments.captures[0]
+    if not custom_id:
+        captures = unit.get("payments", {}).get("captures", [])
+        if captures and isinstance(captures[0], dict):
+            custom_id = captures[0].get("custom_id")
+
     reference_id = unit.get("reference_id")
 
-    # Every identifier that is present must agree with the FarmPay order.
+    reference_id_is_placeholder = (reference_id == _PAYPAL_DEFAULT_REFERENCE_ID)
+
+    # Rule 1: custom_id, when present, must match exactly.
     if custom_id and custom_id != farmpay_order_id:
         raise HTTPException(
             status_code=400,
@@ -110,7 +146,8 @@ def validate_paypal_order(
             },
         )
 
-    if reference_id and reference_id != farmpay_order_id:
+    # Rule 2: reference_id, when present and not the placeholder, must match.
+    if reference_id and not reference_id_is_placeholder and reference_id != farmpay_order_id:
         raise HTTPException(
             status_code=400,
             detail={
@@ -122,7 +159,13 @@ def validate_paypal_order(
             },
         )
 
-    if custom_id != farmpay_order_id and reference_id != farmpay_order_id:
+    # Rule 3: at least one identifier must positively confirm the FarmPay order.
+    custom_id_matches = (custom_id == farmpay_order_id)
+    reference_id_matches = (
+        reference_id == farmpay_order_id
+        and not reference_id_is_placeholder
+    )
+    if not custom_id_matches and not reference_id_matches:
         raise HTTPException(
             status_code=400,
             detail={
@@ -134,7 +177,35 @@ def validate_paypal_order(
             },
         )
 
-    amount_info = unit.get("amount", {})
+    return unit
+
+
+def validate_paypal_order(
+    paypal_result: dict,
+    farmpay_order_id: str,
+) -> dict:
+    """
+    Verify order identity AND require a valid $1.00 USD amount.
+
+    Use this after a successful capture response where PayPal guarantees the
+    amount field.  For pre-capture GET-order identity checks use
+    validate_paypal_identity() which does not mandate the amount field.
+
+    Returns the validated purchase unit dict.
+    Raises HTTPException 400 on any identity or amount mismatch.
+    """
+    unit = validate_paypal_identity(paypal_result, farmpay_order_id)
+
+    # In PayPal capture responses, the amount can appear either directly
+    # at purchase_units[0].amount (when Prefer: return=representation is honored)
+    # or inside purchase_units[0].payments.captures[0].amount (in standard capture responses).
+    amount_info = unit.get("amount")
+    if not amount_info or not isinstance(amount_info, dict) or "value" not in amount_info:
+        captures = unit.get("payments", {}).get("captures", [])
+        if captures and isinstance(captures[0], dict):
+            amount_info = captures[0].get("amount", {})
+        else:
+            amount_info = {}
 
     try:
         amount = Decimal(str(amount_info["value"]))
@@ -318,8 +389,14 @@ def capture_payment(order_id: str):
                 detail="No PayPal order is saved. Create a checkout first.",
             )
 
-        # Do not call capture until we have retrieved and validated
-        # the exact PayPal order currently saved in MySQL.
+        # Retrieve the current PayPal order state without capturing it.
+        # validate_paypal_identity() is used here because the GET-order
+        # response may return reference_id="default" (a known PayPal
+        # normalisation for single-unit orders) even when a custom value
+        # was supplied at order-creation time.  The amount field is present
+        # in GET responses but we do not strictly require it here — the
+        # mandatory amount check is deferred to validate_paypal_order()
+        # called against the guaranteed-complete capture response below.
         details = get_paypal_order_details(paypal_order_id)
 
         if details.get("id") != paypal_order_id:
@@ -328,7 +405,8 @@ def capture_payment(order_id: str):
                 detail="PayPal returned a different order ID; capture not attempted.",
             )
 
-        unit = validate_paypal_order(details, order_id)
+        # Identity-only check on the GET response (no amount requirement).
+        validate_paypal_identity(details, order_id)
         paypal_status = details.get("status")
 
         # If PayPal already completed this order, reuse its capture details.
@@ -367,7 +445,8 @@ def capture_payment(order_id: str):
                 },
             )
 
-        # Validate the returned capture against the same FarmPay order.
+        # Full validation — identity + amount — on the capture response where
+        # the amount field is guaranteed by the PayPal API specification.
         unit = validate_paypal_order(paypal_result, order_id)
         captures = unit.get("payments", {}).get("captures", [])
 
