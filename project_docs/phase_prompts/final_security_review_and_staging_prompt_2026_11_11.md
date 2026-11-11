@@ -36,3 +36,4 @@ STOP before committing or pushing.
 Show the exact Git status, staged filenames, security findings, password-hashing assessment, test results, proposed commit message, and remote branch status.
 
 Never claim a file is staged unless `git diff --cached --name-only` confirms it. Never claim the project is pushed unless GitHub confirms it.
+
