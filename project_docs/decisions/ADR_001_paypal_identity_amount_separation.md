@@ -1,8 +1,8 @@
 # ADR 001: Separation of PayPal Order Identity and Amount Validation
 
-**Status:** Accepted  
-**Date:** 2026-11-05  
-**Deciders:** Senior Full-Stack Architect, AI Systems Engineer  
+**Status:** Accepted
+**Date:** 2026-11-05
+**Deciders:** Senior Full-Stack Architect, AI Systems Engineer
 
 ---
 

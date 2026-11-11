@@ -23,6 +23,10 @@ from app.main import (
     normalize_order,
 )
 
+ADMIN_USER = {"user_id": "ADMIN-TEST", "role": "ADMIN"}
+FARMER_USER = {"user_id": "FARMER-TEST", "role": "FARMER"}
+BUYER_USER = {"user_id": "BUYER-TEST", "role": "BUYER"}
+
 
 class TestOrdersAPI(unittest.TestCase):
 
@@ -59,6 +63,8 @@ class TestOrdersAPI(unittest.TestCase):
         result = get_buyer_offers(req)
 
         self.assertTrue(result["success"])
+        self.assertEqual(result["mode"], "DEMO_ONLY")
+        self.assertIn("cannot create orders", result["disclaimer"])
         self.assertEqual(len(result["offers"]), 3)
 
         # Verify net proceeds math for each offer
@@ -76,13 +82,8 @@ class TestOrdersAPI(unittest.TestCase):
         self.assertGreaterEqual(offers[1]["net_proceeds"], offers[2]["net_proceeds"])
 
     @patch("app.main.get_connection")
-    def test_create_order_success(self, mock_get_conn):
-        """Verify order creation, ID generation, and database insert."""
-        mock_conn = MagicMock()
-        mock_cursor = MagicMock()
-        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
-        mock_get_conn.return_value = mock_conn
-
+    def test_demo_offer_cannot_create_an_order(self, mock_get_conn):
+        """Synthetic buyers are rejected and never persisted as orders."""
         req = OrderRequest(
             crop="Rice",
             quantity_kg=250.0,
@@ -90,29 +91,13 @@ class TestOrdersAPI(unittest.TestCase):
             buyer_id="BUYER001",
         )
 
-        res = create_order(req)
-        self.assertTrue(res["success"])
-        order = res["order"]
-
-        self.assertTrue(order["order_id"].startswith("FP-"))
-        self.assertEqual(order["crop"], "Rice")
-        self.assertEqual(order["buyer_id"], "BUYER001")
-        self.assertEqual(order["buyer_name"], "Demo Buyer A")
-        self.assertEqual(order["status"], "PENDING_PAYMENT")
-        self.assertEqual(order["payment_status"], "NOT_PAID")
-
-        # Recalculated values check
-        self.assertEqual(order["gross_amount"], 250.0 * 25.0)  # 6250.0
-        self.assertEqual(order["transport_cost"], 300.0)
-        self.assertEqual(order["net_proceeds"], 5950.0)
-
-        # Check SQL execution
-        mock_cursor.execute.assert_called_once()
-        mock_conn.commit.assert_called_once()
-        mock_conn.close.assert_called_once()
+        with self.assertRaises(HTTPException) as ctx:
+            create_order(req)
+        self.assertEqual(ctx.exception.status_code, 410)
+        mock_get_conn.assert_not_called()
 
     def test_create_order_invalid_buyer(self):
-        """Attempting to order with non-existent buyer raises 404."""
+        """The deprecated demo-order endpoint rejects synthetic buyer IDs."""
         req = OrderRequest(
             crop="Rice",
             quantity_kg=100.0,
@@ -121,7 +106,7 @@ class TestOrdersAPI(unittest.TestCase):
         )
         with self.assertRaises(HTTPException) as ctx:
             create_order(req)
-        self.assertEqual(ctx.exception.status_code, 404)
+        self.assertEqual(ctx.exception.status_code, 410)
 
     @patch("app.main.get_connection")
     def test_get_order_found(self, mock_get_conn):
@@ -150,7 +135,7 @@ class TestOrdersAPI(unittest.TestCase):
         mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
         mock_get_conn.return_value = mock_conn
 
-        res = get_order("FP-1234567890AB")
+        res = get_order("FP-1234567890AB", current_user=ADMIN_USER)
         self.assertTrue(res["success"])
         order = res["order"]
 
@@ -169,7 +154,7 @@ class TestOrdersAPI(unittest.TestCase):
         mock_get_conn.return_value = mock_conn
 
         with self.assertRaises(HTTPException) as ctx:
-            get_order("FP-NOTFOUND0000")
+            get_order("FP-NOTFOUND0000", current_user=ADMIN_USER)
         self.assertEqual(ctx.exception.status_code, 404)
 
     @patch("app.main.get_connection")
@@ -203,28 +188,59 @@ class TestOrdersAPI(unittest.TestCase):
         mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
         mock_get_conn.return_value = mock_conn
 
-        res = list_orders(limit=10, offset=0)
+        res = list_orders(limit=10, offset=0, current_user=ADMIN_USER)
         self.assertTrue(res["success"])
         self.assertEqual(res["total"], 42)
         self.assertEqual(len(res["orders"]), 5)
         self.assertEqual(res["limit"], 10)
         self.assertEqual(res["offset"], 0)
 
+    @patch("app.main.get_connection")
+    def test_farmer_order_history_is_scoped_to_farmer_id(self, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_cursor = MagicMock()
+        mock_cursor.fetchone.return_value = {"total": 0}
+        mock_cursor.fetchall.return_value = []
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+        mock_get_conn.return_value = mock_conn
+
+        result = list_orders(current_user=FARMER_USER)
+
+        self.assertEqual(result["orders"], [])
+        list_query, list_params = mock_cursor.execute.call_args_list[1].args
+        self.assertIn("WHERE farmer_id = %s", list_query)
+        self.assertEqual(list_params[0], FARMER_USER["user_id"])
+
+    @patch("app.main.get_connection")
+    def test_buyer_order_history_is_scoped_to_buyer_id(self, mock_get_conn):
+        mock_conn = MagicMock()
+        mock_cursor = MagicMock()
+        mock_cursor.fetchone.return_value = {"total": 0}
+        mock_cursor.fetchall.return_value = []
+        mock_conn.cursor.return_value.__enter__.return_value = mock_cursor
+        mock_get_conn.return_value = mock_conn
+
+        result = list_orders(current_user=BUYER_USER)
+
+        self.assertEqual(result["orders"], [])
+        list_query, list_params = mock_cursor.execute.call_args_list[1].args
+        self.assertIn("WHERE buyer_id = %s", list_query)
+        self.assertEqual(list_params[0], BUYER_USER["user_id"])
+
     def test_list_orders_invalid_bounds(self):
         """Verify limit and offset boundary validation."""
         with self.assertRaises(HTTPException) as ctx:
-            list_orders(limit=0)
+            list_orders(limit=0, current_user=ADMIN_USER)
         self.assertEqual(ctx.exception.status_code, 400)
 
         with self.assertRaises(HTTPException) as ctx:
-            list_orders(limit=101)
+            list_orders(limit=101, current_user=ADMIN_USER)
         self.assertEqual(ctx.exception.status_code, 400)
 
         with self.assertRaises(HTTPException) as ctx:
-            list_orders(offset=-1)
+            list_orders(offset=-1, current_user=ADMIN_USER)
         self.assertEqual(ctx.exception.status_code, 400)
 
 
 if __name__ == "__main__":
     unittest.main()
-

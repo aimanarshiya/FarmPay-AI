@@ -1,7 +1,7 @@
 # FarmPay AI — System Architecture Specification
 
-**Version:** 2.0.0  
-**Updated:** 2026-11-05  
+**Version:** 2.0.0
+**Updated:** 2026-11-05
 
 ---
 

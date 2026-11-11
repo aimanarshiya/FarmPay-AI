@@ -1,0 +1,17 @@
+{
+  "name": "projects/7674813774794234311/screens/483da35cad85467c9158967ec10044fe",
+  "title": "FarmPay AI \u2014 Farmer Mobile Command Hub",
+  "screenshot": {
+    "name": "projects/7674813774794234311/screens/483da35cad85467c9158967ec10044fe/fileEntries/screenshot",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/7674813774794234311/files/screenshot_00065fd7b07e85ed07c4dc8e68247653:download",
+    "mimeType": "image/png"
+  },
+  "htmlCode": {
+    "name": "projects/7674813774794234311/screens/483da35cad85467c9158967ec10044fe/fileEntries/html",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/7674813774794234311/files/483da35cad85467c9158967ec10044fe:download",
+    "mimeType": "text/html"
+  },
+  "width": "780",
+  "height": "4170",
+  "deviceType": "MOBILE"
+}

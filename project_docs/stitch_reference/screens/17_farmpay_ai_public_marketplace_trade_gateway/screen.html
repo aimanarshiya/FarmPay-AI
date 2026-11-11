@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed":"#1e1a13","surface-container-high":"#eae6de","inverse-surface":"#2e3230","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","on-tertiary-fixed-variant":"#554020","on-primary":"#ffffff","tertiary":"#705c30","primary-container":"#78a886","surface-container-highest":"#e4e0d8","secondary-fixed-dim":"#d4ccbf","surface-variant":"#e4e0d8","tertiary-container":"#c4a66a","surface":"#faf6f0","secondary-container":"#f0e8db","on-surface":"#2e3230","on-secondary-fixed-variant":"#4a4538","surface-container-low":"#f5f1ea","surface-tint":"#4a7c59","on-tertiary-fixed":"#221a05","on-error-container":"#690005","secondary":"#6b6358","error":"#b83230","tertiary-fixed-dim":"#dcc48e","primary-fixed-dim":"#8ecf9e","surface-dim":"#dbd7cf","primary":"#4a7c59","outline":"#74796e","on-tertiary-container":"#554020","on-primary-container":"#d8f0de","secondary-fixed":"#f0e8db","on-background":"#2e3230","on-tertiary":"#ffffff","surface-bright":"#faf6f0","inverse-primary":"#8ecf9e","background":"#faf6f0","on-surface-variant":"#4a4e4a","surface-container":"#f0ece4","outline-variant":"#c4c8bc","on-primary-fixed-variant":"#2a6038","inverse-on-surface":"#f5f0e8","primary-fixed":"#c8e8d0","on-primary-fixed":"#002110","on-secondary-container":"#5e5548","error-container":"#ffdad8","on-error":"#ffffff","tertiary-fixed":"#f8e0a8"},borderRadius:{DEFAULT:"0.5rem",lg:"1rem",xl:"1.5rem",full:"9999px"},spacing:{},fontFamily:{headline:["Literata"],display:["Literata"],body:["Nunito Sans"],label:["Nunito Sans"]},fontSize:{}}}}</script></head><body class="bg-surface font-body text-on-surface min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(46,50,48,0.05)]"><div class="bg-surface-container-high/60 px-6 py-1 flex items-center justify-between text-xs text-on-surface-variant"><div class="flex items-center gap-2"><span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-medium"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Sample prototype for demonstration • Real-time simulated mandi spreads &amp; escrow security</span></div><div class="flex items-center gap-4"><button class="flex items-center gap-1 hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[14px]">show_chart</span>Live Mandi Ticker: Wheat ₹2,275/qtl (+1.2%) | Soybean ₹4,650/qtl</button><span class="text-outline-variant">|</span><span class="text-tertiary font-medium">256-Bit Escrow Vault Active</span></div></div><div class="h-20 w-full px-6 lg:px-10 flex items-center justify-between gap-6"><div class="flex items-center gap-4 shrink-0"><img alt="FarmPay AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><div class="flex flex-col"><div class="flex items-center gap-2"><span class="font-headline font-bold text-lg tracking-tight text-on-surface">FarmPay AI</span><span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant">Fintech Core</span></div><span class="text-xs text-on-surface-variant font-medium">Agri-Fintech &amp; Direct Trade</span></div></div><nav class="hidden xl:flex items-center gap-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="px-3.5 py-2 transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="marketplace" href="#">Marketplace</a><a class="px-3.5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded-lg" data-path="farmer-suite" href="#">Farmer Suite</a><a class="px-3.5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded-lg" data-path="buyer-desk" href="#">Buyer Desk</a><a class="px-3.5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded-lg" data-path="admin-escrow" href="#">Admin Escrow</a><a class="px-3.5 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all rounded-lg" data-path="how-it-works" href="#">How it Works</a></nav><div class="flex items-center gap-3.5 shrink-0"><div class="inline-flex items-center p-1 rounded-full bg-surface-container text-xs font-semibold"><button class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-primary shadow-sm">English</button><button class="px-2.5 py-1 rounded-full text-on-surface-variant hover:text-on-surface">हिन्दी</button><button class="px-2.5 py-1 rounded-full text-on-surface-variant hover:text-on-surface">తెలుగు</button></div><div class="inline-flex items-center p-1 rounded-full bg-secondary-container/70 text-xs"><span class="px-3 py-1 rounded-full bg-primary text-on-primary font-bold shadow-sm">Farmer Mode</span><button class="px-3 py-1 rounded-full text-on-secondary-variant hover:text-on-surface font-medium transition-colors">Buyer Mode</button></div><div class="flex items-center gap-2.5 pl-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuVIcrRMFHhTIpkknOsfrAqSTletvj17u59i7MwKINS1n2mv2od8rAIFbTAIEjvNLYAVQcYh-CLfOMPpVpf_PqNZvp6oXbI8ozXCQhSbxIWhSNFiZZ0gm4nk03N4qpuqL8z1VcZ6mV0ZO3nmNBQXPxqYIYdLwp-z5n_YOEv1U80ZkQ0IA9Az9hmBJOcURW-rsPRA5KKXhtmX8pFlFJKfEMrDKnw9ZuJdqle4cIijc"/><div class="flex flex-col text-left"><div class="flex items-center gap-1.5"><span class="text-xs font-bold text-on-surface leading-tight">Rajesh Patel</span><span class="material-symbols-outlined text-primary text-[14px]">verified</span></div><span class="text-[10px] text-tertiary font-semibold">KYC Verified (Nizamabad FPO)</span></div></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full">
+<!-- Hero Section -->
+<section class="relative overflow-hidden px-6 lg:px-12 pt-12 pb-24 bg-surface">
+<!-- Subtle organic background accents -->
+<div class="absolute top-1/4 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-10 right-0 w-[450px] h-[450px] bg-tertiary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Copy & Voice Prompt CTA -->
+<div class="lg:col-span-7 flex flex-col items-start text-left space-y-6">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold tracking-wide">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+          Next-Gen Agritech &amp; Escrow Rail for Indian Agriculture
+        </div>
+<h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl text-on-surface font-bold tracking-tight leading-[1.15]">
+          Sell Directly to Genuine Buyers. <br class="hidden sm:inline"/>
+<span class="text-primary italic font-medium">Know Your True Net Payout</span> Before You Ship.
+        </h1>
+<p class="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          Empowering Indian farmers and Farmer Producer Organisations (FPOs) with multilingual Voice-to-Trade listing, transparent FairBid net earnings breakdown, and instant escrow settlement.
+        </p>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+<button class="flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-primary text-on-primary font-semibold shadow-lg shadow-primary/20 hover:bg-primary/95 transition-all transform hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto" id="voiceModalBtn">
+<span class="material-symbols-outlined text-[22px]">mic</span>
+<span>List Crop via Voice (Free)</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-surface-container-highest transition-colors w-full sm:w-auto">
+<span class="material-symbols-outlined text-[20px] text-tertiary">store</span>
+<span>Register as Verified Buyer</span>
+</button>
+</div>
+<!-- Trust Badges -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 w-full">
+<div class="flex items-center gap-2.5 p-3 rounded-lg bg-surface-container-low text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>Zero Hidden Mandi Deductions</span>
+</div>
+<div class="flex items-center gap-2.5 p-3 rounded-lg bg-surface-container-low text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-tertiary text-[18px]">lock_clock</span>
+<span>Escrow-Secured Advance Funds</span>
+</div>
+<div class="flex items-center gap-2.5 p-3 rounded-lg bg-surface-container-low text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span>Integrated Logistics &amp; QA</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Hero Mockup Card -->
+<div class="lg:col-span-5 w-full">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl shadow-on-surface/5 p-6 space-y-5 relative">
+<!-- Card Header & Badge -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-2xl">grain</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline font-bold text-lg text-on-surface">Sharbati Wheat (Grade A)</h3>
+<span class="text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Active Bid</span>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Sehore FPO, Madhya Pradesh • Lot #FP-9428</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xs text-on-surface-variant uppercase font-semibold">Lot Size</span>
+<div class="font-headline font-bold text-base text-on-surface">120 Quintals</div>
+</div>
+</div>
+<!-- Quality Snapshot Badges -->
+<div class="grid grid-cols-3 gap-2 py-1">
+<div class="bg-surface-container-low p-2 rounded-lg text-center">
+<span class="text-[10px] text-on-surface-variant block uppercase font-bold">Moisture</span>
+<span class="font-bold text-sm text-on-surface">10.8%</span>
+<span class="text-[9px] text-primary block font-medium">Compliant</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg text-center">
+<span class="text-[10px] text-on-surface-variant block uppercase font-bold">Foreign Matter</span>
+<span class="font-bold text-sm text-on-surface">0.4%</span>
+<span class="text-[9px] text-primary block font-medium">&lt; 1% Allowed</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg text-center">
+<span class="text-[10px] text-on-surface-variant block uppercase font-bold">Listing Reserve</span>
+<span class="font-bold text-sm text-on-surface">₹2,450/q</span>
+<span class="text-[9px] text-on-surface-variant block font-medium">Firm base</span>
+</div>
+</div>
+<!-- Live Bids Breakdown with FairBid Comparison -->
+<div class="bg-surface-container rounded-lg p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Highest Verified FairBid Offer
+              </span>
+<span class="text-primary font-bold text-sm">₹2,680 / qtl</span>
+</div>
+<!-- Visual calculation comparison -->
+<div class="space-y-1.5 text-xs text-on-surface-variant border-t border-dashed border-outline-variant/30 pt-2.5">
+<div class="flex justify-between">
+<span>Gross Offer (Adani Agri Logistics, Indore):</span>
+<span class="font-semibold text-on-surface">₹3,21,600</span>
+</div>
+<div class="flex justify-between text-error">
+<span>Freight &amp; Moisture Dockage Allowance:</span>
+<span>- ₹4,800</span>
+</div>
+<div class="flex justify-between text-error">
+<span>Escrow &amp; Assay Protection Fee (0.8%):</span>
+<span>- ₹2,572</span>
+</div>
+<div class="flex justify-between pt-2 border-t border-outline-variant/20 font-bold text-sm text-on-surface">
+<span>Net Farmer Take-Home Payout:</span>
+<span class="text-primary">₹3,14,228</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-primary-fixed/40 flex items-center justify-between text-xs">
+<span class="font-medium text-on-primary-fixed-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">trending_up</span>
+                Local Mandi Net Equiv: ₹2,495/qtl
+              </span>
+<span class="font-bold text-on-primary-fixed-variant">+₹185/qtl Advantage</span>
+</div>
+</div>
+<!-- Verified Buyer Escrow Status -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-tertiary-container/40 flex items-center justify-center text-on-tertiary-container text-xs font-bold">
+                AA
+              </div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Adani Agri Logistics Ltd.</span>
+<span class="text-[10px] text-tertiary font-medium">Trust Score: 99.4% (58 Trades)</span>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2.5 py-1 rounded-full text-[11px] font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>100% Escrow Deposited</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Three Signature Platform Innovations -->
+<section class="py-20 px-6 lg:px-12 bg-surface-container-low">
+<div class="max-w-7xl mx-auto space-y-12">
+<div class="text-center max-w-3xl mx-auto space-y-3">
+<span class="text-xs font-bold text-tertiary tracking-widest uppercase">Engineered for Bharat</span>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-bold">
+          Three Breakthrough Innovations Built for Real Farm Realities
+        </h2>
+<p class="font-body text-base text-on-surface-variant">
+          No complex multi-page forms, no unexpected cuts at the weighbridge, and no chasing traders for delayed drafts.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Innovation Card 1: Voice-to-Trade AI -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-2xl">record_voice_over</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Multilingual Voice-to-Trade AI</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Speak naturally in Hindi, Telugu, Kannada, or English. FarmPay automatically parses crop variety, approximate quintals, moisture read, and pickup village GPS into an official marketplace tender within 20 seconds.
+            </p>
+<div class="p-3 bg-surface-container rounded-lg space-y-1.5">
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-wider block">Sample Voice Input</span>
+<p class="text-xs italic text-on-surface">"Bhaiya 150 quintal Sona Masoori paddy hai, moisture 12 percent, Miryalaguda mandal mein farm par pickup chahiye..."</p>
+<div class="flex items-center gap-1.5 text-[11px] text-primary font-bold pt-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Auto-categorized into standard mandi grade specs</span>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+              Supports 12 Indic Dialects <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Innovation Card 2: FairBid Algorithmic Net Comparison -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-2xl">calculate</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface">FairBid Real Net Comparison</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              Raw bid prices in traditional mandis hide heavy deductions like unloading charges, moisture dockage, and broker cuts. FairBid models all freight, bagging, and dockage before you hit accept.
+            </p>
+<div class="p-3 bg-surface-container rounded-lg space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Nominal Quote:</span>
+<span class="font-bold text-on-surface">₹2,800/qtl</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Estimated Logistics:</span>
+<span class="font-bold text-error">- ₹75/qtl</span>
+</div>
+<div class="flex justify-between text-xs font-bold border-t border-outline-variant/30 pt-1 text-primary">
+<span>Guaranteed Net Bank Credit:</span>
+<span>₹2,725/qtl</span>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+              Deterministic Escrow Math <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Innovation Card 3: Buyer Trust Passport -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-2xl">badge</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Buyer Trust Passport</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+              No fictitious reviews or biased star systems. Buyer ratings are algorithmically weighted by on-time escrow deposits, weighbridge dispute frequency, and vehicle turnaround speeds at farm gates.
+            </p>
+<div class="p-3 bg-surface-container rounded-lg space-y-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-on-surface-variant">Escrow Punctuality:</span>
+<span class="font-bold text-primary">99.8%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99.8%]"></div>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-on-surface-variant">Dispute-Free Weight Ratio:</span>
+<span class="font-bold text-primary">99.2%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99.2%]"></div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+              Verifiable On-Chain &amp; Bank Logs <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Live Marketplace Discovery Ticker & Listings -->
+<section class="py-20 px-6 lg:px-12 bg-surface">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="inline-flex items-center gap-1.5 text-xs font-bold text-primary mb-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            LIVE MANDI TRADING DESK
+          </div>
+<h2 class="font-headline text-3xl text-on-surface font-bold">Verified Crop Lots Open for Bidding</h2>
+<p class="text-sm text-on-surface-variant">Pre-assayed quality parameters, geo-tagged warehouses, and locked escrow reserves.</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-3.5 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold">All Crops</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high">Paddy &amp; Rice</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high">Wheat &amp; Grains</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high">Spices &amp; Cotton</button>
+</div>
+</div>
+<!-- Crop Listings Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Listing 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Telangana</span>
+<span class="text-xs text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 2h 15m left
+              </span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base text-on-surface">Sona Masoori Paddy</h4>
+<p class="text-xs text-on-surface-variant">Miryalaguda Cluster FPO</p>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs py-2 bg-surface-container-low p-2.5 rounded-lg">
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Lot Size</span>
+<span class="font-bold text-on-surface">250 Quintals</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Moisture</span>
+<span class="font-bold text-primary">11.2% (Grade A)</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Reserve Base:</span>
+<span class="font-medium text-on-surface">₹2,320/qtl</span>
+</div>
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface">Top FairBid:</span>
+<span class="text-primary text-sm">₹2,485/qtl</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 mt-4 flex items-center justify-between">
+<span class="text-[11px] text-tertiary font-semibold">4 Verified Millers Bidding</span>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-primary/90">Bid Now</button>
+</div>
+</div>
+<!-- Listing 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Madhya Pradesh</span>
+<span class="text-xs text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 5h 40m left
+              </span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base text-on-surface">Sharbati Gold Wheat</h4>
+<p class="text-xs text-on-surface-variant">Sehore Krishak Sangh</p>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs py-2 bg-surface-container-low p-2.5 rounded-lg">
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Lot Size</span>
+<span class="font-bold text-on-surface">120 Quintals</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Moisture</span>
+<span class="font-bold text-primary">10.8% (Premium)</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Reserve Base:</span>
+<span class="font-medium text-on-surface">₹2,450/qtl</span>
+</div>
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface">Top FairBid:</span>
+<span class="text-primary text-sm">₹2,680/qtl</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 mt-4 flex items-center justify-between">
+<span class="text-[11px] text-tertiary font-semibold">6 Verified Bidders</span>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-primary/90">Bid Now</button>
+</div>
+</div>
+<!-- Listing 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Andhra Pradesh</span>
+<span class="text-xs text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 1d left
+              </span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base text-on-surface">Organic Turmeric (Curcumin 4.5%)</h4>
+<p class="text-xs text-on-surface-variant">Duggirala Spice Federation</p>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs py-2 bg-surface-container-low p-2.5 rounded-lg">
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Lot Size</span>
+<span class="font-bold text-on-surface">80 Quintals</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Quality</span>
+<span class="font-bold text-tertiary">Lab Assayed</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Reserve Base:</span>
+<span class="font-medium text-on-surface">₹14,500/qtl</span>
+</div>
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface">Top FairBid:</span>
+<span class="text-primary text-sm">₹15,850/qtl</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 mt-4 flex items-center justify-between">
+<span class="text-[11px] text-tertiary font-semibold">Exporters Active</span>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-primary/90">Bid Now</button>
+</div>
+</div>
+<!-- Listing 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Gujarat</span>
+<span class="text-xs text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> 48m left
+              </span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base text-on-surface">Cotton MCU-5 (Extra Long Staple)</h4>
+<p class="text-xs text-on-surface-variant">Rajkot Cotton Producers Co-op</p>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs py-2 bg-surface-container-low p-2.5 rounded-lg">
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Lot Size</span>
+<span class="font-bold text-on-surface">400 Bales</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-[10px] uppercase font-bold block">Micronaire</span>
+<span class="font-bold text-primary">3.9 NCL</span>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Reserve Base:</span>
+<span class="font-medium text-on-surface">₹58,000/candy</span>
+</div>
+<div class="flex justify-between text-xs font-bold">
+<span class="text-on-surface">Top FairBid:</span>
+<span class="text-primary text-sm">₹61,400/candy</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/20 mt-4 flex items-center justify-between">
+<span class="text-[11px] text-tertiary font-semibold">Spinning Mills Direct</span>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-semibold hover:bg-primary/90">Bid Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Clear Step-by-Step 'How FarmPay Works' Workflow -->
+<section class="py-20 px-6 lg:px-12 bg-surface-container-high/40">
+<div class="max-w-7xl mx-auto space-y-14">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">End-to-End Escrow Protection</span>
+<h2 class="font-headline text-3xl sm:text-4xl text-on-surface font-bold">How FarmPay AI Works in 5 Steps</h2>
+<p class="text-sm text-on-surface-variant">From your native voice note to guaranteed bank payout without middlemen delays.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl space-y-3 shadow-sm relative">
+<div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
+            1
+          </div>
+<h4 class="font-headline font-bold text-base text-on-surface">Voice or Type Listing</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Record a 20-second voice note in your native dialect describing crop volume, variety, and location.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl space-y-3 shadow-sm relative">
+<div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
+            2
+          </div>
+<h4 class="font-headline font-bold text-base text-on-surface">Competitive Direct Bids</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Audited millers, institutional processors, and verified aggregators submit transparent bids online.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl space-y-3 shadow-sm relative">
+<div class="w-9 h-9 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-sm">
+            3
+          </div>
+<h4 class="font-headline font-bold text-base text-on-surface">FairBid Net Breakdown</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Platform auto-calculates transport, moisture dockage, and platform fee. You see clear net take-home rupees.
+          </p>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl space-y-3 shadow-sm relative">
+<div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
+            4
+          </div>
+<h4 class="font-headline font-bold text-base text-on-surface">100% Escrow Lock</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            The winning buyer deposits 100% of the funds in the scheduled bank escrow vault BEFORE truck dispatch.
+          </p>
+</div>
+<!-- Step 5 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl space-y-3 shadow-sm relative">
+<div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-sm">
+            5
+          </div>
+<h4 class="font-headline font-bold text-base text-on-surface">Instant Bank Credit</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Digital weighbridge receipt is validated and escrow funds are instantly disbursed via direct NEFT/UPI rail.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Farmer vs Buyer Value Proposition Matrix -->
+<section class="py-20 px-6 lg:px-12 bg-surface">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="text-center max-w-3xl mx-auto space-y-2">
+<span class="text-xs font-bold text-tertiary uppercase tracking-wider">A Balanced Ecosystem</span>
+<h2 class="font-headline text-3xl font-bold text-on-surface">Dual Value Proposition Matrix</h2>
+<p class="text-sm text-on-surface-variant">Engineered to eliminate friction, fraud, and payment defaults for both sides of the trade.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Farmer & FPO Value Column -->
+<div class="bg-surface-container-low rounded-xl p-8 space-y-6">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">agriculture</span>
+</span>
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">For Farmers &amp; FPOs</h3>
+<p class="text-xs text-on-surface-variant">Maximize realized profits &amp; bypass informal cartel discounting</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Guaranteed Instant Liquidity</h4>
+<p class="text-xs text-on-surface-variant">No post-dated cheques, 'kacha chitti' slips, or 60-day recovery follow-ups. Funds are locked before crops leave your yard.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Voice Accessibility in Native Tongues</h4>
+<p class="text-xs text-on-surface-variant">No complex typing or English portals required. Speak in Hindi, Telugu, or Kannada directly from the field.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Transparent Net Realization</h4>
+<p class="text-xs text-on-surface-variant">Pre-calculated freight and moisture dockage prevents surprise deductions upon destination arrival.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bulk Buyer & Miller Value Column -->
+<div class="bg-secondary-container/40 rounded-xl p-8 space-y-6">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-tertiary flex items-center justify-center text-on-tertiary">
+<span class="material-symbols-outlined text-[20px]">factory</span>
+</span>
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">For Millers, Processors &amp; Exporters</h3>
+<p class="text-xs text-on-surface-variant">Direct farm-gate sourcing with verified assaying and transparent traceability</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Pre-Assayed Lot Consistency</h4>
+<p class="text-xs text-on-surface-variant">Access digital moisture, foreign matter, and oil/protein lab assay certificates before placing bids.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">Dispute-Free Weight Verification</h4>
+<p class="text-xs text-on-surface-variant">Direct weighbridge IoT bridge data locks tonnage parameters to protect against tare weight manipulation.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">check_circle</span>
+<div>
+<h4 class="font-bold text-sm text-on-surface">GST &amp; Mandi Tax Compliance</h4>
+<p class="text-xs text-on-surface-variant">Automatic generating of e-Way bills, mandi cess declarations, and tax invoice registers for audits.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Investor & Hackathon Showcase Trust Banner -->
+<section class="py-14 px-6 lg:px-12 bg-surface-container-highest/60 border-t border-b border-outline-variant/30">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary/20 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-base text-on-surface">Agri-Fintech Innovation Demo Prototype</h4>
+<p class="text-xs text-on-surface-variant max-w-xl">
+            This deployment showcases live simulated mandi price feeds, FairBid deterministic escrow ledger algorithms, and multi-dialect voice parsing models. Built for verifiable institutional scale.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="px-4 py-2.5 rounded-lg bg-surface-container-lowest text-on-surface text-xs font-bold hover:bg-surface transition-colors shadow-sm">
+          Download Whitepaper (PDF)
+        </button>
+<button class="px-4 py-2.5 rounded-lg bg-primary text-on-primary text-xs font-bold hover:bg-primary/95 transition-colors shadow-sm">
+          FPO Onboarding Partner Link
+        </button>
+</div>
+</div>
+</section>
+<!-- Interactive Voice Listing Demo Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm hidden p-4" id="voiceModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">mic</span>
+<h3 class="font-headline font-bold text-lg text-on-surface">Voice-to-Trade Assistant</h3>
+</div>
+<button class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container" id="closeVoiceModal">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="p-4 bg-surface-container rounded-lg text-center space-y-4">
+<div class="flex items-center justify-center gap-1.5 h-12" id="recordingWave">
+<span class="w-1.5 h-4 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1.5 h-8 bg-primary rounded-full animate-bounce [animation-delay:0.1s]"></span>
+<span class="w-1.5 h-12 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+<span class="w-1.5 h-6 bg-primary rounded-full animate-bounce [animation-delay:0.3s]"></span>
+<span class="w-1.5 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
+</div>
+<p class="text-sm font-medium text-on-surface italic" id="voiceTranscript">
+          "Listening: 120 quintal Sharbati gehu, Sehore MP, 11 percent moisture..."
+        </p>
+</div>
+<div class="space-y-2 text-xs">
+<div class="flex justify-between py-1 border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-medium">Extracted Commodity:</span>
+<span class="font-bold text-on-surface">Sharbati Wheat (Grade A)</span>
+</div>
+<div class="flex justify-between py-1 border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-medium">Extracted Volume:</span>
+<span class="font-bold text-on-surface">120 Quintals</span>
+</div>
+<div class="flex justify-between py-1 border-b border-outline-variant/30">
+<span class="text-on-surface-variant font-medium">Location GPS:</span>
+<span class="font-bold text-on-surface">Sehore Mandal, MP</span>
+</div>
+<div class="flex justify-between py-1">
+<span class="text-on-surface-variant font-medium">Suggested FairBid Reserve:</span>
+<span class="font-bold text-primary">₹2,450 / Quintal</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-3 rounded-lg bg-primary text-on-primary font-bold text-xs hover:bg-primary/90 transition-colors" id="confirmListingBtn">
+          Publish Real Listing (Free)
+        </button>
+<button class="px-4 py-3 rounded-lg bg-surface-container text-on-surface font-semibold text-xs hover:bg-surface-container-high transition-colors" id="cancelModalBtn">
+          Retry Audio
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Interactive Voice Demo Modal Controller
+  const voiceModalBtn = document.getElementById('voiceModalBtn');
+  const voiceModal = document.getElementById('voiceModal');
+  const closeVoiceModal = document.getElementById('closeVoiceModal');
+  const cancelModalBtn = document.getElementById('cancelModalBtn');
+  const confirmListingBtn = document.getElementById('confirmListingBtn');
+  const voiceTranscript = document.getElementById('voiceTranscript');
+
+  if (voiceModalBtn && voiceModal) {
+    voiceModalBtn.addEventListener('click', () => {
+      voiceModal.classList.remove('hidden');
+    });
+
+    const hideModal = () => {
+      voiceModal.classList.add('hidden');
+    };
+
+    closeVoiceModal.addEventListener('click', hideModal);
+    cancelModalBtn.addEventListener('click', () => {
+      voiceTranscript.innerText = "Listening: 'Kharif paddy 200 bags, Guntur, immediate truck dispatch...'";
+    });
+
+    confirmListingBtn.addEventListener('click', () => {
+      confirmListingBtn.innerText = "Listing Published to 420+ Buyers!";
+      setTimeout(() => {
+        confirmListingBtn.innerText = "Publish Real Listing (Free)";
+        hideModal();
+      }, 1500);
+    });
+
+    voiceModal.addEventListener('click', (e) => {
+      if (e.target === voiceModal) {
+        hideModal();
+      }
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-low mt-auto py-10"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><img alt="FarmPay AI Logo" class="h-6 w-auto object-contain opacity-75" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><span class="text-xs text-on-surface-variant">© 2025 FarmPay AI Infrastructure. Direct mandi settlement &amp; escrow collateralization platform.</span></div><div class="flex items-center gap-6 text-xs text-on-surface-variant font-medium"><a class="hover:text-on-surface transition-colors" href="#">Mandi API Status</a><a class="hover:text-on-surface transition-colors" href="#">Escrow Protocol</a><a class="hover:text-on-surface transition-colors" href="#">FPO Compliance</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a></div></div></footer></body></html>

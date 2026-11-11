@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Nunito+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@100..900&family=Nunito+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#faf6f0;}body{overscroll-behavior:none;font-family:'Nunito Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#c4a66a", "surface-tint": "#4a7c59", "on-tertiary-fixed-variant": "#554020", "surface-variant": "#e4e0d8", "error": "#b83230", "on-secondary-container": "#5e5548", "primary-fixed-dim": "#8ecf9e", "on-error-container": "#690005", "inverse-surface": "#2e3230", "inverse-on-surface": "#f5f0e8", "on-primary-fixed-variant": "#2a6038", "secondary": "#6b6358", "outline": "#74796e", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "outline-variant": "#c4c8bc", "on-primary-container": "#d8f0de", "secondary-fixed": "#f0e8db", "on-surface": "#2e3230", "on-tertiary": "#ffffff", "on-error": "#ffffff", "primary-container": "#78a886", "on-tertiary-fixed": "#221a05", "background": "#faf6f0", "tertiary": "#705c30", "surface-container-highest": "#e4e0d8", "surface-bright": "#faf6f0", "surface-container": "#f0ece4", "secondary-container": "#f0e8db", "surface": "#faf6f0", "on-secondary-fixed-variant": "#4a4538", "tertiary-fixed-dim": "#dcc48e", "on-primary-fixed": "#002110", "surface-dim": "#dbd7cf", "on-tertiary-container": "#554020", "secondary-fixed-dim": "#d4ccbf", "error-container": "#ffdad8", "tertiary-fixed": "#f8e0a8", "surface-container-high": "#eae6de", "on-surface-variant": "#4a4e4a", "primary": "#4a7c59", "on-secondary-fixed": "#1e1a13", "inverse-primary": "#8ecf9e", "on-secondary": "#ffffff", "surface-container-low": "#f5f1ea", "on-background": "#2e3230", "primary-fixed": "#c8e8d0" }, "borderRadius": { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" }, "spacing": {}, "fontFamily": { "headline": ["Literata"], "display": ["Literata"], "body": ["Nunito Sans"], "label": ["Nunito Sans"] }, "fontSize": {} } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_12px_rgba(46,50,48,0.05)]"><div class="h-16 px-3 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[22px]">eco</span></div><div class="flex flex-col leading-none"><span class="font-headline font-bold text-base text-primary tracking-tight">FarmPay<span class="text-tertiary ml-0.5">AI</span></span><span class="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Kisan Mandi</span></div></div><div class="flex items-center gap-1.5"><div class="flex items-center bg-surface-container rounded-full p-0.5 text-xs font-semibold text-on-surface-variant"><button class="min-h-[32px] px-2 py-1 rounded-full bg-primary text-on-primary text-[11px] font-bold shadow-sm" type="button">EN</button><button class="min-h-[32px] px-2 py-1 rounded-full text-[11px] hover:text-on-surface" type="button">हि</button><button class="min-h-[32px] px-2 py-1 rounded-full text-[11px] hover:text-on-surface" type="button">తె</button></div><button aria-label="Notifications" class="min-w-[44px] min-h-[44px] flex items-center justify-center relative text-on-surface-variant rounded-full active:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span></button><div class="relative min-w-[44px] min-h-[44px] flex items-center justify-center"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center ring-2 ring-surface" title="KYC Verified"><span class="material-symbols-outlined text-[10px] font-bold">verified</span></span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-4 space-y-4 pb-8 select-none">
+<!-- 1. Farmer Profile & Live Status Header -->
+<section class="pt-2 flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center space-x-1.5">
+<span class="text-xs font-semibold uppercase tracking-wider text-tertiary">Kharif Season 2024</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-xs font-medium text-on-surface-variant">Live Mandi</span>
+</div>
+<h1 class="text-2xl font-bold font-headline text-on-surface tracking-tight mt-0.5">
+          Namaste, Rajesh Ji <span class="inline-block animate-bounce text-xl">🙏</span>
+</h1>
+<div class="flex items-center space-x-1 mt-0.5 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span>Nizamabad Kisan FPO</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-semibold">Gold Member</span>
+</div>
+</div>
+<!-- User Trust Avatar -->
+<div class="relative">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high overflow-hidden shadow-sm flex items-center justify-center p-0.5">
+<img class="w-full h-full object-cover rounded-xl" data-alt="Warm documentary-style portrait of an Indian male farmer named Rajesh smiling proudly wearing a light kurta in morning golden natural sunlight in Telangana, soft background depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAB0QllkCxZs9cwPWJMa3qwGqeI1JXTcDDI1YmOY1baTKGHpiJ9Q8YBDEBbxc-mnalw2PB4PUCYv3YxEO-wb1fKXigOlC_WYuqxq2c3VOKB-eY1e27VqMecX3fvpDIt0mb093plnsJ5SQv_DNu3auY6i-1SarCJZd2qtL6OzDuI-_1JT0_zDSag7JmHe0D5-aQDnYoqdOAbsWSWgSxifHIgFBjf01tMdSRLN5uH2E"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-container-lowest px-1 rounded-full shadow-sm flex items-center space-x-0.5">
+<span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="text-[10px] font-bold text-on-surface">100%</span>
+</div>
+</div>
+</div>
+<!-- Audio Assistance Toggle Pill -->
+<div class="w-full">
+<button class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed shadow-sm active:scale-[0.99] transition-all" id="voiceGuideBtn" onclick="toggleVoiceGuide()">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container shadow-xs">
+<span class="material-symbols-outlined text-[18px]" id="speakerIcon">volume_up</span>
+</div>
+<span class="text-xs font-bold font-body" id="voiceGuideText">Tap for Voice Guidance (Hindi/Telugu/English)</span>
+</div>
+<div class="flex items-center space-x-1 bg-on-tertiary-fixed/10 px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wide">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>Active</span>
+</div>
+</button>
+</div>
+</section>
+<!-- 2. Active Locked Escrow Hero Card -->
+<section class="relative w-full rounded-2xl bg-primary text-on-primary p-5 shadow-md overflow-hidden">
+<!-- Background Texture Ornament -->
+<div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-primary-container/20 pointer-events-none blur-2xl"></div>
+<div class="absolute right-4 top-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[100px]">lock</span>
+</div>
+<div class="relative z-10 flex flex-col space-y-3">
+<!-- Escrow Tag & Status -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-extrabold tracking-wider uppercase shadow-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span>Locked Escrow Vault • Secured</span>
+</div>
+<span class="text-[11px] font-bold text-primary-fixed-dim uppercase tracking-wide bg-on-primary/10 px-2 py-0.5 rounded-md">ICICI Bank Node</span>
+</div>
+<!-- Amount -->
+<div class="flex flex-col mt-1">
+<span class="text-xs text-primary-fixed-dim font-medium tracking-wide">Guaranteed Payout Amount</span>
+<div class="flex items-baseline space-x-1">
+<span class="text-3xl font-extrabold font-headline tracking-tight text-surface-container-lowest">₹3,73,464</span>
+<span class="text-xs text-primary-fixed-dim font-semibold">.00</span>
+</div>
+<p class="text-xs text-primary-fixed text-opacity-95 font-medium mt-0.5">
+          Lot #FP-2024-884 • Sona Masoori Paddy (150 Qtl)
+        </p>
+</div>
+<!-- Live Transit Status Badge -->
+<div class="p-2.5 rounded-xl bg-on-primary/10 backdrop-blur-xs flex items-start space-x-2.5">
+<div class="relative mt-0.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim animate-ping absolute inset-0"></span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-surface-container-lowest leading-snug">
+            In Transit: Mandi Weighbridge Cleared (+60kg bonus)
+          </p>
+<p class="text-[11px] text-primary-fixed-dim mt-0.5">
+            Truck TS-16-UB-9042 • Driver Ramesh Naik (+91 98480...)
+          </p>
+</div>
+</div>
+<!-- Micro Milestone Progress Bar (4 of 5) -->
+<div class="space-y-1.5 pt-1">
+<div class="flex justify-between items-center text-[11px] font-semibold text-primary-fixed">
+<span>Escrow Milestones</span>
+<span>Step 4 of 5 (80%)</span>
+</div>
+<div class="w-full bg-on-primary/20 h-2 rounded-full overflow-hidden flex">
+<div class="bg-tertiary-fixed h-full rounded-full transition-all duration-500" style="width: 80%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-primary-fixed-dim font-medium pt-0.5">
+<span class="text-surface-container-lowest font-bold">1. Sealed</span>
+<span class="text-surface-container-lowest font-bold">2. Loaded</span>
+<span class="text-surface-container-lowest font-bold">3. Weighed</span>
+<span class="text-surface-container-lowest font-bold text-tertiary-fixed underline underline-offset-2">4. In Transit</span>
+<span class="opacity-60">5. Released</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-1">
+<button class="w-full py-2.5 px-4 rounded-xl bg-tertiary-fixed hover:bg-tertiary-fixed-dim text-on-tertiary-fixed font-bold text-xs shadow-sm flex items-center justify-center space-x-1.5 active:scale-[0.98] transition-all">
+<span>View Transit GPS & Bank Payout Details</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. One-Tap 'Voice-to-Trade' Mic Action Card -->
+<section class="relative w-full rounded-2xl bg-surface-container-low p-4 shadow-sm overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex-1 pr-2">
+<div class="inline-flex items-center space-x-1 bg-surface-container-highest px-2 py-0.5 rounded text-[11px] font-bold text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-[14px] text-primary animate-pulse">graphic_eq</span>
+<span>Bhashini AI Voice Engine</span>
+</div>
+<h2 class="text-lg font-bold font-headline text-on-surface leading-tight">
+          Bol Kar Fasal Becho
+        </h2>
+<p class="text-xs text-on-surface-variant font-medium mt-0.5">
+          Speak to sell crop in your native tongue
+        </p>
+</div>
+<!-- Mic Trigger Button -->
+<div class="relative flex items-center justify-center">
+<span class="absolute w-16 h-16 rounded-full bg-primary/20 animate-ping opacity-75 pointer-events-none"></span>
+<button aria-label="Start Voice Recording" class="relative z-10 w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-primary/30 active:scale-95 transition-transform" id="voiceDeskMic" onclick="triggerMicRecord()">
+<span class="material-symbols-outlined text-[30px]" id="micIcon">mic</span>
+</button>
+</div>
+</div>
+<!-- Speech Prompt Box -->
+<div class="mt-3 p-3 rounded-xl bg-surface-container border-0 flex items-start space-x-2" id="micPromptBox">
+<span class="material-symbols-outlined text-tertiary text-[18px] shrink-0 mt-0.5">chat_bubble</span>
+<p class="text-xs text-on-surface italic leading-relaxed" id="micStatusText">
+        “Tap mic and speak: 'Sell 80 bags wheat in Indore' or '150 quintals Sona Masoori paddy at ₹2,500'”
+      </p>
+</div>
+<!-- Dialect Chips -->
+<div class="flex items-center space-x-1.5 mt-3 overflow-x-auto pb-1">
+<span class="text-[11px] font-bold text-on-surface-variant shrink-0 mr-1">Select:</span>
+<button class="px-2.5 py-1 rounded-full bg-primary text-on-primary text-xs font-bold shrink-0 shadow-xs" type="button">
+        हिन्दी (Hindi)
+      </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold shrink-0 active:bg-surface-container-high" type="button">
+        తెలుగు (Telugu)
+      </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold shrink-0 active:bg-surface-container-high" type="button">
+        ಕನ್ನಡ (Kannada)
+      </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs font-semibold shrink-0 active:bg-surface-container-high" type="button">
+        English
+      </button>
+</div>
+</section>
+<!-- 5. Today's Local APMC Mandi Benchmark Ticker -->
+<section class="w-full bg-secondary-container text-on-secondary-container rounded-2xl p-3.5 shadow-xs space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-tertiary text-[18px]">trending_up</span>
+<span class="text-xs font-bold uppercase tracking-wider font-headline">Live APMC Mandi vs FarmPay</span>
+</div>
+<span class="text-[10px] font-bold bg-primary text-on-primary px-2 py-0.5 rounded-full">+₹210/qtl FarmPay Edge</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 pt-0.5">
+<div class="p-2 rounded-xl bg-surface-container-lowest/80 text-center shadow-xs flex flex-col justify-center">
+<span class="text-[10px] font-bold text-on-surface-variant truncate">Nizamabad APMC</span>
+<span class="text-sm font-black text-on-surface mt-0.5">₹2,280</span>
+<span class="text-[9px] font-semibold text-secondary">Delayed 30m</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-lowest/80 text-center shadow-xs flex flex-col justify-center">
+<span class="text-[10px] font-bold text-on-surface-variant truncate">Suryapet Mandi</span>
+<span class="text-sm font-black text-on-surface mt-0.5">₹2,250</span>
+<span class="text-[9px] font-semibold text-secondary">Minus cess 2.5%</span>
+</div>
+<div class="p-2 rounded-xl bg-primary-fixed text-center shadow-xs flex flex-col justify-center">
+<span class="text-[10px] font-bold text-on-primary-fixed truncate">FarmPay Net</span>
+<span class="text-sm font-black text-primary font-headline mt-0.5">₹2,490</span>
+<span class="text-[9px] font-extrabold text-on-primary-fixed-variant">Instant Bank Payout</span>
+</div>
+</div>
+</section>
+<!-- 4. Active FairBid In-Field Offers Card -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-0.5">
+<div class="flex items-center space-x-1.5">
+<h3 class="font-headline font-bold text-base text-on-surface">Highest Verified Buyer Bids</h3>
+<span class="w-5 h-5 rounded-full bg-error text-on-error text-[11px] font-extrabold flex items-center justify-center">2</span>
+</div>
+<a class="text-xs font-bold text-primary flex items-center" href="#">
+<span>History</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<!-- Bid Card 1: AgroCorp (Recommended) -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-4 shadow-sm flex flex-col space-y-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-10 h-10 rounded-xl bg-primary-container/40 flex items-center justify-center text-primary font-bold text-sm">
+            AC
+          </div>
+<div>
+<div class="flex items-center space-x-1">
+<h4 class="text-sm font-bold text-on-surface font-headline">AgroCorp Processing Mills</h4>
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center space-x-1.5 text-[11px] text-on-surface-variant font-medium">
+<span class="bg-surface-container px-1.5 py-0.2 rounded font-bold text-tertiary">AAA Rated</span>
+<span>•</span>
+<span class="text-primary font-bold">98.4% Trust Score</span>
+<span>•</span>
+<span>Hyderabad Hub</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Price Breakdown Highlight Box -->
+<div class="p-3 rounded-xl bg-surface-container-low flex flex-col space-y-1.5">
+<div class="flex justify-between items-baseline">
+<span class="text-xs text-on-surface-variant font-medium">Buyer's Gross Offer:</span>
+<span class="text-sm font-bold text-on-surface line-through opacity-70">₹2,520 / qtl</span>
+</div>
+<div class="flex justify-between items-baseline pt-0.5">
+<span class="text-xs font-bold text-primary flex items-center space-x-1">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+<span>FairBid Guaranteed Net In-Hand:</span>
+</span>
+<span class="text-lg font-black font-headline text-primary">₹2,489.76 <span class="text-[11px] font-normal text-on-surface-variant">/ qtl</span></span>
+</div>
+<div class="flex items-center justify-between text-[11px] pt-1 border-0">
+<span class="text-on-surface-variant">Zero hidden cuts • Mandi cess waived</span>
+<span class="font-extrabold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">+₹419/qtl higher net gain</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-2 pt-0.5">
+<button class="py-2.5 px-3 rounded-xl bg-surface-container text-on-surface font-bold text-xs active:bg-surface-container-high transition-colors flex items-center justify-center space-x-1">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Counter Offer</span>
+</button>
+<button class="py-2.5 px-3 rounded-xl bg-primary text-on-primary font-bold text-xs shadow-sm active:scale-[0.98] transition-transform flex items-center justify-center space-x-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Accept & Lock Escrow</span>
+</button>
+</div>
+</div>
+<!-- Bid Card 2: Kaveri Agri Trading (With Warning Alert) -->
+<div class="w-full rounded-2xl bg-surface-container-lowest p-4 shadow-sm flex flex-col space-y-3 opacity-95">
+<div class="flex items-start justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold text-sm">
+            KA
+          </div>
+<div>
+<div class="flex items-center space-x-1">
+<h4 class="text-sm font-bold text-on-surface font-headline">Kaveri Agri Trading</h4>
+<span class="text-[10px] bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.2 rounded font-semibold">B+ Rated</span>
+</div>
+<div class="flex items-center space-x-1.5 text-[11px] text-on-surface-variant font-medium">
+<span>Offer: ₹2,480/qtl</span>
+<span>•</span>
+<span>Warangal District</span>
+</div>
+</div>
+</div>
+<span class="text-[11px] font-semibold text-on-surface-variant">22m ago</span>
+</div>
+<!-- Hidden Cost Warning Alert Banner -->
+<div class="p-2.5 rounded-xl bg-error-container text-on-error-container flex items-start space-x-2">
+<span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">warning</span>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold leading-tight">Hidden Cost Warning Detected</p>
+<p class="text-[11px] mt-0.5 leading-snug text-on-error-container/90">
+            Deducts ₹95 freight + 2% moisture dockage. Actual net in-hand is <strong>₹95/qtl lower</strong> than AgroCorp!
+          </p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-1">
+<button class="text-xs font-bold text-error underline underline-offset-2 flex items-center space-x-0.5">
+<span>Decline Bid</span>
+</button>
+<button class="py-2 px-3 rounded-xl bg-surface-container text-on-surface font-semibold text-xs flex items-center space-x-1">
+<span>Request Net Breakdown</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 6. Quick Farmer Utilities Grid (2x2) -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between px-0.5">
+<h3 class="font-headline font-bold text-base text-on-surface">Kisan Smart Tooling</h3>
+<span class="text-xs text-on-surface-variant font-medium">All Tools Offline Capable</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Utility 1 -->
+<button class="p-3.5 rounded-2xl bg-surface-container text-left flex flex-col justify-between space-y-2 active:scale-[0.98] transition-all shadow-xs group">
+<div class="flex items-center justify-between w-full">
+<div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<span class="text-[10px] font-extrabold uppercase bg-tertiary-fixed text-on-tertiary-fixed px-1.5 py-0.5 rounded">AI Vision</span>
+</div>
+<div>
+<h4 class="text-xs font-bold text-on-surface group-hover:text-primary">AI Crop Moisture Test</h4>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Photo assay grade within 10 secs</p>
+</div>
+</button>
+<!-- Utility 2 -->
+<button class="p-3.5 rounded-2xl bg-surface-container text-left flex flex-col justify-between space-y-2 active:scale-[0.98] transition-all shadow-xs group">
+<div class="flex items-center justify-between w-full">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<span class="text-[10px] font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">3 Active</span>
+</div>
+<div>
+<h4 class="text-xs font-bold text-on-surface group-hover:text-primary">My Listed Lots</h4>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Paddy, Maize, Soya lots live</p>
+</div>
+</button>
+<!-- Utility 3 -->
+<button class="p-3.5 rounded-2xl bg-surface-container text-left flex flex-col justify-between space-y-2 active:scale-[0.98] transition-all shadow-xs group">
+<div class="flex items-center justify-between w-full">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">scale</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">qr_code_scanner</span>
+</div>
+<div>
+<h4 class="text-xs font-bold text-on-surface group-hover:text-primary">Weighbridge Digital Slips</h4>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Tamper-proof digital weight logs</p>
+</div>
+</button>
+<!-- Utility 4 -->
+<button class="p-3.5 rounded-2xl bg-surface-container text-left flex flex-col justify-between space-y-2 active:scale-[0.98] transition-all shadow-xs group">
+<div class="flex items-center justify-between w-full">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest text-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-surface"></span>
+</div>
+<div>
+<h4 class="text-xs font-bold text-on-surface group-hover:text-primary">Escrow Help & Officer</h4>
+<p class="text-[11px] text-on-surface-variant mt-0.5">Direct line to Mandi nodal agent</p>
+</div>
+</button>
+</div>
+</section>
+<!-- Community Impact / Trust Quote Stamp -->
+<section class="p-3 rounded-xl bg-surface-container-low flex items-center space-x-3">
+<div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium leading-tight">
+      Over <strong class="text-on-surface">₹42.8 Crores</strong> securely disbursed to 14,200+ Telangana farmers through FarmPay AI Escrows this harvest season.
+    </p>
+</section>
+</div>
+<script>
+  let isListening = false;
+  let isGuiding = false;
+
+  function triggerMicRecord() {
+    const micBtn = document.getElementById('voiceDeskMic');
+    const micIcon = document.getElementById('micIcon');
+    const promptText = document.getElementById('micStatusText');
+    const promptBox = document.getElementById('micPromptBox');
+
+    isListening = !isListening;
+
+    if (isListening) {
+      micBtn.classList.remove('bg-primary');
+      micBtn.classList.add('bg-error', 'scale-110');
+      micIcon.textContent = 'graphic_eq';
+      promptBox.classList.remove('bg-surface-container');
+      promptBox.classList.add('bg-error-container', 'text-on-error-container');
+      promptText.innerHTML = "<strong>Sun rahe hain... (Listening in Telugu/Hindi):</strong> Speak now: 'Sona Masoori 150 quintal bechna hai...'";
+    } else {
+      micBtn.classList.remove('bg-error', 'scale-110');
+      micBtn.classList.add('bg-primary');
+      micIcon.textContent = 'mic';
+      promptBox.classList.remove('bg-error-container', 'text-on-error-container');
+      promptBox.classList.add('bg-surface-container');
+      promptText.innerHTML = "“Tap mic and speak: 'Sell 80 bags wheat in Indore' or '150 quintals Sona Masoori paddy at ₹2,500'”";
+    }
+  }
+
+  function toggleVoiceGuide() {
+    const guideBtn = document.getElementById('voiceGuideBtn');
+    const guideText = document.getElementById('voiceGuideText');
+    const speaker = document.getElementById('speakerIcon');
+
+    isGuiding = !isGuiding;
+
+    if (isGuiding) {
+      speaker.textContent = 'record_voice_over';
+      guideText.textContent = 'Voice Guide Playing: "Aapka ₹3,73,464 Escrow me surakshit hai..."';
+    } else {
+      speaker.textContent = 'volume_up';
+      guideText.textContent = 'Tap for Voice Guidance (Hindi/Telugu/English)';
+    }
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_16px_rgba(46,50,48,0.06)]" data-active-classes="text-primary font-bold"><div class="flex items-center justify-around h-20 px-2 max-w-md mx-auto"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 transition-colors text-primary font-bold" data-path="harvest-hub" href="#"><span class="material-symbols-outlined text-[24px]">agriculture</span><span class="text-[11px] mt-0.5 tracking-tight font-medium">Harvest</span></a><a class="flex flex-col items-center justify-center -mt-5 group" data-path="voice-trade-desk" href="#"><div class="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-primary/25 active:scale-95 transition-transform ring-4 ring-surface"><span class="material-symbols-outlined text-[28px]">mic</span></div><span class="text-[11px] mt-1 text-primary font-bold tracking-tight">Voice Trade</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="fairbid-offers" href="#"><span class="material-symbols-outlined text-[24px]">gavel</span><span class="text-[11px] mt-0.5 tracking-tight font-medium">FairBid</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="escrow-orders" href="#"><span class="material-symbols-outlined text-[24px]">account_balance_wallet</span><span class="text-[11px] mt-0.5 tracking-tight font-medium">Escrow</span></a></div></nav></body></html>

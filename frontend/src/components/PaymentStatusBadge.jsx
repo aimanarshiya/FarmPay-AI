@@ -40,4 +40,3 @@ export default function PaymentStatusBadge({ paymentStatus, captureId, paypalOrd
     </div>
   );
 }
-

@@ -1,0 +1,225 @@
+{
+  "name": "projects/7674813774794234311",
+  "title": "FarmPay AI Agricultural Marketplace",
+  "visibility": "PRIVATE",
+  "createTime": "2026-11-09T12:58:39.219754Z",
+  "updateTime": "2026-11-09T13:44:16.056221Z",
+  "projectType": "TEXT_TO_UI_PRO",
+  "thumbnailScreenshot": {
+    "name": "projects/7674813774794234311/screens/8f44f4c944e1483ca6d568c682f556ba/fileEntries/screenshot",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/ALJJyrDhjkNTGOc4fSzPdm4Rd3G3BqGo11bbdQ9QNOAElhLHXqHaO_mUrnL0paAhoKfURAc8WeB3k8dRpI5nmOxf2mbIq5GESlJmlVBVlbUj0GfaGlLxolvogXQAEeCy5TCwOhMlzl55JeI2d8pzAA7lgaerFAi1lZT9hU2krnLk7mBRRTW-uHs2qhTCTzA0iQFcVTu5Nv-1bOwauz1-KzU4BS_rvFwVNl3J4CkJvvN70SV0M7Ke3qVKFnjjIQ"
+  },
+  "origin": "WEB",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "LIGHT",
+    "font": "NUNITO_SANS",
+    "roundness": "ROUND_TWELVE",
+    "preset": "custom",
+    "customColor": "#4a7c59",
+    "saturation": 2,
+    "headlineFont": "LITERATA",
+    "bodyFont": "NUNITO_SANS",
+    "labelFont": "NUNITO_SANS",
+    "namedColors": {
+      "background": "#faf6f0",
+      "secondary_fixed_dim": "#d4ccbf",
+      "on_tertiary_fixed_variant": "#554020",
+      "tertiary_container": "#c4a66a",
+      "primary_fixed": "#c8e8d0",
+      "tertiary_fixed": "#f8e0a8",
+      "tertiary": "#705c30",
+      "on_primary_fixed": "#002110",
+      "surface": "#faf6f0",
+      "on_surface": "#2e3230",
+      "on_secondary": "#ffffff",
+      "outline": "#74796e",
+      "surface_bright": "#faf6f0",
+      "inverse_primary": "#8ecf9e",
+      "tertiary_fixed_dim": "#dcc48e",
+      "surface_container_lowest": "#ffffff",
+      "error": "#b83230",
+      "on_secondary_fixed_variant": "#4a4538",
+      "on_background": "#2e3230",
+      "on_tertiary_container": "#554020",
+      "on_error_container": "#690005",
+      "surface_dim": "#dbd7cf",
+      "on_tertiary_fixed": "#221a05",
+      "on_error": "#ffffff",
+      "on_tertiary": "#ffffff",
+      "surface_variant": "#e4e0d8",
+      "secondary": "#6b6358",
+      "secondary_fixed": "#f0e8db",
+      "on_primary": "#ffffff",
+      "primary_fixed_dim": "#8ecf9e",
+      "on_primary_container": "#d8f0de",
+      "surface_container_low": "#f5f1ea",
+      "surface_container": "#f0ece4",
+      "error_container": "#ffdad8",
+      "on_primary_fixed_variant": "#2a6038",
+      "on_surface_variant": "#4a4e4a",
+      "primary_container": "#78a886",
+      "surface_container_highest": "#e4e0d8",
+      "on_secondary_fixed": "#1e1a13",
+      "inverse_on_surface": "#f5f0e8",
+      "surface_container_high": "#eae6de",
+      "inverse_surface": "#2e3230",
+      "secondary_container": "#f0e8db",
+      "outline_variant": "#c4c8bc",
+      "primary": "#4a7c59",
+      "surface_tint": "#4a7c59",
+      "on_secondary_container": "#5e5548"
+    },
+    "designMd": "# Terra \u2014 Organic Design\n\n## North Star: \"Rooted Warmth\"\nCalm, grounded, and human. Earthy tones, soft shapes, and natural textures create a warm, approachable experience.\n\n## Colors\n- **Primary (`#4a7c59`):** Forest green \u2014 actions, navigation, interactive states.\n- **Background (`#faf6f0`):** Warm cream \u2014 organic, never sterile white.\n- **Tertiary (`#705c30`):** Warm amber \u2014 highlights, accents, badges.\n- **Palette philosophy:** Earthy and desaturated. No neon or pure-hue colors.\n- Use warm neutrals throughout \u2014 every gray should have a yellow/green undertone.\n\n## Typography\n- **Headlines:** Literata \u2014 warm serif with personality.\n- **Body/Labels:** Nunito Sans \u2014 friendly, rounded letterforms.\n- Generous line-height (1.6+ for body). Comfortable, unhurried reading.\n\n## Elevation\n- Very soft shadows only: `0 4px 20px rgba(46, 50, 48, 0.06)`.\n- Prefer tonal separation over shadows \u2014 layer warm cream tones.\n- Borders: `outline_variant` at low opacity when needed.\n\n## Components\n- **Buttons:** Primary = solid green, large border-radius (12px). Secondary = cream bg + green text + thin border.\n- **Cards:** Warm cream fill, generous padding (24px), rounded corners (12px). No harsh borders.\n- **Inputs:** Cream background, rounded, soft green focus ring.\n\n## Rules\n- Large touch targets, generous spacing. Design should feel breathable.\n- Avoid sharp corners and hard contrasts. Everything should feel soft and approachable.\n- Images should feel natural and warm \u2014 avoid clinical or tech-stock imagery.",
+    "colorVariant": "TONAL_SPOT",
+    "overridePrimaryColor": "#4a7c59",
+    "overrideSecondaryColor": "#6b6358",
+    "overrideTertiaryColor": "#c4a66a",
+    "overrideNeutralColor": "#4a4e4a"
+  },
+  "screenInstances": [
+    {
+      "id": "0df20a0ce4f5463c8b95c44bc83b67ab",
+      "sourceScreen": "projects/7674813774794234311/screens/0df20a0ce4f5463c8b95c44bc83b67ab",
+      "y": 6518,
+      "width": 1280,
+      "height": 1847,
+      "label": "Order Escrow & Fulfillment Milestone Tracker \u2014 Lot #FP-2024-884"
+    },
+    {
+      "id": "0fa392997f264e4c86ef95f9487b2a83",
+      "sourceScreen": "projects/7674813774794234311/screens/0fa392997f264e4c86ef95f9487b2a83",
+      "y": 20332,
+      "width": 1280,
+      "height": 2679,
+      "label": "Buyer Show-Cause Notice & Penalty Management"
+    },
+    {
+      "id": "1aca722e918145ebafea858f25c1854a",
+      "sourceScreen": "projects/7674813774794234311/screens/1aca722e918145ebafea858f25c1854a",
+      "x": 5376,
+      "y": 13045,
+      "width": 1280,
+      "height": 2243,
+      "label": "FarmPay AI \u2014 AI Negotiation Copilot"
+    },
+    {
+      "id": "1bcaa051adde4dabbd4ed5fd8d377745",
+      "sourceScreen": "projects/7674813774794234311/screens/1bcaa051adde4dabbd4ed5fd8d377745",
+      "y": 26933,
+      "width": 1280,
+      "height": 2965,
+      "label": "FarmPay AI \u2014 Webhook Resilience & Dispute Refund Console"
+    },
+    {
+      "id": "32372afee9b544f7b5d5acd9bc1ad736",
+      "sourceScreen": "projects/7674813774794234311/screens/32372afee9b544f7b5d5acd9bc1ad736",
+      "y": 10975,
+      "width": 390,
+      "height": 1814,
+      "label": "Live GPS Transit & Weighbridge Telemetry Sheet \u2014 Lot #FP-2024-884"
+    },
+    {
+      "id": "483da35cad85467c9158967ec10044fe",
+      "sourceScreen": "projects/7674813774794234311/screens/483da35cad85467c9158967ec10044fe",
+      "y": 8621,
+      "width": 390,
+      "height": 2098,
+      "label": "FarmPay AI \u2014 Farmer Mobile Command Hub"
+    },
+    {
+      "id": "48c71de3209a40cea64302f4f94d641a",
+      "sourceScreen": "projects/7674813774794234311/screens/48c71de3209a40cea64302f4f94d641a",
+      "x": 2688,
+      "width": 1280,
+      "height": 1927,
+      "label": "FairBid Engine \u2014 Transparent Net Earnings Comparison"
+    },
+    {
+      "id": "598fb1bdc7864a3fa0c6737f99b2c977",
+      "sourceScreen": "projects/7674813774794234311/screens/598fb1bdc7864a3fa0c6737f99b2c977",
+      "x": 1344,
+      "y": 13045,
+      "width": 1280,
+      "height": 2601,
+      "label": "FarmPay AI \u2014 Collective Selling Hub"
+    },
+    {
+      "id": "808905ce50194ab4b76957c7c99dfe33",
+      "sourceScreen": "projects/7674813774794234311/screens/808905ce50194ab4b76957c7c99dfe33",
+      "y": 13045,
+      "width": 1280,
+      "height": 2754,
+      "label": "FarmPay AI \u2014 Demand Radar"
+    },
+    {
+      "id": "825efe1132044abdaecc745c95417079",
+      "sourceScreen": "projects/7674813774794234311/screens/825efe1132044abdaecc745c95417079",
+      "y": 16110,
+      "width": 1280,
+      "height": 3921,
+      "label": "Mandi Nodal Officer \u2014 Dispute Arbitration Decision Console"
+    },
+    {
+      "id": "8f44f4c944e1483ca6d568c682f556ba",
+      "sourceScreen": "projects/7674813774794234311/screens/8f44f4c944e1483ca6d568c682f556ba",
+      "width": 1280,
+      "height": 1365,
+      "label": "Voice-to-Trade AI \u2014 Voice Listing Studio"
+    },
+    {
+      "id": "9c231139a7464cadb3cd8a5b0c7afe36",
+      "sourceScreen": "projects/7674813774794234311/screens/9c231139a7464cadb3cd8a5b0c7afe36",
+      "y": 4060,
+      "width": 1280,
+      "height": 2202,
+      "label": "Buyer Trust Passport \u2014 AgroCorp Processing Mills"
+    },
+    {
+      "id": "a2477e7b20874eebbac3d29794b5b806",
+      "sourceScreen": "projects/7674813774794234311/screens/a2477e7b20874eebbac3d29794b5b806",
+      "y": 23267,
+      "width": 1280,
+      "height": 3410,
+      "label": "FarmPay AI \u2014 Payments Center & PayPal Sandbox Gateway"
+    },
+    {
+      "id": "cedbb21fa7a04c46846689adef4b5a83",
+      "sourceScreen": "projects/7674813774794234311/screens/cedbb21fa7a04c46846689adef4b5a83",
+      "x": 2688,
+      "y": 13045,
+      "width": 1280,
+      "height": 2114,
+      "label": "FarmPay AI \u2014 Logistics Intelligence"
+    },
+    {
+      "id": "e10df8f6d85f4228a2390be7ba22ab36",
+      "sourceScreen": "projects/7674813774794234311/screens/e10df8f6d85f4228a2390be7ba22ab36",
+      "x": 4032,
+      "y": 13045,
+      "width": 1280,
+      "height": 2499,
+      "label": "FarmPay AI \u2014 Digital Crop Passport"
+    },
+    {
+      "id": "e6dbf3de4ab74bcc84c3a7bae5b85e95",
+      "sourceScreen": "projects/7674813774794234311/screens/e6dbf3de4ab74bcc84c3a7bae5b85e95",
+      "x": 6720,
+      "y": 13045,
+      "width": 1280,
+      "height": 2809,
+      "label": "FarmPay AI \u2014 Dispute Shield"
+    },
+    {
+      "id": "fb16bea1b03144529c34a65352a5d860",
+      "sourceScreen": "projects/7674813774794234311/screens/fb16bea1b03144529c34a65352a5d860",
+      "x": 1344,
+      "width": 1280,
+      "height": 3804,
+      "label": "FarmPay AI \u2014 Public Marketplace & Trade Gateway"
+    }
+  ],
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

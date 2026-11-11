@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@100..900&family=Nunito+Sans:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#f5f0e8", "on-tertiary-fixed": "#221a05", "on-secondary-fixed-variant": "#4a4538", "surface-container-lowest": "#ffffff", "on-primary-container": "#d8f0de", "on-secondary-fixed": "#1e1a13", "primary-fixed-dim": "#8ecf9e", "on-primary-fixed": "#002110", "surface-dim": "#dbd7cf", "secondary-fixed": "#f0e8db", "inverse-primary": "#8ecf9e", "error-container": "#ffdad8", "on-tertiary-fixed-variant": "#554020", "on-error": "#ffffff", "surface": "#faf6f0", "primary": "#4a7c59", "surface-container-low": "#f5f1ea", "on-secondary-container": "#5e5548", "tertiary-fixed": "#f8e0a8", "on-background": "#2e3230", "tertiary": "#705c30", "outline-variant": "#c4c8bc", "on-primary-fixed-variant": "#2a6038", "surface-container-highest": "#e4e0d8", "background": "#faf6f0", "on-error-container": "#690005", "on-tertiary-container": "#554020", "secondary-fixed-dim": "#d4ccbf", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#dcc48e", "surface-variant": "#e4e0d8", "inverse-surface": "#2e3230", "primary-fixed": "#c8e8d0", "secondary": "#6b6358", "on-primary": "#ffffff", "surface-container-high": "#eae6de", "on-surface-variant": "#4a4e4a", "surface-container": "#f0ece4", "tertiary-container": "#c4a66a", "surface-tint": "#4a7c59", "on-surface": "#2e3230", "surface-bright": "#faf6f0", "primary-container": "#78a886", "secondary-container": "#f0e8db", "on-secondary": "#ffffff", "error": "#b83230", "outline": "#74796e" }, "borderRadius": { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" }, "spacing": {}, "fontFamily": { "headline": ["Literata"], "display": ["Literata"], "body": ["Nunito Sans"], "label": ["Nunito Sans"] }, "fontSize": {} } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-3 flex items-center justify-between gap-1"><div class="flex items-center min-w-0"><button aria-label="Back to Active Lot" class="min-w-[44px] min-h-[44px] flex items-center justify-center text-on-surface rounded-full hover:bg-surface-container active:bg-surface-container-high transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><h1 class="text-base font-headline font-bold text-on-surface truncate ml-1 leading-tight">Active Transit Lot</h1></div><div class="flex items-center gap-1.5 shrink-0"><div class="flex items-center bg-surface-container rounded-full p-0.5 text-xs font-semibold text-on-surface-variant"><button class="px-2 py-1 rounded-full bg-primary text-on-primary transition-colors" type="button">EN</button><button class="px-2 py-1 rounded-full hover:text-on-surface transition-colors" type="button">हिं</button><button class="px-2 py-1 rounded-full hover:text-on-surface transition-colors" type="button">తె</button></div><a aria-label="Emergency Mandi Helpline" class="min-w-[44px] min-h-[44px] rounded-full bg-error/10 text-error flex items-center justify-center transition-colors active:bg-error/20" href="tel:18001801551" title="Emergency Mandi Hotline"><span class="material-symbols-outlined text-[20px]">sos</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-4 bg-surface"><div class="flex flex-col w-full gap-4 pb-4">
+<!-- Top Hero Status & Guaranteed Escrow Card -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0">inventory_2</span>
+<span class="font-headline font-bold text-sm text-on-surface truncate">Lot #FP-2024-884</span>
+<span class="text-xs text-on-surface-variant font-label">· Sona Masoori</span>
+</div>
+<!-- Pulsing Transit Badge -->
+<div class="flex items-center gap-1.5 bg-primary/10 px-2.5 py-1 rounded-full shrink-0">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-[11px] font-bold text-primary tracking-wide uppercase font-label">Tare Cleared (+60kg)</span>
+</div>
+</div>
+<!-- Escrow Protection Banner -->
+<div class="bg-surface-container-lowest rounded-lg p-3.5 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[11px] font-label font-bold text-tertiary uppercase tracking-wider">ICICI SafeEscrow Locked</span>
+<span class="text-xl font-headline font-extrabold text-on-surface leading-tight">₹3,74,976.00</span>
+</div>
+</div>
+<div class="bg-secondary-container px-2.5 py-1 rounded-full text-on-secondary-container text-xs font-bold font-label flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Guaranteed</span>
+</div>
+</div>
+</div>
+<!-- Live GPS Transit Map Container -->
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-container shadow-sm">
+<!-- Static Map Canvas with route & live telemetry -->
+<div class="relative w-full h-72 bg-surface-container-high overflow-hidden" data-location="Choutuppal, Telangana, India" style="">
+<div class="w-full h-full bg-cover bg-center" data-alt="Satellite terrain aerial map of rural Telangana showing green agricultural paddy fields, winding national highway 65 with a marked GPS route line and smooth road topography in warm earthy morning tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZxIPuXjUdyV3FaB67XzpCOS_hHmRAAGd9fcx1LBHkYN1Ouu-jUyNCxVbaSL9jhluruMvAAiMZ4vMwPWkzkoRGrjo98BvRq_O8cBsutMmb4nLR5YGVVfl7Rz42XE815cgavpcKnKEBDlYW6BDrrWAOV0o356wRJwqjZwDawNgXutEL5qrkw29Mf7_5RdwyNqp0wk_mxsLDEC0lNqpaAMg93Y4kZ3nBVb16YSA3NRQ')"></div>
+<!-- Scrim overlay -->
+<div class="absolute inset-0 bg-gradient-to-b from-inverse-surface/40 via-transparent to-inverse-surface/80"></div>
+<!-- Top Map Status Badge -->
+<div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+<div class="bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-2 pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-bold text-on-surface font-label truncate max-w-[200px]">At Choutuppal Toll (NH 65)</span>
+</div>
+<button aria-label="Re-center map" class="w-8 h-8 rounded-full bg-surface/90 backdrop-blur-md text-on-surface flex items-center justify-center shadow-sm pointer-events-auto transition-transform duration-300" id="recenterBtn" onclick="this.classList.add('rotate-180'); setTimeout(()=>this.classList.remove('rotate-180'), 400)">
+<span class="material-symbols-outlined text-[18px]">my_location</span>
+</button>
+</div>
+<!-- Route SVG Vector Mock overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" preserveaspectratio="none" viewbox="0 0 360 288">
+<path d="M 40 50 Q 120 90, 180 144 T 320 240" opacity="0.8" stroke="#4a7c59" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="4"></path>
+<!-- Origin point -->
+<circle cx="40" cy="50" fill="#2D6A4F" r="5"></circle>
+<!-- Destination point -->
+<circle cx="320" cy="240" fill="#705c30" r="6"></circle>
+</svg>
+<!-- Active Truck Marker Overlay -->
+<div class="absolute top-[132px] left-[168px] -translate-x-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute inline-flex h-9 w-9 rounded-full bg-primary opacity-60"></span>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-1 bg-inverse-surface/90 text-inverse-on-surface px-2 py-0.5 rounded text-[10px] font-bold font-label whitespace-nowrap shadow">
+          52 km/h • Smooth
+        </div>
+</div>
+<!-- Bottom Map Telemetry Overlay -->
+<div class="absolute bottom-3 left-3 right-3 grid grid-cols-3 gap-2">
+<div class="bg-surface/90 backdrop-blur-md p-2 rounded-lg text-center shadow-sm">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant font-label block">Remaining</span>
+<span class="text-xs font-extrabold text-on-surface font-label">74.2 km</span>
+</div>
+<div class="bg-surface/90 backdrop-blur-md p-2 rounded-lg text-center shadow-sm">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant font-label block">Arrival ETA</span>
+<span class="text-xs font-extrabold text-primary font-label">06:45 PM</span>
+</div>
+<div class="bg-surface/90 backdrop-blur-md p-2 rounded-lg text-center shadow-sm">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant font-label block">Moisture Risk</span>
+<span class="text-xs font-extrabold text-tertiary font-label">0.0% (Dry)</span>
+</div>
+</div>
+</div>
+<!-- Route details strip -->
+<div class="p-3.5 bg-surface-container flex items-center justify-between text-xs">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">trip_origin</span>
+<div class="truncate">
+<span class="font-bold text-on-surface">Bodhan Hub</span>
+<span class="text-on-surface-variant"> → AgroCorp Mill, Miryalaguda</span>
+</div>
+</div>
+<span class="text-on-surface-variant font-medium shrink-0 ml-2">186 km total</span>
+</div>
+</div>
+<!-- Verified Driver & Container Details -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative shrink-0">
+<img class="w-13 h-13 rounded-full object-cover shadow-sm w-12 h-12" data-alt="Close-up portrait of Suresh Yadav, a respectful 42-year-old Indian truck driver wearing a clean traditional collared shirt smiling warmly, set against an organic warm rustic background in soft natural sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqIYoK9BChbu74MgGOrrJQNjcjVkQ3SCGo0Gdld3JVD4H4RgapKGqpi88IlG8oAd8XjfUBRnM6u1_C0ejB5lrkNCrixlABusOKA28il1didHfboAFMmp1SVleWDaGC2xhQA754WM3UdvMp6WcrLEP35Hvj8O-EMjhADD_9Lw-rVAkiHWM8bksPKxq_d0MLwAa0oxf5HtzzquMpHuQ8Dx8w1q3RWqBbLStnPMHG5qI"/>
+<span class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary text-on-primary rounded-full flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h2 class="font-headline font-bold text-sm text-on-surface truncate">Suresh Yadav</h2>
+<span class="bg-tertiary/15 text-tertiary text-[10px] font-bold px-1.5 py-0.5 rounded font-label shrink-0">4.9 ★</span>
+</div>
+<p class="text-xs text-on-surface-variant font-label mt-0.5 truncate">Tata Signa 2823 · TS-09-UB-4421</p>
+<div class="flex items-center gap-1.5 mt-1 text-[11px] text-primary font-bold">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+<span>Covered Container (E-Way #882190)</span>
+</div>
+</div>
+</div>
+<div class="shrink-0 text-right">
+<span class="text-[11px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded font-label font-bold">128 Trips</span>
+</div>
+</div>
+<!-- Communication action buttons -->
+<div class="grid grid-cols-2 gap-2.5 pt-1">
+<a class="h-11 rounded-lg bg-primary text-on-primary font-label font-bold text-xs flex items-center justify-center gap-2 active:opacity-90 transition-opacity shadow-sm" href="tel:+919848022134">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+<span>Call Driver</span>
+</a>
+<button class="h-11 rounded-lg bg-surface-container-high text-on-surface font-label font-bold text-xs flex items-center justify-center gap-2 active:bg-surface-container-highest transition-colors" onclick="const toast=document.getElementById('voicePingToast'); toast.classList.remove('opacity-0','pointer-events-none'); setTimeout(()=>toast.classList.add('opacity-0','pointer-events-none'), 3000);" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">mic</span>
+<span>Voice Ping (AI)</span>
+</button>
+</div>
+<!-- Inline feedback micro-toast -->
+<div class="opacity-0 pointer-events-none transition-opacity duration-300 bg-inverse-surface text-inverse-on-surface text-xs px-3 py-2 rounded-lg flex items-center gap-2" id="voicePingToast">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">check_circle</span>
+<span>Voice prompt dispatched in Telugu & Hindi to cab tablet.</span>
+</div>
+</div>
+<!-- IoT Electronic Weighbridge Verification Slip Card -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">scale</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Weighbridge Digital Slip</h3>
+<p class="text-[11px] text-on-surface-variant font-label">#WB-2024-8841-TS · Node #04</p>
+</div>
+</div>
+<span class="bg-primary/15 text-primary text-[11px] font-bold font-label px-2 py-0.5 rounded-full">
+        Calibrated 08:00 AM
+      </span>
+</div>
+<!-- Comparison Metric Grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Farmgate Est -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex flex-col gap-1 shadow-sm">
+<span class="text-[11px] font-label font-bold text-on-surface-variant uppercase tracking-wider">Farmgate Origin</span>
+<span class="text-base font-headline font-bold text-on-surface">15,000 kg</span>
+<span class="text-[11px] text-on-surface-variant font-label">150.0 Qtl @ 13.5% Mist</span>
+</div>
+<!-- Electronic Weighbridge Actual -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex flex-col gap-1 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-8 h-8 bg-primary/10 rounded-bl-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[14px]">arrow_upward</span>
+</div>
+<span class="text-[11px] font-label font-bold text-primary uppercase tracking-wider">Mandi Certified</span>
+<span class="text-base font-headline font-bold text-primary">15,060 kg</span>
+<span class="text-[11px] text-primary font-bold font-label">+60 kg Net Gain (+0.40%)</span>
+</div>
+</div>
+<!-- Permissible Tolerance Bar -->
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-label font-semibold">Tolerance Band (±0.5%)</span>
+<span class="text-primary font-bold font-label">Grade A+ (Zero Dockage Cut)</span>
+</div>
+<!-- Progress Track -->
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden relative">
+<div class="h-full bg-primary rounded-full" style="width: 58%;"></div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-on-surface-variant font-label pt-0.5">
+<span>-75 kg</span>
+<span class="text-primary font-bold">Current: +60 kg (+0.40%)</span>
+<span>+75 kg</span>
+</div>
+</div>
+<!-- Cryptographic Hash Verification -->
+<div class="flex items-center justify-between pt-1 text-[11px] text-on-surface-variant">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[15px] text-tertiary">fingerprint</span>
+<span class="font-mono text-[10px] truncate max-w-[170px]">SHA-256: 8a4c172d890b9f...</span>
+</div>
+<button class="text-primary font-bold font-label flex items-center gap-0.5 shrink-0 active:underline" onclick="alert('Digital Weighbridge Slip #WB-2024-8841-TS\nTimestamp: 08:14 AM IST\nGross Weight: 26,480 kg\nTare Weight: 11,420 kg\nNet Weight: 15,060 kg\nInspector ID: Nizamabad APMC #12');" type="button">
+<span>View Slip</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Dynamic Take-Home Disbursal Breakdown -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-tertiary/10 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Farmer Payout Calculation</h3>
+</div>
+<span class="text-[11px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full font-label">15-Min Auto Disburse</span>
+</div>
+<!-- Financial Ledger Details -->
+<div class="bg-surface-container-lowest rounded-lg p-3 flex flex-col gap-2 shadow-sm text-xs">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label">Agreed Base Value (150 Qtl @ ₹2,520)</span>
+<span class="font-bold text-on-surface">₹3,78,000.00</span>
+</div>
+<div class="flex justify-between items-center text-primary font-semibold">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">add_circle</span>
+<span>Weighbridge Yield Bonus (+60 kg)</span>
+</span>
+<span>+₹1,512.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Freight & Loading (Mill Borne)</span>
+<span class="font-bold text-primary">₹0.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Moisture / Foreign Dockage Penalty</span>
+<span class="font-bold text-primary">₹0.00 (Zero)</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>FarmPay Escrow Protection Fee (1.2%)</span>
+<span class="font-bold text-error">-₹4,536.00</span>
+</div>
+<div class="pt-2 mt-1 bg-surface-container-low -mx-3 -mb-3 p-3 rounded-b-lg flex justify-between items-baseline">
+<div>
+<span class="text-[11px] font-bold font-label text-on-surface-variant uppercase tracking-wider block">Net Take-Home Disbursal</span>
+<span class="text-[10px] text-on-surface-variant">Direct NEFT to SBI A/C ••••4912</span>
+</div>
+<span class="text-lg font-headline font-extrabold text-primary">₹3,74,976.00</span>
+</div>
+</div>
+<!-- Auto-disbursal assurance message -->
+<div class="flex items-start gap-2 bg-secondary-container/60 p-2.5 rounded-lg text-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px] text-tertiary shrink-0 mt-0.5">info</span>
+<p class="leading-relaxed text-[11px] font-label">
+        Funds are locked in ICICI Bank Escrow and will credit to your account within <strong>15 minutes</strong> of AgroCorp mill gate optical barcode confirmation.
+      </p>
+</div>
+</div>
+<!-- Safety Safeguards & Rapid FPO Link Sharing -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+<div>
+<h4 class="font-headline font-bold text-xs text-on-surface">APMC Mandi Nodal Officer</h4>
+<p class="text-[11px] text-on-surface-variant font-label">Venkatesh Rao · Nizamabad Desk</p>
+</div>
+</div>
+<a class="px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface text-xs font-bold font-label flex items-center gap-1 active:bg-surface-container-highest" href="tel:18001801551">
+<span class="material-symbols-outlined text-[15px] text-primary">call</span>
+<span>Call Desk</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<!-- WhatsApp Live Share Button -->
+<a class="h-10 rounded-lg bg-surface-container-high text-on-surface font-label font-bold text-xs flex items-center justify-center gap-1.5 active:bg-surface-container-highest transition-colors" href="https://api.whatsapp.com/send?text=FarmPay%20Live%20Transit%20Tracker%20for%20Lot%20FP-2024-884%20(150%20Quintals):%20Status%20at%20Choutuppal%20Toll." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px] text-primary">share</span>
+<span>Share with Family</span>
+</a>
+<!-- Escrow Freeze Safeguard Button -->
+<button class="h-10 rounded-lg bg-error-container text-on-error-container font-label font-bold text-xs flex items-center justify-center gap-1.5 active:opacity-90 transition-opacity" onclick="if(confirm('Freeze Escrow Payout for Lot #FP-2024-884? This pauses mill clearance until dispute resolution.')){ alert('Escrow freeze initiated. Mandi Officer Venkatesh Rao assigned to your lot.'); }" type="button">
+<span class="material-symbols-outlined text-[16px] text-error">lock_person</span>
+<span>Freeze Escrow</span>
+</button>
+</div>
+</div>
+</div></main><aside class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(46,50,48,0.08)]"><div class="h-16 px-4 flex items-center justify-between gap-3"><a class="flex-1 min-h-[44px] px-3 py-2 rounded-xl bg-secondary-container text-on-secondary-container font-label font-bold text-xs flex items-center justify-center gap-2 active:bg-secondary-fixed-dim transition-colors" href="tel:+919876543210"><span class="material-symbols-outlined text-[18px] text-tertiary">call</span><span>Call Driver</span></a><a class="flex-1 min-h-[44px] px-3 py-2 rounded-xl bg-primary text-on-primary font-label font-bold text-xs flex items-center justify-center gap-2 active:bg-on-primary-fixed-variant transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">shield_person</span><span>Escrow Officer</span></a></div></aside></body></html>

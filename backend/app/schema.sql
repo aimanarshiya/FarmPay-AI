@@ -1,28 +1,13 @@
--- FarmPay AI — MySQL Database Schema
--- Version: 1.1
+-- FarmPay AI — Complete Database Schema (v2.0)
 -- Engine: MySQL 8.0+ (InnoDB, utf8mb4)
+-- Authoritative Schema for FarmPay AI Hackathon MVP
 --
--- This file is the authoritative source for the database structure,
--- verified against the live MySQL orders table definition.
--- Run it once to initialise a new database:
---
---   mysql -u root -p < backend/app/schema.sql
---
--- Or from the MySQL prompt:
---
---   source /path/to/FarmPay-AI/backend/app/schema.sql;
---
--- NOTES:
---   * Monetary values use DECIMAL to avoid floating-point rounding errors.
---   * created_at stores UTC as DATETIME(6) with microsecond precision.
---   * paypal_order_id and paypal_capture_id are NULL until the PayPal
---     checkout and capture steps are completed.
---   * payment_status values: NOT_PAID | PAID
---   * status values:         PENDING_PAYMENT | COMPLETED | CANCELLED
+-- To initialise or upgrade the database, run:
+--   mysql -u root -p farmpay_ai < backend/app/schema.sql
+-- Or inside MySQL client:
+--   USE farmpay_ai;
+--   SOURCE backend/app/schema.sql;
 
--- ============================================================
--- Create the database (skip if it already exists)
--- ============================================================
 CREATE DATABASE IF NOT EXISTS farmpay_ai
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_0900_ai_ci;
@@ -30,83 +15,144 @@ CREATE DATABASE IF NOT EXISTS farmpay_ai
 USE farmpay_ai;
 
 -- ============================================================
--- orders
+-- 1. USERS
+-- ============================================================
+CREATE TABLE IF NOT EXISTS users (
+    user_id             VARCHAR(50)     NOT NULL,
+    email               VARCHAR(150)    NOT NULL UNIQUE,
+    phone               VARCHAR(20)     DEFAULT NULL,
+    password_hash       VARCHAR(255)    NOT NULL,
+    salt                VARCHAR(64)     NOT NULL,
+    role                ENUM('FARMER', 'BUYER', 'ADMIN') NOT NULL,
+    name                VARCHAR(150)    NOT NULL,
+    preferred_language  VARCHAR(10)     DEFAULT 'en',
+    is_active           BOOLEAN         DEFAULT TRUE,
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (user_id),
+    INDEX idx_users_email (email),
+    INDEX idx_users_role (role)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ============================================================
+-- 2. FARMER PROFILES
+-- ============================================================
+CREATE TABLE IF NOT EXISTS farmer_profiles (
+    user_id             VARCHAR(50)     NOT NULL,
+    village_city        VARCHAR(100)    NOT NULL,
+    district            VARCHAR(100)    NOT NULL,
+    state               VARCHAR(100)    NOT NULL,
+    land_acres          DECIMAL(8, 2)   DEFAULT NULL,
+    primary_crop        VARCHAR(100)    DEFAULT NULL,
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (user_id),
+    CONSTRAINT fk_farmer_user FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ============================================================
+-- 3. BUYER PROFILES
+-- ============================================================
+CREATE TABLE IF NOT EXISTS buyer_profiles (
+    user_id             VARCHAR(50)     NOT NULL,
+    business_name       VARCHAR(150)    NOT NULL,
+    business_type       VARCHAR(100)    DEFAULT 'Mandi Trader',
+    city                VARCHAR(100)    NOT NULL,
+    district            VARCHAR(100)    NOT NULL,
+    state               VARCHAR(100)    NOT NULL,
+    verified            BOOLEAN         DEFAULT FALSE,
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (user_id),
+    CONSTRAINT fk_buyer_user FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ============================================================
+-- 4. PRODUCE LISTINGS (Farmer selling produce)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS produce_listings (
+    listing_id          VARCHAR(50)     NOT NULL,
+    farmer_id           VARCHAR(50)     NOT NULL,
+    farmer_name         VARCHAR(150)    NOT NULL,
+    crop                VARCHAR(100)    NOT NULL,
+    quantity_kg         DECIMAL(10, 2)  NOT NULL,
+    expected_price_per_kg DECIMAL(10, 2) NOT NULL,
+    location            VARCHAR(150)    NOT NULL,
+    village             VARCHAR(100)    DEFAULT NULL,
+    district            VARCHAR(100)    DEFAULT NULL,
+    state               VARCHAR(100)    DEFAULT NULL,
+    status              VARCHAR(30)     DEFAULT 'ACTIVE',
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (listing_id),
+    INDEX idx_listings_farmer (farmer_id),
+    INDEX idx_listings_status (status),
+    INDEX idx_listings_crop (crop)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ============================================================
+-- 5. BUYER OFFERS (Offers submitted against listings)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS buyer_offers (
+    offer_id            VARCHAR(50)     NOT NULL,
+    listing_id          VARCHAR(50)     NOT NULL,
+    buyer_id            VARCHAR(50)     NOT NULL,
+    buyer_name          VARCHAR(150)    NOT NULL,
+    price_per_kg        DECIMAL(10, 2)  NOT NULL,
+    offered_quantity_kg DECIMAL(10, 2)  NOT NULL,
+    transport_cost      DECIMAL(12, 2)  NOT NULL,
+    gross_amount        DECIMAL(12, 2)  NOT NULL,
+    net_proceeds        DECIMAL(12, 2)  NOT NULL,
+    notes               TEXT            DEFAULT NULL,
+    status              VARCHAR(30)     DEFAULT 'PENDING',
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (offer_id),
+    INDEX idx_offers_listing (listing_id),
+    INDEX idx_offers_buyer (buyer_id),
+    INDEX idx_offers_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ============================================================
+-- 6. ORDERS (Preserved & Extended)
 -- ============================================================
 CREATE TABLE IF NOT EXISTS orders (
-
-    -- Primary key (e.g. FP-ABC123DEF456)
     order_id            VARCHAR(30)     NOT NULL,
-
-    -- Buyer identifier (e.g. BUYER001)
+    farmer_id           VARCHAR(50)     DEFAULT NULL,
+    listing_id          VARCHAR(50)     DEFAULT NULL,
+    offer_id            VARCHAR(50)     DEFAULT NULL,
     buyer_id            VARCHAR(50)     NOT NULL,
-
-    -- Denormalised buyer name stored at order creation time
     buyer_name          VARCHAR(100)    NOT NULL,
-
-    -- Crop name, title-cased at creation time
     crop                VARCHAR(100)    NOT NULL,
-
-    -- Quantity offered by the farmer, in kilograms
     quantity_kg         DECIMAL(10, 2)  NOT NULL,
-
-    -- Farm location provided by the farmer
     location            VARCHAR(150)    NOT NULL,
-
-    -- Price the buyer pays per kilogram (INR)
     price_per_kg        DECIMAL(10, 2)  NOT NULL,
-
-    -- quantity_kg * price_per_kg (INR)
     gross_amount        DECIMAL(12, 2)  NOT NULL,
-
-    -- Buyer-quoted transport cost deducted from the gross amount (INR)
     transport_cost      DECIMAL(12, 2)  NOT NULL,
-
-    -- gross_amount - transport_cost; the farmer's estimated net earnings (INR)
     net_proceeds        DECIMAL(12, 2)  NOT NULL,
-
-    -- Currency code for the INR amounts above
     currency            VARCHAR(10)     DEFAULT 'INR',
-
-    -- DEMO = illustrative offer data; LIVE = real market offer (future)
     offer_type          VARCHAR(20)     DEFAULT 'DEMO',
-
-    -- Overall order lifecycle status
-    -- Values: PENDING_PAYMENT | COMPLETED | CANCELLED
     status              VARCHAR(30)     DEFAULT 'PENDING_PAYMENT',
-
-    -- Payment settlement status
-    -- Values: NOT_PAID | PAID
     payment_status      VARCHAR(30)     DEFAULT 'NOT_PAID',
-
-    -- UTC creation timestamp with microsecond precision
     created_at          DATETIME(6)     NOT NULL,
-
-    -- PayPal order ID returned by POST /v2/checkout/orders
     paypal_order_id     VARCHAR(100)    DEFAULT NULL,
-
-    -- PayPal capture ID returned by POST /v2/checkout/orders/{id}/capture
     paypal_capture_id   VARCHAR(100)    DEFAULT NULL,
-
-    PRIMARY KEY (order_id)
-
-) ENGINE=InnoDB
-  DEFAULT CHARSET=utf8mb4
-  COLLATE=utf8mb4_0900_ai_ci;
-
--- ============================================================
--- Recommended indexes for Phase 1+
--- (Not required for the current prototype; add as query
---  patterns are identified)
--- ============================================================
--- CREATE INDEX idx_orders_payment_status ON orders (payment_status);
--- CREATE INDEX idx_orders_status         ON orders (status);
--- CREATE INDEX idx_orders_created_at     ON orders (created_at);
+    PRIMARY KEY (order_id),
+    INDEX idx_orders_farmer (farmer_id),
+    INDEX idx_orders_buyer (buyer_id),
+    INDEX idx_orders_payment_status (payment_status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ============================================================
--- Future tables (Phase 2+)
+-- 7. AI RECOMMENDATIONS AUDIT TRAIL
 -- ============================================================
--- users        — farmer profiles and authentication
--- buyers       — real buyer catalog
--- crops        — crop catalog and pricing rules
--- payments     — full payment audit trail
--- locations    — geographic reference data
+CREATE TABLE IF NOT EXISTS ai_recommendations (
+    recommendation_id   VARCHAR(50)     NOT NULL,
+    listing_id          VARCHAR(50)     NOT NULL,
+    recommended_buyer_id VARCHAR(50)    NOT NULL,
+    recommended_offer_id VARCHAR(50)    DEFAULT NULL,
+    explanation         TEXT            NOT NULL,
+    financial_analysis  TEXT            NOT NULL,
+    trade_offs          TEXT            DEFAULT NULL,
+    warnings            TEXT            DEFAULT NULL,
+    model_used          VARCHAR(50)     DEFAULT 'gemini-2.5-flash',
+    is_fallback         BOOLEAN         DEFAULT FALSE,
+    created_at          DATETIME(6)     NOT NULL,
+    PRIMARY KEY (recommendation_id),
+    INDEX idx_ai_listing (listing_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

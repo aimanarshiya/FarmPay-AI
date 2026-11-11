@@ -172,3 +172,45 @@ Thumbs.db
 
 # Local databases and logs
 *.log
+
+
+
+# Local development configuration
+*.code-workspace
+.env
+.env.*
+!.env.example
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# Frontend dependencies and builds
+node_modules/
+dist/
+coverage/
+
+# Local database files and backups
+*.sqlite
+*.sqlite3
+*.db
+database_backups/
+db_backups/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Sensitive development-only migration helper
+backend/app/run_migration.py
+backend/app/migrate_as_root.sql

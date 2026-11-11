@@ -1,9 +1,9 @@
 # FarmPay AI — Phase 1.1 PayPal Sandbox Root Cause Analysis & Permanent Fix Report
 
-**Date:** 2026-11-06  
-**Investigated Order:** `FP-B51C04800616`  
-**PayPal Order ID:** `3RB96396D6519315P`  
-**Status:** RESOLVED & VERIFIED  
+**Date:** 2026-11-06
+**Investigated Order:** `FP-B51C04800616`
+**PayPal Order ID:** `3RB96396D6519315P`
+**Status:** RESOLVED & VERIFIED
 
 ---
 

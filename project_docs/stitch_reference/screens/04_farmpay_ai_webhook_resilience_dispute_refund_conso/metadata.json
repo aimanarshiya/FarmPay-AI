@@ -1,0 +1,17 @@
+{
+  "name": "projects/7674813774794234311/screens/1bcaa051adde4dabbd4ed5fd8d377745",
+  "title": "FarmPay AI \u2014 Webhook Resilience & Dispute Refund Console",
+  "screenshot": {
+    "name": "projects/7674813774794234311/screens/1bcaa051adde4dabbd4ed5fd8d377745/fileEntries/screenshot",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/7674813774794234311/files/screenshot_00065fd804964abd07c4dc8e68247653:download",
+    "mimeType": "image/png"
+  },
+  "htmlCode": {
+    "name": "projects/7674813774794234311/screens/1bcaa051adde4dabbd4ed5fd8d377745/fileEntries/html",
+    "downloadUrl": "https://stitch.googleapis.com/v1/projects/7674813774794234311/files/1bcaa051adde4dabbd4ed5fd8d377745:download",
+    "mimeType": "text/html"
+  },
+  "width": "2560",
+  "height": "6114",
+  "deviceType": "DESKTOP"
+}

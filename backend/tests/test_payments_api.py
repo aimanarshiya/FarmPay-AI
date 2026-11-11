@@ -24,13 +24,23 @@ from datetime import datetime
 from fastapi import HTTPException
 
 from app.payments import (
-    create_payment,
-    capture_payment,
+    create_payment as _create_payment,
+    capture_payment as _capture_payment,
     validate_paypal_identity,
     validate_paypal_order,
     SANDBOX_TEST_AMOUNT,
     SANDBOX_TEST_CURRENCY,
 )
+
+TEST_ADMIN = {"user_id": "ADMIN-TEST", "role": "ADMIN"}
+
+
+def create_payment(order_id):
+    return _create_payment(order_id, current_user=TEST_ADMIN)
+
+
+def capture_payment(order_id):
+    return _capture_payment(order_id, current_user=TEST_ADMIN)
 
 
 # ---------------------------------------------------------------------------

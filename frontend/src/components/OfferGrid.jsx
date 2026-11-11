@@ -13,12 +13,12 @@ export default function OfferGrid({
     <section className="offers-section">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">STEP 02</span>
-          <h2>Compare buyer offers</h2>
-          <p>Offers are ranked by estimated net proceeds.</p>
+          <span className="eyebrow">DEMO ONLY</span>
+          <h2>Compare illustrative sample offers</h2>
+          <p>These examples are not real buyer bids and cannot be accepted as orders.</p>
         </div>
 
-        <span className="offer-count">{offers.length} offers</span>
+        <span className="offer-count">{offers.length} sample offers</span>
       </div>
 
       {disclaimer && (
@@ -42,10 +42,8 @@ export default function OfferGrid({
       </div>
 
       <p className="results-note">
-        These offers use illustrative values. They are not verified buyer
-        quotations or live market prices.
+        Real listings and binding offers are available in the authenticated database-backed marketplace.
       </p>
     </section>
   );
 }
-

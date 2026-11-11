@@ -67,152 +67,152 @@ export default function OrderHistory() {
   }
 
   return (
-    <div className="order-history-page">
-      <div className="page-header">
-        <div>
-          <span className="eyebrow">ORDER RECORDS</span>
-          <h1>Order History</h1>
-          <p>
-            Track your confirmed harvest orders and simulated digital payment
-            records.
-          </p>
+    <div className="portal-dashboard-page">
+      <header className="portal-dashboard-header">
+        <div className="header-meta-row">
+          <span className="portal-category-badge">📦 PROCUREMENT REGISTRY</span>
+          <span className="portal-state-tag">Digital Agricultural Contracts</span>
         </div>
+        <div className="header-main-row">
+          <div>
+            <h1>Agricultural Order & Settlement Registry</h1>
+            <p className="header-subtext">
+              Comprehensive record of accepted harvest procurement agreements, delivery logistics, and verified digital payment status.
+            </p>
+          </div>
+          <div className="header-action-slot">
+            <Link to="/farmer" className="btn-primary-action">
+              + New Produce Listing
+            </Link>
+          </div>
+        </div>
+      </header>
 
-        <Link to="/" className="primary-button">
-          <span>+ New Harvest Order</span>
-        </Link>
+      {/* INFORMATIONAL SETTLEMENT NOTICE */}
+      <div className="portal-info-banner">
+        <span className="info-icon">ℹ️</span>
+        <div>
+          <strong>Agricultural Settlement Architecture:</strong> Harvest contracts are established in Indian Rupees (INR). Digital payment verification via PayPal Sandbox ($1.00 USD simulated authorization) is integrated for checkout gateway testing, keeping agricultural settlement strictly separate.
+        </div>
       </div>
 
-      <div className="phase-note">
-        <span>ℹ️ Note:</span> Phase 1 displays orders stored in the local
-        database. Multi-user authentication and farmer account isolation are
-        scheduled for Phase 2.
-      </div>
-
-      {loading && <LoadingState message="Loading your orders..." />}
-
+      {loading && <LoadingState message="Loading procurement orders..." />}
       <ErrorMessage message={error} />
 
       {!loading && !error && orders.length === 0 && (
-        <section className="empty-state">
-          <div className="empty-icon">📋</div>
-          <h3>No orders found</h3>
-          <p>
-            You haven't confirmed any harvest orders yet. Start by exploring
-            buyer offers.
-          </p>
-          <Link to="/" className="primary-button" style={{ marginTop: "20px" }}>
-            Explore Buyer Offers
-            <span aria-hidden="true">→</span>
+        <section className="portal-empty-card">
+          <span className="empty-icon">📋</span>
+          <h3>No Orders Found</h3>
+          <p>Orders are generated when a farmer accepts a buyer's competitive bid.</p>
+          <Link to="/farmer" className="btn-service primary">
+            Open Farmer Portal
           </Link>
         </section>
       )}
 
       {!loading && !error && orders.length > 0 && (
-        <div className="orders-table-container">
-          <table className="orders-table">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Date</th>
-                <th>Crop & Quantity</th>
-                <th>Buyer</th>
-                <th>Net Proceeds</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => {
-                const hasCapture = Boolean(order.paypal_capture_id);
-
-                return (
-                  <tr key={order.order_id}>
-                    <td>
-                      <Link
-                        to={`/orders/${order.order_id}`}
-                        className="order-id-link"
-                      >
-                        {order.order_id}
-                      </Link>
-                    </td>
-                    <td className="text-muted">
-                      {formatDate(order.created_at)}
-                    </td>
-                    <td>
-                      <strong>{order.crop}</strong>
-                      <span className="subtext">{order.quantity_kg} kg</span>
-                    </td>
-                    <td>
-                      <span>{order.buyer_name}</span>
-                      <span className="subtext">{order.location}</span>
-                    </td>
-                    <td>
-                      <strong className="text-green">
-                        {formatINR(order.net_proceeds)}
-                      </strong>
-                    </td>
-                    <td>
-                      <PaymentStatusBadge
-                        paymentStatus={order.payment_status}
-                        captureId={order.paypal_capture_id}
-                        paypalOrderId={order.paypal_order_id}
-                      />
-                    </td>
-                    <td>
-                      <div className="table-actions">
+        <section className="portal-card-container">
+          <div className="bids-table-wrapper">
+            <table className="portal-data-table">
+              <thead>
+                <tr>
+                  <th>Order Reference</th>
+                  <th>Harvest & Buyer</th>
+                  <th>Quantity</th>
+                  <th>Net Payout (INR)</th>
+                  <th>Order Status</th>
+                  <th>INR Payment</th>
+                  <th>PayPal Test</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order) => {
+                  const hasCapture = Boolean(order.paypal_capture_id);
+                  return (
+                    <tr key={order.order_id}>
+                      <td>
+                        <code>{order.order_id}</code>
+                        {order.offer_type === "DEMO" && (
+                          <span className="type-badge-mini">SIMULATOR</span>
+                        )}
+                      </td>
+                      <td>
+                        <strong>{order.crop}</strong>
+                        <div className="table-sub">{order.buyer_name}</div>
+                      </td>
+                      <td>{order.quantity_kg?.toLocaleString()} kg</td>
+                      <td>
+                        <strong className="text-green">{formatINR(order.net_proceeds)}</strong>
+                      </td>
+                      <td>
+                        <span className={`status-pill pill-${order.status?.toLowerCase()}`}>
+                          {order.status}
+                        </span>
+                      </td>
+                      <td>
+                        <PaymentStatusBadge status={order.payment_status} />
+                      </td>
+                      <td>
+                        {hasCapture ? (
+                          <span className="paypal-verified-tag" title={`Capture: ${order.paypal_capture_id}`}>
+                            ✓ Captured
+                          </span>
+                        ) : (
+                          <span className="paypal-unverified-tag">
+                            Uncaptured
+                          </span>
+                        )}
+                      </td>
+                      <td>
+                        <small>{formatDate(order.created_at)}</small>
+                      </td>
+                      <td>
                         <Link
                           to={`/orders/${order.order_id}`}
-                          className="action-link"
+                          className="table-action-btn"
                         >
-                          View
+                          View Details →
                         </Link>
-                        {!hasCapture && (
-                          <Link
-                            to={`/orders/${order.order_id}`}
-                            className="pay-link"
-                          >
-                            Pay Test
-                          </Link>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
+          {/* PAGINATION */}
           {totalPages > 1 && (
-            <div className="pagination">
-              <button
-                type="button"
-                className="page-button"
-                disabled={offset === 0}
-                onClick={() => {
-                  setLoading(true);
-                  setOffset(Math.max(0, offset - PAGE_SIZE));
-                }}
-              >
-                ← Previous
-              </button>
-              <span className="page-indicator">
-                Page {currentPage} of {totalPages} ({total} orders)
+            <div className="portal-pagination-bar">
+              <span className="page-summary">
+                Showing {offset + 1} – {Math.min(offset + PAGE_SIZE, total)} of {total} orders
               </span>
-              <button
-                type="button"
-                className="page-button"
-                disabled={currentPage >= totalPages}
-                onClick={() => {
-                  setLoading(true);
-                  setOffset(offset + PAGE_SIZE);
-                }}
-              >
-                Next →
-              </button>
+              <div className="page-buttons">
+                <button
+                  type="button"
+                  className="btn-page"
+                  disabled={offset === 0}
+                  onClick={() => setOffset(Math.max(0, offset - PAGE_SIZE))}
+                >
+                  ← Previous
+                </button>
+                <span className="page-indicator">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  type="button"
+                  className="btn-page"
+                  disabled={offset + PAGE_SIZE >= total}
+                  onClick={() => setOffset(offset + PAGE_SIZE)}
+                >
+                  Next →
+                </button>
+              </div>
             </div>
           )}
-        </div>
+        </section>
       )}
     </div>
   );

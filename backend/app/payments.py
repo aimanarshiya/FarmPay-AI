@@ -3,9 +3,10 @@ import logging
 from decimal import Decimal, InvalidOperation
 
 import httpx
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.database import get_connection
+from app.auth import require_role
 from app.paypal_service import (
     create_paypal_order,
     capture_paypal_order,
@@ -52,6 +53,16 @@ def order_to_dict(order):
         result["created_at"] = result["created_at"].isoformat() + "Z"
 
     return result
+
+
+def assert_order_access(order: dict, current_user: dict) -> None:
+    if current_user["role"] == "ADMIN":
+        return
+    if current_user["user_id"] not in (order.get("farmer_id"), order.get("buyer_id")):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="FarmPay order not found.",
+        )
 
 
 def get_paypal_order_details(paypal_order_id: str) -> dict:
@@ -236,7 +247,10 @@ def validate_paypal_order(
 
 
 @router.post("/create/{order_id}")
-def create_payment(order_id: str):
+def create_payment(
+    order_id: str,
+    current_user: dict = Depends(require_role(["FARMER", "BUYER", "ADMIN"])),
+):
     connection = None
 
     try:
@@ -254,6 +268,8 @@ def create_payment(order_id: str):
                 status_code=404,
                 detail="FarmPay order not found.",
             )
+
+        assert_order_access(order, current_user)
 
         if order["payment_status"] == "PAID":
             raise HTTPException(
@@ -362,7 +378,10 @@ def create_payment(order_id: str):
 
 
 @router.post("/capture/{order_id}")
-def capture_payment(order_id: str):
+def capture_payment(
+    order_id: str,
+    current_user: dict = Depends(require_role(["FARMER", "BUYER", "ADMIN"])),
+):
     connection = None
 
     try:
@@ -380,6 +399,8 @@ def capture_payment(order_id: str):
                 status_code=404,
                 detail="FarmPay order not found.",
             )
+
+        assert_order_access(order, current_user)
 
         paypal_order_id = order.get("paypal_order_id")
 

@@ -23,4 +23,3 @@ export function formatUSD(value) {
     maximumFractionDigits: 2,
   }).format(value);
 }
-

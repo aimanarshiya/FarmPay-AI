@@ -6,4 +6,3 @@ export default function LoadingState({ message = "Loading..." }) {
     </div>
   );
 }
-

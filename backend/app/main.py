@@ -1,26 +1,45 @@
-from app.payments import router as paypal_router
-from uuid import uuid4
-from datetime import datetime, timezone
+from datetime import timezone
 import logging
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from app.database import get_connection
+from app.payments import router as paypal_router
+from app.auth import router as auth_router, require_role
+from app.listings import router as listings_router
+from app.offers import router as offers_router
+from app.admin import router as admin_router
+from app.ai_service import analyze_offers
 
 logger = logging.getLogger(__name__)
 
+app = FastAPI(
+    title="FarmPay AI API",
+    description="AI-Enabled Agricultural Commerce & Digital Payment Assistant",
+    version="2.0.0",
+)
 
-app = FastAPI(title="FarmPay AI API")
+# --------------------------------------------------
+# ROUTERS
+# --------------------------------------------------
 app.include_router(paypal_router)
+app.include_router(auth_router)
+app.include_router(listings_router)
+app.include_router(offers_router)
+app.include_router(admin_router)
 
-
+# --------------------------------------------------
+# CORS CONFIGURATION
+# --------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -29,7 +48,7 @@ app.add_middleware(
 
 
 # --------------------------------------------------
-# EXISTING ENDPOINTS
+# BASE ENDPOINTS
 # --------------------------------------------------
 
 @app.get("/")
@@ -52,7 +71,7 @@ def get_message():
 
 
 # --------------------------------------------------
-# FARMER REQUEST
+# DEMO-ONLY OFFER SIMULATOR
 # --------------------------------------------------
 
 class FarmerRequest(BaseModel):
@@ -60,10 +79,6 @@ class FarmerRequest(BaseModel):
     quantity_kg: float = Field(gt=0, le=100000)
     location: str = Field(min_length=2, max_length=100)
 
-
-# --------------------------------------------------
-# DEMO BUYERS
-# --------------------------------------------------
 
 DEMO_BUYERS = [
     {
@@ -88,12 +103,12 @@ DEMO_BUYERS = [
 
 
 # --------------------------------------------------
-# BUYER OFFER ENGINE
+# Illustrative buyers for the public calculator only. These are not database
+# users, verified buyers, or live quotations and cannot be used to create orders.
 # --------------------------------------------------
 
 @app.post("/api/offers")
 def get_buyer_offers(request: FarmerRequest):
-
     crop = request.crop.strip().title()
     location = request.location.strip()
     quantity = request.quantity_kg
@@ -101,21 +116,9 @@ def get_buyer_offers(request: FarmerRequest):
     offers = []
 
     for buyer in DEMO_BUYERS:
-
-        gross_amount = round(
-            quantity * buyer["price_per_kg"],
-            2,
-        )
-
-        transport_cost = round(
-            buyer["transport_cost"],
-            2,
-        )
-
-        net_proceeds = round(
-            gross_amount - transport_cost,
-            2,
-        )
+        gross_amount = round(quantity * buyer["price_per_kg"], 2)
+        transport_cost = round(buyer["transport_cost"], 2)
+        net_proceeds = round(gross_amount - transport_cost, 2)
 
         offers.append(
             {
@@ -133,18 +136,24 @@ def get_buyer_offers(request: FarmerRequest):
             }
         )
 
-    offers.sort(
-        key=lambda offer: offer["net_proceeds"],
-        reverse=True,
+    offers.sort(key=lambda offer: offer["net_proceeds"], reverse=True)
+
+    # AI compares the illustrative figures only; the result is not a live bid.
+    ai_recommendation = analyze_offers(
+        crop=crop,
+        quantity_kg=quantity,
+        location=location,
+        offers=offers,
     )
 
     return {
         "success": True,
-        "message": "Demo buyer offers generated successfully",
+        "message": "Illustrative demo offers generated. These are not live buyer bids.",
+        "mode": "DEMO_ONLY",
         "data_type": "DEMO",
         "disclaimer": (
-            "Illustrative buyer offers only. "
-            "Prices and transport costs are not live market data."
+            "DEMO ONLY: These sample figures are not real buyer offers, verified quotations, "
+            "or live market prices. They are not saved to MySQL and cannot create orders."
         ),
         "farmer_request": {
             "crop": crop,
@@ -152,11 +161,12 @@ def get_buyer_offers(request: FarmerRequest):
             "location": location,
         },
         "offers": offers,
+        "ai_recommendation": ai_recommendation.model_dump(),
     }
 
 
 # --------------------------------------------------
-# ORDER REQUEST
+# ORDER REQUEST & PERSISTENCE
 # --------------------------------------------------
 
 class OrderRequest(BaseModel):
@@ -166,16 +176,11 @@ class OrderRequest(BaseModel):
     buyer_id: str
 
 
-# --------------------------------------------------
-# HELPER: NORMALIZE ORDER DICT
-# --------------------------------------------------
-
 def normalize_order(order: dict) -> dict:
     if not order:
         return None
 
     result = dict(order)
-
     numeric_fields = [
         "quantity_kg",
         "price_per_kg",
@@ -191,225 +196,70 @@ def normalize_order(order: dict) -> dict:
     if result.get("created_at") is not None:
         created = result["created_at"]
         if hasattr(created, "replace") and hasattr(created, "isoformat"):
-            result["created_at"] = (
-                created.replace(tzinfo=timezone.utc).isoformat()
-            )
+            result["created_at"] = created.replace(tzinfo=timezone.utc).isoformat()
         elif isinstance(created, str) and not created.endswith("Z") and "+" not in created:
             result["created_at"] = f"{created}+00:00"
 
     return result
 
 
-# --------------------------------------------------
-# CREATE ORDER - MYSQL PERSISTENCE
-# --------------------------------------------------
-
 @app.post("/api/orders")
 def create_order(request: OrderRequest):
-
-    crop = request.crop.strip().title()
-    location = request.location.strip()
-
-    buyer = next(
-        (
-            buyer
-            for buyer in DEMO_BUYERS
-            if buyer["buyer_id"] == request.buyer_id
+    raise HTTPException(
+        status_code=status.HTTP_410_GONE,
+        detail=(
+            "Demo offers cannot create orders. To create a real order, submit and accept "
+            "a buyer offer on a MySQL-backed produce listing."
         ),
-        None,
     )
 
-    if buyer is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Buyer offer not found.",
-        )
-
-    quantity = request.quantity_kg
-
-    # Backend recalculates all monetary values.
-    gross_amount = round(
-        quantity * buyer["price_per_kg"],
-        2,
-    )
-
-    transport_cost = round(
-        buyer["transport_cost"],
-        2,
-    )
-
-    net_proceeds = round(
-        gross_amount - transport_cost,
-        2,
-    )
-
-    order_id = f"FP-{uuid4().hex[:12].upper()}"
-
-    created_at = datetime.now(timezone.utc)
-
-    # MySQL DATETIME does not store timezone information.
-    # Store the UTC timestamp as a naive datetime.
-    db_created_at = created_at.replace(tzinfo=None)
-
-    order = {
-        "order_id": order_id,
-        "buyer_id": buyer["buyer_id"],
-        "buyer_name": buyer["buyer_name"],
-        "crop": crop,
-        "quantity_kg": quantity,
-        "location": location,
-        "price_per_kg": buyer["price_per_kg"],
-        "gross_amount": gross_amount,
-        "transport_cost": transport_cost,
-        "net_proceeds": net_proceeds,
-        "currency": "INR",
-        "offer_type": "DEMO",
-        "status": "PENDING_PAYMENT",
-        "payment_status": "NOT_PAID",
-        "created_at": created_at.isoformat(),
-        "paypal_order_id": None,
-        "paypal_capture_id": None,
-    }
-
-    connection = None
-
-    try:
-
-        connection = get_connection()
-
-        with connection.cursor() as cursor:
-
-            cursor.execute(
-                """
-                INSERT INTO orders (
-                    order_id,
-                    buyer_id,
-                    buyer_name,
-                    crop,
-                    quantity_kg,
-                    location,
-                    price_per_kg,
-                    gross_amount,
-                    transport_cost,
-                    net_proceeds,
-                    currency,
-                    offer_type,
-                    status,
-                    payment_status,
-                    created_at
-                )
-                VALUES (
-                    %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
-                )
-                """,
-                (
-                    order["order_id"],
-                    order["buyer_id"],
-                    order["buyer_name"],
-                    order["crop"],
-                    order["quantity_kg"],
-                    order["location"],
-                    order["price_per_kg"],
-                    order["gross_amount"],
-                    order["transport_cost"],
-                    order["net_proceeds"],
-                    order["currency"],
-                    order["offer_type"],
-                    order["status"],
-                    order["payment_status"],
-                    db_created_at,
-                ),
-            )
-
-        connection.commit()
-
-    except Exception:
-
-        logger.exception("create_order: database error")
-
-        if connection is not None:
-            connection.rollback()
-
-        raise HTTPException(
-            status_code=500,
-            detail="Could not save order. Please try again.",
-        )
-
-    finally:
-
-        if connection is not None:
-            connection.close()
-
-    return {
-        "success": True,
-        "message": "Order created successfully.",
-        "order": order,
-    }
-
-
-# --------------------------------------------------
-# LIST ORDERS - MYSQL PERSISTENCE (PAGINATED)
-# --------------------------------------------------
 
 @app.get("/api/orders")
-def list_orders(limit: int = 50, offset: int = 0):
-    """
-    Retrieve past orders with pagination, sorted by created_at descending.
-    Note: Phase 1 provides public listing; Phase 2 introduces farmer identity isolation.
-    """
+def list_orders(
+    limit: int = 50,
+    offset: int = 0,
+    current_user: dict = Depends(require_role(["FARMER", "BUYER", "ADMIN"])),
+):
     if limit < 1 or limit > 100:
-        raise HTTPException(
-            status_code=400,
-            detail="limit must be between 1 and 100",
-        )
+        raise HTTPException(status_code=400, detail="limit must be between 1 and 100")
     if offset < 0:
-        raise HTTPException(
-            status_code=400,
-            detail="offset must be greater than or equal to 0",
-        )
+        raise HTTPException(status_code=400, detail="offset must be greater than or equal to 0")
 
     connection = None
-
     try:
         connection = get_connection()
-
         with connection.cursor() as cursor:
-            cursor.execute("SELECT COUNT(*) AS total FROM orders")
+            filters = ""
+            params = []
+            if current_user["role"] == "FARMER":
+                filters = " WHERE farmer_id = %s"
+                params.append(current_user["user_id"])
+            elif current_user["role"] == "BUYER":
+                filters = " WHERE buyer_id = %s"
+                params.append(current_user["user_id"])
+
+            cursor.execute(f"SELECT COUNT(*) AS total FROM orders{filters}", tuple(params))
             count_row = cursor.fetchone()
             total = count_row["total"] if count_row else 0
 
             cursor.execute(
                 """
-                SELECT
-                    order_id,
-                    buyer_id,
-                    buyer_name,
-                    crop,
-                    quantity_kg,
-                    location,
-                    price_per_kg,
-                    gross_amount,
-                    transport_cost,
-                    net_proceeds,
-                    currency,
-                    offer_type,
-                    status,
-                    payment_status,
-                    created_at,
-                    paypal_order_id,
-                    paypal_capture_id
+                SELECT order_id, buyer_id, buyer_name, crop, quantity_kg,
+                       location, price_per_kg, gross_amount, transport_cost,
+                       net_proceeds, currency, offer_type, status, payment_status,
+                       created_at, paypal_order_id, paypal_capture_id
                 FROM orders
+                """
+                + filters
+                + """
                 ORDER BY created_at DESC
                 LIMIT %s OFFSET %s
                 """,
-                (limit, offset),
+                (*params, limit, offset),
             )
             raw_orders = cursor.fetchall() or []
 
         orders = [normalize_order(row) for row in raw_orders]
-
         return {
             "success": True,
             "orders": orders,
@@ -417,84 +267,56 @@ def list_orders(limit: int = 50, offset: int = 0):
             "limit": limit,
             "offset": offset,
         }
-
     except Exception:
         logger.exception("list_orders: database error")
         raise HTTPException(
             status_code=500,
             detail="Could not retrieve orders. Please try again.",
         )
-
     finally:
         if connection is not None:
             connection.close()
 
 
-# --------------------------------------------------
-# GET ORDER - MYSQL PERSISTENCE
-# --------------------------------------------------
-
 @app.get("/api/orders/{order_id}")
-def get_order(order_id: str):
-
+def get_order(
+    order_id: str,
+    current_user: dict = Depends(require_role(["FARMER", "BUYER", "ADMIN"])),
+):
     connection = None
-
     try:
-
         connection = get_connection()
-
         with connection.cursor() as cursor:
-
-            cursor.execute(
-                """
-                SELECT
-                    order_id,
-                    buyer_id,
-                    buyer_name,
-                    crop,
-                    quantity_kg,
-                    location,
-                    price_per_kg,
-                    gross_amount,
-                    transport_cost,
-                    net_proceeds,
-                    currency,
-                    offer_type,
-                    status,
-                    payment_status,
-                    created_at,
-                    paypal_order_id,
-                    paypal_capture_id
+            query = """
+                SELECT order_id, buyer_id, buyer_name, crop, quantity_kg,
+                       location, price_per_kg, gross_amount, transport_cost,
+                       net_proceeds, currency, offer_type, status, payment_status,
+                       created_at, paypal_order_id, paypal_capture_id
                 FROM orders
                 WHERE order_id = %s
-                """,
-                (order_id,),
-            )
-
+            """
+            params = [order_id]
+            if current_user["role"] == "FARMER":
+                query += " AND farmer_id = %s"
+                params.append(current_user["user_id"])
+            elif current_user["role"] == "BUYER":
+                query += " AND buyer_id = %s"
+                params.append(current_user["user_id"])
+            cursor.execute(query, tuple(params))
             order = cursor.fetchone()
 
+        if order is None:
+            raise HTTPException(status_code=404, detail="Order not found.")
+
+        return {"success": True, "order": normalize_order(order)}
+    except HTTPException:
+        raise
     except Exception:
-
         logger.exception("get_order: database error")
-
         raise HTTPException(
             status_code=500,
             detail="Could not retrieve order. Please try again.",
         )
-
     finally:
-
         if connection is not None:
             connection.close()
-
-    if order is None:
-
-        raise HTTPException(
-            status_code=404,
-            detail="Order not found.",
-        )
-
-    return {
-        "success": True,
-        "order": normalize_order(order),
-    }

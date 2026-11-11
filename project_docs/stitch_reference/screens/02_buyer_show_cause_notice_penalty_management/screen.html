@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-fixed-dim":"#dcc48e","on-tertiary":"#ffffff","outline":"#74796e","on-primary-container":"#d8f0de","secondary":"#6b6358","surface-dim":"#dbd7cf","inverse-primary":"#8ecf9e","on-tertiary-container":"#554020","error-container":"#ffdad8","on-error":"#ffffff","surface-tint":"#4a7c59","tertiary-fixed":"#f8e0a8","on-error-container":"#690005","secondary-fixed":"#f0e8db","on-secondary-fixed-variant":"#4a4538","surface-container-low":"#f5f1ea","on-primary-fixed":"#002110","on-tertiary-fixed-variant":"#554020","primary-container":"#78a886","surface-container":"#f0ece4","background":"#faf6f0","secondary-container":"#f0e8db","on-tertiary-fixed":"#221a05","on-primary":"#ffffff","error":"#b83230","on-surface-variant":"#4a4e4a","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#d4ccbf","on-secondary-fixed":"#1e1a13","on-background":"#2e3230","surface-container-high":"#eae6de","inverse-surface":"#2e3230","on-primary-fixed-variant":"#2a6038","outline-variant":"#c4c8bc","surface-variant":"#e4e0d8","tertiary-container":"#c4a66a","primary-fixed":"#c8e8d0","tertiary":"#705c30","inverse-on-surface":"#f5f0e8","primary-fixed-dim":"#8ecf9e","surface-container-highest":"#e4e0d8","primary":"#4a7c59","on-secondary":"#ffffff","surface-bright":"#faf6f0","surface":"#faf6f0","on-surface":"#2e3230","on-secondary-container":"#5e5548"},borderRadius:{DEFAULT:"0.5rem",lg:"1rem",xl:"1.5rem",full:"9999px"},spacing:{},fontFamily:{headline:["Literata"],display:["Literata"],body:["Nunito Sans"],label:["Nunito Sans"]},fontSize:{}}}}</script></head><body class="bg-surface font-body text-on-surface min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-6 px-4 shadow-[1px_0_12px_rgba(46,50,48,0.04)] overflow-y-auto"><div class="flex flex-col gap-5"><div class="flex items-center gap-3 px-3"><img alt="FarmPay AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><div class="flex flex-col"><span class="font-headline font-bold text-base tracking-tight text-on-surface">FarmPay AI</span><span class="text-[10px] text-tertiary font-bold tracking-wide uppercase">Governance Desk</span></div></div><div class="px-3 py-2 rounded-xl bg-surface-container-highest/60 flex items-center justify-between text-xs"><span class="text-on-surface-variant font-medium">Role Profile</span><span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-bold text-[10px]">Nodal Officer</span></div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"><div class="text-[11px] font-bold uppercase tracking-wider text-outline px-3 pt-2">Admin &amp; Governance</div><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="dispute-arbitration-console" href="#">Dispute Arbitration Console</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="mandi-nodal-officer-console" href="#">Mandi Nodal Officer Console</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="buyer-show-cause-notice-penalty-management" href="#">Buyer Show-Cause Notice &amp; Penalty Management</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="admin-escrow" href="#">Admin Escrow Control</a><div class="text-[11px] font-bold uppercase tracking-wider text-outline px-3 pt-3">Farmer Operations</div><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="farmer-suite" href="#">Farmer Suite</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="voice-to-trade" href="#">Voice-to-Trade</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="fairbid-engine" href="#">FairBid Realtime</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="active-listings" href="#">My Harvest Offers</a><div class="text-[11px] font-bold uppercase tracking-wider text-outline px-3 pt-3">Agri-Innovation Grid</div><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="dispute-shield" href="#">Dispute Shield</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="demand-radar" href="#">Demand Radar</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="logistics-transit" href="#">Logistics &amp; Transit</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="crop-passport" href="#">Digital Crop Passport</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="marketplace" href="#">Crop Marketplace</a><a class="flex items-center px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-sm font-medium" data-path="buyer-desk" href="#">Buyer Desk</a></nav></div><div class="pt-4 pb-2"><div class="p-3 rounded-xl bg-surface-container flex flex-col gap-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">gavel</span><span class="text-xs font-bold text-on-surface">Statutory Mandi Board</span></div><p class="text-[11px] text-on-surface-variant leading-relaxed">Authorized under National APMC Dispute Redressal &amp; Escrow Governance Charter.</p></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-20 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(46,50,48,0.04)] flex flex-col justify-center px-8"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><img alt="FarmPay AI Logo" class="h-7 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">assured_workload</span><span>Mandi Jurisdiction</span><span class="material-symbols-outlined text-[12px]">chevron_right</span><span class="text-on-surface font-semibold">Arbitration &amp; Escrow Adjudication</span></div></div><div class="flex items-center gap-4"><div class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-xs text-on-secondary-container font-medium"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Nodal Oversight Live • Statutory Mandi Quorum Active</div><div class="inline-flex items-center p-1 rounded-full bg-surface-container text-xs font-medium"><button class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary font-bold shadow-sm">EN</button><button class="px-2 py-0.5 rounded-full text-on-surface-variant">हिं</button><button class="px-2 py-0.5 rounded-full text-on-surface-variant">తె</button></div><button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-xs font-bold text-on-surface transition-all"><span class="material-symbols-outlined text-[16px] text-tertiary">history_edu</span>Resolution Docket</button><div class="flex items-center gap-3 pl-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuVIcrRMFHhTIpkknOsfrAqSTletvj17u59i7MwKINS1n2mv2od8rAIFbTAIEjvNLYAVQcYh-CLfOMPpVpf_PqNZvp6oXbI8ozXCQhSbxIWhSNFiZZ0gm4nk03N4qpuqL8z1VcZ6mV0ZO3nmNBQXPxqYIYdLwp-z5n_YOEv1U80ZkQ0IA9Az9hmBJOcURW-rsPRA5KKXhtmX8pFlFJKfEMrDKnw9ZuJdqle4cIijc"/><div class="flex flex-col text-left"><span class="text-xs font-bold text-on-surface leading-tight">Dr. Anand Verma</span><span class="text-[10px] text-tertiary font-bold">Chief Mandi Arbitrator (ID #APMC-704)</span></div></div></div></div></header><main class="w-full pt-20 bg-surface px-8"><div class="flex flex-col w-full">
+<!-- Top Stat/Emergency Jurisdiction Banner -->
+<div class="mb-6 rounded-2xl bg-surface-container-low p-6 shadow-sm relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-error/5 rounded-full pointer-events-none blur-3xl"></div>
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 relative z-10">
+<!-- Left Notice Identifiers -->
+<div class="flex items-start gap-4">
+<div class="p-3.5 rounded-2xl bg-error-container text-on-error-container shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="text-[11px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-error text-on-error font-body">Statutory Show-Cause Notice</span>
+<span class="text-xs font-mono font-bold text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-md">FORM VII-A • SCN/TS-APMC-NZB/2024/089</span>
+<span class="text-xs font-mono text-tertiary bg-secondary-container px-2 py-0.5 rounded-md font-semibold">Ref: ARB-2024-041 (Lot #FP-2024-884)</span>
+</div>
+<h1 class="text-xl md:text-2xl font-headline font-bold text-on-surface tracking-tight leading-snug">
+            In Re: Fraudulent Sensor Calibration, Arbitrary Dockage Cuts &amp; Demurrage Coercion
+          </h1>
+<p class="text-xs text-on-surface-variant font-medium mt-1">
+            Issued under Sec 17-C &amp; 23(1) Telangana Agricultural Produce Markets Act, 1966 r/w SafeEscrow Rule 9.4 • Nizamabad Dist Zone-II Bench
+          </p>
+</div>
+</div>
+<!-- Right Response Window SLA Widget -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-4 bg-surface-container p-4 rounded-xl shrink-0">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-outline">Statutory Response Window</span>
+<span class="text-xs font-bold text-error flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+            72-Hr Mandatory Clock Running
+          </span>
+<span class="text-[11px] text-on-surface-variant">Lapse triggers automatic license recommendation</span>
+</div>
+<div class="h-10 w-px bg-outline-variant/50 hidden sm:block"></div>
+<div class="flex items-center gap-1.5 font-mono">
+<div class="bg-surface-container-lowest px-3 py-2 rounded-lg text-center shadow-sm">
+<span class="block text-xl font-extrabold text-on-surface leading-none" id="clock-hours">68</span>
+<span class="text-[9px] uppercase tracking-wider text-outline">Hours</span>
+</div>
+<span class="text-lg font-bold text-outline">:</span>
+<div class="bg-surface-container-lowest px-3 py-2 rounded-lg text-center shadow-sm">
+<span class="block text-xl font-extrabold text-on-surface leading-none" id="clock-minutes">14</span>
+<span class="text-[9px] uppercase tracking-wider text-outline">Mins</span>
+</div>
+<span class="text-lg font-bold text-outline">:</span>
+<div class="bg-surface-container-lowest px-3 py-2 rounded-lg text-center shadow-sm">
+<span class="block text-xl font-extrabold text-error leading-none" id="clock-seconds">38</span>
+<span class="text-[9px] uppercase tracking-wider text-outline">Secs</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Targeted Entity Bio-Strip -->
+<div class="mt-5 pt-4 bg-surface-container-high/40 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 text-xs">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold font-headline">
+          AP
+        </div>
+<div>
+<span class="font-bold text-on-surface text-sm">AgroCorp Processing Mills Pvt Ltd</span>
+<span class="text-on-surface-variant ml-2">License: <strong class="font-mono text-on-surface">#TS-NZM-MILL-4019</strong></span>
+<span class="text-on-surface-variant ml-2">• Miryalaguda Hub</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-[11px] font-mono">
+<span class="text-on-surface-variant">GSTIN: <span class="text-on-surface font-semibold">36AAACA1122K1Z9</span></span>
+<span class="text-on-surface-variant">Floating Escrow Reserve: <span class="text-primary font-bold">₹10,00,000.00</span></span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-bold uppercase tracking-wider text-[10px]">Passport: BBB- (Downgraded)</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: 2 Column Layout (Left: Evidence & Orders; Right: Penalties, Throttle & Audit) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+<!-- LEFT COLUMN (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Section: Tripartite Citations of Infraction -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-5">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-tertiary">balance</span>
+<h2 class="text-lg font-headline font-bold text-on-surface">Registered Citations &amp; Evidentiary Findings</h2>
+</div>
+<span class="text-xs font-mono font-medium px-2 py-1 rounded bg-surface-container text-on-surface-variant">3 Violations Charged</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Citation 1 -->
+<div class="p-4 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error text-[10px] font-bold tracking-wide uppercase">Tier 1 • Critical</span>
+<span class="font-mono text-xs font-bold text-on-surface">APMC R.14-B / Metrology Act §24</span>
+</div>
+<span class="text-[11px] font-bold text-error bg-error-container px-2 py-0.5 rounded">Penalty: ₹50,000 + Tech Sanction</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">Delinquent &amp; Fraudulent Intake Instrumentation</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mt-1">
+                Use of uncertified digital moisture probe (S/N: MP-8812) whose statutory calibration certificate expired 18 days prior. Proven systematic positive bias of +0.65% (14.20% recorded vs Nodal blind oven standard 13.55%) deliberately used to force spurious 4% dockage cuts against Lot #FP-2024-884.
+              </p>
+</div>
+<div class="flex flex-wrap items-center gap-3 pt-2 text-[11px] font-mono text-outline">
+<span class="flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">attachment</span> Audit Memo #MET-TS-2024-89.pdf
+              </span>
+<span>•</span>
+<span class="flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">science</span> Lab Oven Verification Record #142
+              </span>
+</div>
+</div>
+<!-- Citation 2 -->
+<div class="p-4 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container text-[10px] font-bold tracking-wide uppercase">Tier 2 • Serious</span>
+<span class="font-mono text-xs font-bold text-on-surface">APMC Rule 21(3)</span>
+</div>
+<span class="text-[11px] font-bold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">Compensatory: ₹25,000 + Demurrage</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">Coercive Unloading Delay &amp; Unlawful Demurrage Threat</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mt-1">
+                Refusal to issue inward electronic gate-receipt for contracted vehicle TS-09-UB-4421. Driver unlawfully detained at mill intake perimeter for 4h 12m under predatory coercion to accept dockage discount, inflicting biological deterioration risk to perishable Sonamasuri paddy stock.
+              </p>
+</div>
+<div class="flex flex-wrap items-center gap-3 pt-2 text-[11px] font-mono text-outline">
+<span class="flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">satellite_alt</span> Geofence Telemetry Log #TF-899
+              </span>
+<span>•</span>
+<span class="flex items-center gap-1 text-primary hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">fact_check</span> Gate CCTV Timestamp Entry #GL-0842
+              </span>
+</div>
+</div>
+<!-- Citation 3 -->
+<div class="p-4 rounded-xl bg-surface-container-low transition-all hover:bg-surface-container flex flex-col gap-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold tracking-wide uppercase">Aggravating Circumstance</span>
+<span class="font-mono text-xs font-bold text-on-surface">SafeEscrow Rule 11.2</span>
+</div>
+<span class="text-[11px] font-bold text-error bg-error-container px-2 py-0.5 rounded">Passport Degradation: AAA → BBB-</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">Serial Recidivism &amp; Habitual Intake Trimming</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed mt-1">
+                Entity has accumulated 2 separate formal dispute arbitrations within the past 180 days (Docket #ARB-2024-019 Kaveri FPO &amp; Docket #ARB-2024-033 Suryapet Maize). Demonstrates an institutional modus operandi of fabricated moisture deductions against smallholder consignments.
+              </p>
+</div>
+<div class="flex items-center gap-3 pt-2 text-[11px] font-mono text-outline">
+<span class="text-error font-semibold">Escrow Margin Requirement Escalated to 125%</span>
+<span>•</span>
+<span class="text-on-surface-variant">Integrity Index dropped from 98.4 to 74.2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Gazette Administrative Notice Draft & Official Text Editor -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+<div class="flex flex-wrap items-center justify-between gap-3 pb-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary">description</span>
+<div>
+<h2 class="text-lg font-headline font-bold text-on-surface">Gazette Show-Cause Order Draft</h2>
+<span class="text-[11px] text-on-surface-variant">Statutory administrative decree formatted for electronic service</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-xs font-bold text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">translate</span> Preview Bilingual (EN/TE)
+            </button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-xs font-bold text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">tag</span> Copy Digest Hash
+            </button>
+</div>
+</div>
+<!-- Official Administrative Paper Look -->
+<div class="p-6 rounded-xl bg-surface-container-low font-body text-xs leading-relaxed flex flex-col gap-4">
+<!-- Mandi Header Seal -->
+<div class="text-center pb-3 flex flex-col items-center">
+<span class="material-symbols-outlined text-3xl text-secondary mb-1">assured_workload</span>
+<span class="font-headline font-bold text-sm tracking-wide text-on-surface uppercase">Government of Telangana • Agricultural Marketing Department</span>
+<span class="text-[10px] tracking-wider uppercase font-semibold text-tertiary">Office of the Mandi Nodal Officer &amp; Statutory Arbitrator • Nizamabad District</span>
+<div class="w-24 h-0.5 bg-outline-variant/60 my-2"></div>
+<span class="font-mono text-[10px] text-outline">GAZETTE DOCKET REF: TS/APMC/NZB/ENF/2024/09-884 • HASH: 0x98EF...3C2D</span>
+</div>
+<p class="font-semibold text-on-surface">
+            TO: THE MANAGING DIRECTOR, AGROCORP PROCESSING MILLS PVT LTD, PLOT 14-B, INDUSTRIAL ESTATE, MIRYALAGUDA.
+          </p>
+<p class="text-on-surface-variant text-justify">
+<strong class="text-on-surface">WHEREAS</strong>, pursuant to an evidentiary audit conducted under SafeEscrow Arbitration Order ARB-2024-041 on 29 October 2024, it has been conclusively established that you have indulged in fraudulent moisture assessment using uncertified testing equipment (S/N: MP-8812) displaying a persistent deliberate upward bias of +0.65%, thereby causing wrongful monetary loss and mental duress to the farmer;
+          </p>
+<p class="text-on-surface-variant text-justify">
+<strong class="text-on-surface">AND WHEREAS</strong>, your refusal to unload paddy vehicle TS-09-UB-4421 for a period of 4 hours 12 minutes violates statutory perishables movement directives under APMC Rule 21(3), and in view of your repeat violation history across preceding procurement quarters;
+          </p>
+<p class="text-on-surface bg-surface-container p-3 rounded-lg font-medium">
+<strong>YOU ARE HEREBY DIRECTED TO SHOW CAUSE</strong> within seventy-two (72) statutory hours of receipt of this notice as to why penal damages aggregating to <span class="font-mono font-bold text-error">₹1,03,500.00</span> should not be directly encumbered from your floating escrow deposit, and why your APMC Procurement Trading License #TS-NZM-MILL-4019 should not be suspended for a term of thirty (30) business days.
+          </p>
+<p class="text-on-surface-variant">
+            You are further commanded to present your written representation and calibrated instrument certification before this Bench on <strong>Monday, 04 November 2024 at 11:00 AM IST</strong>. Failure to respond within the stipulated timeline will lead to default confirmation of sanctions.
+          </p>
+<div class="flex items-center justify-between pt-4 text-[11px] font-mono">
+<div>
+<span class="text-outline block">Digital Cryptographic Seal:</span>
+<span class="text-primary font-bold">DIGI-SEAL::TS-GOVT-ARB-704::VALIDATED</span>
+</div>
+<div class="text-right">
+<span class="font-bold text-on-surface block">Dr. Anand Verma</span>
+<span class="text-outline">Mandi Arbitrator &amp; Nodal Enforcement Officer</span>
+</div>
+</div>
+</div>
+<!-- Document Export CTA Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+<span class="text-xs text-outline font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+            Staged in Mandi Public Registry Ledger
+          </span>
+<button class="px-4 py-2 rounded-xl bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span> Export Gazetted Order (Signed PDF)
+          </button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (5 Cols): Monetary Penalties, Reputational Controls & Audit Trail -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<!-- Card: Penalty Calculation & Direct SafeEscrow Encumbrance -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+<h2 class="text-lg font-headline font-bold text-on-surface">Penalty Assessment &amp; Surcharge</h2>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-wider">
+            Escrow Backed
+          </span>
+</div>
+<!-- Accounting Breakdown Table -->
+<div class="flex flex-col gap-2.5 text-xs">
+<div class="flex justify-between items-center py-2 px-3 rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Base Statutory Regulatory Fine</span>
+<span class="text-[10px] text-outline font-mono">Credited to Mandi Development Board</span>
+</div>
+<span class="font-mono font-bold text-on-surface">₹75,000.00</span>
+</div>
+<div class="flex justify-between items-center py-2 px-3 rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Farmer Restitution Indemnity</span>
+<span class="text-[10px] text-outline font-mono">Compensatory distress &amp; loss redressal</span>
+</div>
+<span class="font-mono font-bold text-primary">₹15,000.00</span>
+</div>
+<div class="flex justify-between items-center py-2 px-3 rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Transporter Fleet Demurrage Fee</span>
+<span class="text-[10px] text-outline font-mono">Vehicle TS-09-UB-4421 detention (4h 12m)</span>
+</div>
+<span class="font-mono font-bold text-on-surface">₹8,500.00</span>
+</div>
+<div class="flex justify-between items-center py-2 px-3 rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Metrology Verification Surcharge</span>
+<span class="text-[10px] text-outline font-mono">Cost of certified Nodal standard recertification</span>
+</div>
+<span class="font-mono font-bold text-on-surface">₹5,000.00</span>
+</div>
+<!-- Total Calculation Row -->
+<div class="flex justify-between items-center py-3 px-4 rounded-xl bg-surface-container mt-1">
+<div class="flex flex-col">
+<span class="text-xs uppercase tracking-wider font-extrabold text-on-surface">Total Assessed Sanction</span>
+<span class="text-[10px] text-on-surface-variant font-mono">Guaranteed via AgroCorp Liquidity Node</span>
+</div>
+<div class="text-right">
+<span class="font-headline font-bold text-xl text-error">₹1,03,500.00</span>
+</div>
+</div>
+</div>
+<!-- Escrow Encumbrance Switch Panel -->
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">lock_open</span>
+<span class="text-xs font-bold text-on-surface">Immediate Security Encumbrance</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="collateral-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">
+            When active, ₹1,03,500.00 is moved to <strong class="text-on-surface">Escrow Quarantine Hold</strong> from AgroCorp's ₹10.0L security pool. Automatically debited upon lapse of 72h or rejected reply.
+          </p>
+<div class="flex items-center gap-2 text-[10px] font-mono text-outline">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Reserve Available: ₹8,96,500.00 post-quarantine</span>
+</div>
+</div>
+</div>
+<!-- Card: Reputational Sanctions & Platform Restrictions -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">shield</span>
+<h2 class="text-lg font-headline font-bold text-on-surface">Market Sanctions &amp; Throttling</h2>
+</div>
+<span class="text-xs font-mono text-error font-bold">Enforcement Mode</span>
+</div>
+<!-- Control Action Tiles -->
+<div class="flex flex-col gap-3">
+<!-- Restriction 1 -->
+<div class="flex items-start justify-between p-3.5 rounded-xl bg-surface-container-low">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-error text-xl shrink-0 mt-0.5">block</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Demand Radar Bidding Suspension</span>
+<span class="text-[11px] text-on-surface-variant">Block entity from bidding on fresh paddy arrivals for 14 calendar days</span>
+</div>
+</div>
+<input checked="" class="accent-primary rounded h-4 w-4 mt-1" type="checkbox"/>
+</div>
+<!-- Restriction 2 -->
+<div class="flex items-start justify-between p-3.5 rounded-xl bg-surface-container-low">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-xl shrink-0 mt-0.5">percent</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Escrow Margin Hike (100% → 125%)</span>
+<span class="text-[11px] text-on-surface-variant">Mandate 125% upfront collateral for all active spot procurement trades</span>
+</div>
+</div>
+<input checked="" class="accent-primary rounded h-4 w-4 mt-1" type="checkbox"/>
+</div>
+<!-- Restriction 3 -->
+<div class="flex items-start justify-between p-3.5 rounded-xl bg-surface-container-low">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-secondary text-xl shrink-0 mt-0.5">badge</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Show-Cause Public Trust Badge</span>
+<span class="text-[11px] text-on-surface-variant">Affix "Probationary - Show Cause Pending" alert on public buyer dossier</span>
+</div>
+</div>
+<input checked="" class="accent-primary rounded h-4 w-4 mt-1" type="checkbox"/>
+</div>
+</div>
+<!-- License Suspension Advisory Warning Box -->
+<div class="p-3.5 rounded-xl bg-error-container/60 flex items-start gap-3 mt-1">
+<span class="material-symbols-outlined text-error text-lg shrink-0 mt-0.5">warning</span>
+<p class="text-[11px] text-on-error-container leading-relaxed">
+<strong>Conditional Licensing Action:</strong> Non-remedy within 72h triggers automated transmission of Form VIII to the Director of Agricultural Marketing, Hyderabad, recommending immediate cancellation of License #TS-NZM-MILL-4019.
+          </p>
+</div>
+</div>
+<!-- Card: Statutory Audit Trail & Service Timeline -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+<h2 class="text-lg font-headline font-bold text-on-surface">Probationary Service Trail</h2>
+</div>
+<span class="text-[10px] font-mono font-bold text-outline uppercase">Chain-of-Custody</span>
+</div>
+<div class="relative pl-6 flex flex-col gap-5 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<!-- Event 1 -->
+<div class="relative flex flex-col gap-0.5 text-xs">
+<span class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface">Digital Show-Cause Notice Dispatched</span>
+<span class="text-[10px] font-mono text-outline">Today, 09:30 AM</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">Served via registered email to compliance@agrocorpmills.in and SMS to Designated Mill Director.</p>
+</div>
+<!-- Event 2 -->
+<div class="relative flex flex-col gap-0.5 text-xs">
+<span class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface">Legal Metrology Dept Notified</span>
+<span class="text-[10px] font-mono text-outline">Today, 09:45 AM</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">Inspectorate requisitioned to impound probe S/N MP-8812 for forensic verification.</p>
+</div>
+<!-- Event 3 -->
+<div class="relative flex flex-col gap-0.5 text-xs">
+<span class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface">Escrow Quarantine Hold Applied</span>
+<span class="text-[10px] font-mono text-outline">Today, 10:15 AM</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">TxID: 0x90a81...b2f - ₹1,03,500 encumbered on FarmPay Escrow Smart Contract.</p>
+</div>
+<!-- Event 4 (Pending) -->
+<div class="relative flex flex-col gap-0.5 text-xs">
+<span class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-tertiary ring-4 ring-surface-container-lowest animate-pulse"></span>
+<div class="flex items-center justify-between">
+<span class="font-bold text-tertiary">Formal Contestation / Reply Window</span>
+<span class="text-[10px] font-mono text-tertiary">Awaiting</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">Deadline expires: 02 November 2024 at 09:30 AM IST (68h remaining).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Administrative Quorum & Action Bar -->
+<div class="rounded-2xl bg-surface-container-low p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-5 mb-10">
+<div class="flex items-center gap-3">
+<div class="p-2.5 rounded-xl bg-surface-container-highest text-secondary shrink-0">
+<span class="material-symbols-outlined text-2xl">verified_user</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-on-surface">Statutory Enforcement Quorum Validated</h4>
+<p class="text-xs text-on-surface-variant">Signed by Chief Mandi Arbitrator &amp; countersigned by District Registrar of Cooperative Societies.</p>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold transition-all flex items-center justify-center gap-2" onclick="handleDropNotice()">
+<span class="material-symbols-outlined text-base text-secondary">cancel</span> Withdraw Notice
+      </button>
+<button class="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-tertiary-container hover:bg-tertiary-fixed text-on-tertiary-container text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm" onclick="handleEscrowDebit()">
+<span class="material-symbols-outlined text-base">payments</span> Direct Escrow Debit
+      </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-on-primary text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm" onclick="handleIssueNotice()">
+<span class="material-symbols-outlined text-base">outgoing_mail</span> Issue &amp; Serve Gazette Order
+      </button>
+</div>
+</div>
+<!-- Notification Toast Container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="toast-notify">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl text-xs font-medium">
+<span class="material-symbols-outlined text-inverse-primary text-lg" id="toast-icon">check_circle</span>
+<span id="toast-msg">Action processed successfully</span>
+</div>
+</div>
+<script>
+    // Countdown Timer Logic
+    (function initCountdown() {
+      let totalSeconds = (68 * 3600) + (14 * 60) + 38;
+      const hoursEl = document.getElementById('clock-hours');
+      const minsEl = document.getElementById('clock-minutes');
+      const secsEl = document.getElementById('clock-seconds');
+
+      if (!hoursEl || !minsEl || !secsEl) return;
+
+      setInterval(() => {
+        if (totalSeconds <= 0) return;
+        totalSeconds--;
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+
+        hoursEl.textContent = String(h).padStart(2, '0');
+        minsEl.textContent = String(m).padStart(2, '0');
+        secsEl.textContent = String(s).padStart(2, '0');
+      }, 1000);
+    })();
+
+    // Interactive Toast Notification
+    function showToast(message, icon = 'check_circle') {
+      const toast = document.getElementById('toast-notify');
+      const msg = document.getElementById('toast-msg');
+      const ico = document.getElementById('toast-icon');
+      if (!toast) return;
+
+      msg.textContent = message;
+      ico.textContent = icon;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    function handleIssueNotice() {
+      showToast('Statutory Show-Cause Gazette Order served to AgroCorp Mills & Director of Metrology.', 'send');
+    }
+
+    function handleEscrowDebit() {
+      showToast('₹1,03,500.00 encumbered on SafeEscrow Node #NZB-089. Quarantined.', 'lock');
+    }
+
+    function handleDropNotice() {
+      const reason = prompt('Please enter administrative rationale for dropping statutory notice:');
+      if (reason && reason.trim().length > 0) {
+        showToast('Notice withdrawn with docket notation: ' + reason.substring(0, 30) + '...', 'info');
+      }
+    }
+  </script>
+</div></main></div></body></html>

@@ -1,7 +1,7 @@
 # FarmPay AI — Phased Development Roadmap
 
-**Version:** 2.0.0  
-**Updated:** 2026-11-05  
+**Version:** 2.0.0
+**Updated:** 2026-11-05
 
 ---
 

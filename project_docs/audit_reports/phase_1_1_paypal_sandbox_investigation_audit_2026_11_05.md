@@ -1,9 +1,9 @@
 # Phase 1.1 Audit Report: PayPal Sandbox Failure Investigation
 
-**Phase:** Phase 1.1  
-**Date:** 2026-11-05  
-**Author:** Senior Full-Stack Engineer & Architect  
-**Status:** Completed & Verified  
+**Phase:** Phase 1.1
+**Date:** 2026-11-05
+**Author:** Senior Full-Stack Engineer & Architect
+**Status:** Completed & Verified
 
 ---
 
@@ -39,23 +39,23 @@ The payment flow was traced across:
 ## 3. Root Cause Identification
 
 Two compounding factors were isolated:
-1. **Primary Root Cause — `reference_id="default"` Normalization:**  
-   PayPal Orders v2 REST API automatically normalizes `purchase_units[0].reference_id` to the string `"default"` for single-purchase-unit orders on `GET` requests, even when a custom `reference_id` was supplied during order creation.  
+1. **Primary Root Cause — `reference_id="default"` Normalization:**
+   PayPal Orders v2 REST API automatically normalizes `purchase_units[0].reference_id` to the string `"default"` for single-purchase-unit orders on `GET` requests, even when a custom `reference_id` was supplied during order creation.
    The existing check in `validate_paypal_order`:
    ```python
    if reference_id and reference_id != farmpay_order_id:
        raise HTTPException(400, detail={"message": "PayPal reference_id mismatch; capture not attempted.", ...})
    ```
    evaluated `"default" != farmpay_order_id` to `True`, prematurely raising HTTP 400.
-2. **Amount Validation Coupling:**  
+2. **Amount Validation Coupling:**
    The pre-capture identity check was coupled with strict amount validation before `POST /capture` was ever called. While PayPal's v2 spec returns amount on APPROVED orders, grouping identity with amount checks caused fragile pre-capture rejection.
 
 ---
 
 ## 4. Capture Status Verification
 
-* **Did a capture occur prior to failure?**  
-  **No.** Execution terminated at the pre-capture validation step (line 331 of `payments.py`), before `capture_paypal_order()` was called.  
+* **Did a capture occur prior to failure?**
+  **No.** Execution terminated at the pre-capture validation step (line 331 of `payments.py`), before `capture_paypal_order()` was called.
   MySQL check confirmed `paypal_capture_id IS NULL`. The order and sandbox states were completely clean.
 
 ---

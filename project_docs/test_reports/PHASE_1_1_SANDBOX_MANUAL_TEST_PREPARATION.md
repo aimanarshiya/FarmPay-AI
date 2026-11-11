@@ -1,10 +1,10 @@
 # FarmPay AI — Phase 1.1 PayPal Sandbox Manual Verification Preparation
 
-**Document Version:** 1.0.0  
-**Date:** 2026-11-06  
-**Auditor:** Senior Full-Stack Architect  
-**Workspace:** `C:\Users\DELL-PC\FarmPay-AI`  
-**Target:** Manual Real-World Verification of PayPal Sandbox $1.00 USD Flow  
+**Document Version:** 1.0.0
+**Date:** 2026-11-06
+**Auditor:** Senior Full-Stack Architect
+**Workspace:** `C:\Users\DELL-PC\FarmPay-AI`
+**Target:** Manual Real-World Verification of PayPal Sandbox $1.00 USD Flow
 
 ---
 
@@ -23,7 +23,7 @@ A live database audit of the MySQL `orders` table was conducted:
 ### Analysis & Safe Recommendation:
 1. **Never Reuse Captured Orders:** Order `FP-77072F946E94` already contains `paypal_capture_id = '2LB698315W488902H'` and must not be used for a new checkout.
 2. **Expired Checkout Tokens:** The three orders from Nov 3 (`FP-36462A334730`, `FP-D70485981709`, `FP-A57BF57FF35D`) already have PayPal order IDs issued on Nov 3. In PayPal Sandbox, approval tokens expire within 3 to 72 hours. Attempting to approve an expired checkout on PayPal may yield `ORDER_NOT_APPROVED` or session timeout errors.
-3. **Recommended Path — Fresh Test Order:**  
+3. **Recommended Path — Fresh Test Order:**
    The cleanest, safest, zero-friction verification is to create a fresh test harvest order from the home page (`http://localhost:5173/`). This tests the complete end-to-end integration:
    - Harvest submission -> Buyer offer ranking -> Order confirmation -> Fresh PayPal Sandbox checkout -> Approval -> Capture -> Database persistence.
 
@@ -90,7 +90,7 @@ npm run dev
    - PayPal will redirect back to:
      `http://localhost:5173/payment/success?order_id=FP-XXXXXXXXXXXX&token=...&PayerID=...`
    - The frontend calls `POST /api/payments/paypal/capture/FP-XXXXXXXXXXXX`.
-   - **Expected Result:**  
+   - **Expected Result:**
      The green confirmation receipt card displays:
      - Header: *"PayPal Sandbox Test Succeeded!"*
      - Eyebrow: *"SANDBOX TEST CONFIRMATION"*
@@ -107,16 +107,16 @@ npm run dev
 Immediately after the success screen appears, run this query in your MySQL client to verify database persistence:
 
 ```sql
-SELECT 
-    order_id, 
-    crop, 
-    quantity_kg, 
-    net_proceeds, 
-    currency, 
-    status, 
-    payment_status, 
-    paypal_order_id, 
-    paypal_capture_id, 
+SELECT
+    order_id,
+    crop,
+    quantity_kg,
+    net_proceeds,
+    currency,
+    status,
+    payment_status,
+    paypal_order_id,
+    paypal_capture_id,
     created_at
 FROM farmpay_ai.orders
 ORDER BY created_at DESC

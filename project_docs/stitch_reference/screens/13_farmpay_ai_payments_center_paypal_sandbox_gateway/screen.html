@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed":"#1e1a13","surface-container-high":"#eae6de","inverse-surface":"#2e3230","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","on-tertiary-fixed-variant":"#554020","on-primary":"#ffffff","tertiary":"#705c30","primary-container":"#78a886","surface-container-highest":"#e4e0d8","secondary-fixed-dim":"#d4ccbf","surface-variant":"#e4e0d8","tertiary-container":"#c4a66a","surface":"#faf6f0","secondary-container":"#f0e8db","on-surface":"#2e3230","on-secondary-fixed-variant":"#4a4538","surface-container-low":"#f5f1ea","surface-tint":"#4a7c59","on-tertiary-fixed":"#221a05","on-error-container":"#690005","secondary":"#6b6358","error":"#b83230","tertiary-fixed-dim":"#dcc48e","primary-fixed-dim":"#8ecf9e","surface-dim":"#dbd7cf","primary":"#4a7c59","outline":"#74796e","on-tertiary-container":"#554020","on-primary-container":"#d8f0de","secondary-fixed":"#f0e8db","on-background":"#2e3230","on-tertiary":"#ffffff","surface-bright":"#faf6f0","inverse-primary":"#8ecf9e","background":"#faf6f0","on-surface-variant":"#4a4e4a","surface-container":"#f0ece4","outline-variant":"#c4c8bc","on-primary-fixed-variant":"#2a6038","inverse-on-surface":"#f5f0e8","primary-fixed":"#c8e8d0","on-primary-fixed":"#002110","on-secondary-container":"#5e5548","error-container":"#ffdad8","on-error":"#ffffff","tertiary-fixed":"#f8e0a8"},borderRadius:{DEFAULT:"0.5rem",lg:"1rem",xl:"1.5rem",full:"9999px"},spacing:{},fontFamily:{headline:["Literata"],display:["Literata"],body:["Nunito Sans"],label:["Nunito Sans"]},fontSize:{}}}}</script></head><body class="bg-surface font-body text-on-surface min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-6 px-4 shadow-[1px_0_12px_rgba(46,50,48,0.04)] overflow-y-auto"><div class="flex flex-col gap-5"><div class="flex items-center gap-3 px-3"><img alt="FarmPay AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><div class="flex flex-col"><span class="font-headline font-bold text-base tracking-tight text-on-surface">FarmPay AI</span><span class="text-[10px] text-tertiary font-bold tracking-wide uppercase">National Agri Grid</span></div></div><div class="px-3 py-2 rounded-xl bg-surface-container-highest/60 flex items-center justify-between text-xs"><span class="text-on-surface-variant font-medium">Role Profile</span><span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-bold text-[10px]">Verified Mandi Desk</span></div><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"><div class="text-[11px] font-bold uppercase tracking-wider text-outline px-3 pt-1">FARMER OPERATIONS</div><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="farmer-suite" href="#"><span>Farmer Suite</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="voice-to-trade" href="#"><span>Voice-to-Trade</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="fairbid-realtime" href="#"><span>FairBid Realtime</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="demand-radar" href="#"><span>Demand Radar</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="logistics-and-transit" href="#"><span>Logistics &amp; Transit</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="digital-crop-passport" href="#"><span>Digital Crop Passport</span></a><div class="text-[11px] font-bold uppercase tracking-wider text-outline px-3 pt-3">INTELLIGENCE &amp; RISK</div><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="ai-negotiation-copilot" href="#"><span>AI Negotiation Copilot</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="dispute-shield" href="#"><span>Dispute Shield</span></a><div class="text-[11px] font-bold uppercase tracking-wider text-tertiary px-3 pt-3">FINANCIAL &amp; ESCROW</div><a class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-surface-container-highest transition-all text-xs" data-path="payments-and-paypal" href="#"><span>Payments &amp; PayPal</span><span class="px-1.5 py-0.5 rounded text-[9px] font-bold tracking-tight bg-primary-fixed text-on-primary-fixed-variant">PayPal Sandbox</span></a><a class="flex items-center justify-between px-3.5 py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-xs font-medium" data-path="admin-escrow" href="#"><span>Admin Escrow</span></a></nav></div><div class="p-3 rounded-xl bg-surface-container flex flex-col gap-2 mt-4"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span><span class="text-xs font-bold text-on-surface">SafeEscrow Protocol</span></div><p class="text-[11px] text-on-surface-variant leading-relaxed">Dual-signature milestone release with PayPal Sandbox instant settlement gateway.</p></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-20 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(46,50,48,0.04)] flex flex-col justify-center px-8"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><img alt="FarmPay AI Logo" class="h-7 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/ALJJyrATZiYMjpsGpOR4XUEIX-dimLHLOmbti45ax6aEVe55jUmJLn5Ac2M-q9J7plys-FmLSsn4C-bcUSdDNJmNGQfoWz8wAx8mUxIZKiiM7nUByrBJYZ6UtMLW2yIy-8jnfDn6WrsLKV24ZxVITMsCUSFJtzxRRtDejVLT7ZtCf6mFrMUp-oqUkDNvx9UkoityXwX22p5vYvtz03d5eZYmtPYDPBZ4ZtFxsxhr29C0xXi4"/><div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">assured_workload</span><span class="font-semibold text-on-surface">Mandi Jurisdiction:</span><span>Nizamabad APMC (Telangana)</span><span class="material-symbols-outlined text-[12px]">chevron_right</span><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold text-[10px]">Live Escrow Active</span></div></div><div class="flex items-center gap-4"><div class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-xs text-on-secondary-container font-medium"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Real-time Agri-Fintech Escrow • Sandbox Online</div><div class="inline-flex items-center p-1 rounded-full bg-surface-container text-xs font-medium"><button class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary font-bold shadow-sm">EN</button><button class="px-2 py-0.5 rounded-full text-on-surface-variant hover:text-on-surface">HI</button><button class="px-2 py-0.5 rounded-full text-on-surface-variant hover:text-on-surface">TE</button></div><button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-xs font-bold text-on-surface transition-all"><span class="material-symbols-outlined text-[16px] text-tertiary">candlestick_chart</span>Mandi Rates</button><div class="flex items-center gap-3 pl-2"><img alt="User Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuVIcrRMFHhTIpkknOsfrAqSTletvj17u59i7MwKINS1n2mv2od8rAIFbTAIEjvNLYAVQcYh-CLfOMPpVpf_PqNZvp6oXbI8ozXCQhSbxIWhSNFiZZ0gm4nk03N4qpuqL8z1VcZ6mV0ZO3nmNBQXPxqYIYdLwp-z5n_YOEv1U80ZkQ0IA9Az9hmBJOcURW-rsPRA5KKXhtmX8fFlFJKfEMrDKnw9ZuJdqle4cIijc"/><div class="flex flex-col text-left"><span class="text-xs font-bold text-on-surface leading-tight">Rajesh Patel</span><span class="text-[10px] text-tertiary font-bold">KYC Verified (Nizamabad FPO)</span></div></div></div></div></header><main class="w-full pt-20 bg-surface px-8"><div class="flex flex-col w-full">
+<!-- Top Sandbox Banner & Context -->
+<div class="mb-8">
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-tertiary-fixed/30 mb-6">
+<div class="flex items-center gap-3">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+</span>
+<div class="flex items-center gap-2 text-xs font-semibold text-on-tertiary-container tracking-wide">
+<span class="uppercase tracking-widest text-[11px] font-bold text-tertiary">Environment Flag:</span>
+<span>PayPal Sandbox Gateway v2.1 • Multi-Party Agricultural Test Execution Mode</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-xs font-mono font-bold text-on-surface-variant">API: v2/checkout/orders</span>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+          Node-JS HMAC SHA-256 Active
+        </span>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-2">
+<div class="max-w-3xl">
+<div class="flex items-center gap-2 text-xs font-bold text-tertiary uppercase tracking-wider mb-2">
+<span>Institutional Settlement Console</span>
+<span>/</span>
+<span>Dual-Party Agricultural Clearing</span>
+</div>
+<h1 class="font-headline text-3xl lg:text-4xl font-bold text-on-surface tracking-tight leading-tight">
+          Secure Digital Payments with PayPal — FarmPay Escrow Hub
+        </h1>
+<p class="text-sm lg:text-base text-on-surface-variant font-body mt-2 leading-relaxed">
+          End-to-end cryptographic escrow authorization, server-side PayPal Sandbox capture, and instant dual-party settlement ledger synced to APMC mandis.
+        </p>
+</div>
+<!-- Quick Action Badges -->
+<div class="flex items-center gap-3">
+<button class="px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-xs font-bold text-on-surface flex items-center gap-2 transition-all" onclick="document.getElementById('receiptPreviewCard').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[16px] text-tertiary">receipt_long</span>
+          Latest Sandbox Slip
+        </button>
+<button class="px-4 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-bold hover:bg-primary/90 flex items-center gap-2 transition-all shadow-sm" onclick="simulateCaptureDemo()">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+          Re-trigger Webhook Test
+        </button>
+</div>
+</div>
+<!-- Key Metrics Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+<div class="p-5 rounded-xl bg-surface-container flex flex-col justify-between">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-semibold">
+<span>Total Sandbox Volume</span>
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+</div>
+<div class="mt-3">
+<div class="font-headline text-2xl font-bold text-on-surface">$4,680.00</div>
+<div class="text-[11px] text-tertiary font-bold tracking-tight mt-0.5">₹3,74,976 Eqv. Settled in Mandi Ledger</div>
+</div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container flex flex-col justify-between">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-semibold">
+<span>Active Escrow Holds</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">lock_clock</span>
+</div>
+<div class="mt-3">
+<div class="font-headline text-2xl font-bold text-on-surface">1 Live Lot</div>
+<div class="text-[11px] text-on-surface-variant font-medium mt-0.5">Lot #FP-2024-884 (150 Qtl Sona Masoori)</div>
+</div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container flex flex-col justify-between">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-semibold">
+<span>Capture Success Rate</span>
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<div class="mt-3">
+<div class="font-headline text-2xl font-bold text-on-surface">99.8%</div>
+<div class="text-[11px] text-primary font-bold mt-0.5">Simulated Server-Side Webhook Capture</div>
+</div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container flex flex-col justify-between">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-semibold">
+<span>Settlement Velocity</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+</div>
+<div class="mt-3">
+<div class="font-headline text-2xl font-bold text-on-surface">Instantaneous</div>
+<div class="text-[11px] text-on-surface-variant font-medium mt-0.5">T+0 Dual-Party Sandbox Release Window</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End-to-End Visual Integration Pipeline -->
+<div class="mb-10 p-6 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+<div>
+<span class="text-[11px] font-bold tracking-widest uppercase text-tertiary">Cryptographic Architecture</span>
+<h2 class="font-headline text-xl font-bold text-on-surface mt-0.5">PayPal Sandbox &amp; FarmPay Dual-Escrow Topology</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-fixed text-on-primary-fixed-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>
+          Live Synchronized Flow
+        </span>
+</div>
+</div>
+<!-- Pipeline Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
+<!-- Step 1 -->
+<div class="p-3.5 rounded-lg bg-surface flex flex-col justify-between relative group">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-outline uppercase font-mono">01 / Consensus</span>
+<span class="material-symbols-outlined text-primary text-[18px]">handshake</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">Buyer Accepts Offer</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">FairBid agreement finalized with dynamic APMC price lock.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-semibold text-secondary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+          Lot Confirmed
+        </div>
+</div>
+<!-- Step 2 -->
+<div class="p-3.5 rounded-lg bg-surface flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-outline uppercase font-mono">02 / Ledger Order</span>
+<span class="material-symbols-outlined text-primary text-[18px]">receipt</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">FarmPay Order Initialized</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Order #FP-ORD-884-2024 generated with digital crop passport link.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-semibold text-secondary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+          Payload Bundled
+        </div>
+</div>
+<!-- Step 3 -->
+<div class="p-3.5 rounded-lg bg-surface flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-outline uppercase font-mono">03 / PayPal API</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">cloud_sync</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">POST /v2/checkout/orders</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">FarmPay relays metadata, mandi cess, and escrow constraints to Sandbox.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-semibold text-secondary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+          Order Token Issued
+        </div>
+</div>
+<!-- Step 4 -->
+<div class="p-3.5 rounded-lg bg-surface flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-outline uppercase font-mono">04 / Auth Modal</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified_user</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">Buyer Authorizes via PayPal</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Multi-factor authorization executed via buyer test balance in Sandbox.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-semibold text-secondary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+          Token Approved
+        </div>
+</div>
+<!-- Step 5 - Highlighted Pulsing Node -->
+<div class="p-3.5 rounded-lg bg-primary/10 flex flex-col justify-between relative shadow-sm">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-primary uppercase font-mono">05 / Capture Engine</span>
+<span class="material-symbols-outlined text-primary text-[20px] animate-pulse">lock_reset</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">Server Capture &amp; Webhook</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Node.js backend captures funds; validates SHA-256 HMAC signature.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-bold text-primary flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>CHECKOUT.ORDER.APPROVED</span>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="p-3.5 rounded-lg bg-surface flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-outline uppercase font-mono">06 / Settlement</span>
+<span class="material-symbols-outlined text-primary text-[18px]">inventory</span>
+</div>
+<h3 class="text-xs font-bold text-on-surface leading-snug">Escrow Locked &amp; Synchronized</h3>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">Farmer wallet displays vaulted funds; release triggered upon tare weighbridge.</p>
+</div>
+<div class="mt-3 pt-2 text-[10px] font-semibold text-secondary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+          Ledgers Locked
+        </div>
+</div>
+</div>
+</div>
+<!-- Interactive Buyer Checkout Experience (Split Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+<!-- Left: Order Breakdown & Checkout Panel (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="p-6 rounded-xl bg-surface-container shadow-sm">
+<div class="flex items-center justify-between pb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[22px]">shopping_cart_checkout</span>
+</div>
+<div>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Active Transaction Order</span>
+<h3 class="font-headline text-lg font-bold text-on-surface">Lot #FP-2024-884</h3>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-bold text-[11px]">Ready to Authorize</span>
+</div>
+<!-- Crop Spec Sheet -->
+<div class="p-4 rounded-xl bg-surface-container-low mb-5 flex flex-col gap-2.5 text-xs">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Commodity:</span>
+<span class="font-bold text-on-surface">Sona Masoori Paddy (Grade A+)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Quantity:</span>
+<span class="font-bold text-on-surface">150 Quintals (15.0 Metric Tonnes)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Farmer Producer:</span>
+<span class="font-bold text-on-surface">Rajesh Patel • Nizamabad Kisan FPO</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Procuring Buyer:</span>
+<span class="font-bold text-on-surface">AgroCorp Processing Mills Pvt Ltd</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Agreed Unit Rate:</span>
+<span class="font-bold text-on-surface">₹2,520 / Qtl ($31.50 USD / Qtl)</span>
+</div>
+</div>
+<!-- Cost Breakdown Table -->
+<div class="flex flex-col gap-2 pb-4 text-xs font-medium">
+<div class="flex justify-between text-on-surface-variant">
+<span>Crop Baseline Subtotal (150 Qtl × $31.50)</span>
+<span class="text-on-surface font-semibold">$4,725.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="flex items-center gap-1">
+              Mandi Subsidized Freight
+              <span class="text-[10px] text-primary font-bold">(APMC Rebate)</span>
+</span>
+<span class="text-primary font-semibold">-$35.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="flex items-center gap-1">
+              FarmPay Escrow Protection Fee
+              <span class="text-[10px] text-tertiary font-bold">(1.2%)</span>
+</span>
+<span class="text-on-surface font-semibold">+$56.70</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Telangana Mandi User Cess &amp; Weigh Charges</span>
+<span class="text-on-surface font-semibold">$0.00 (Waived Sandbox)</span>
+</div>
+</div>
+<!-- Total Box -->
+<div class="p-4 rounded-xl bg-surface-container-high flex items-center justify-between mb-6">
+<div>
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Total Payable Escrow</span>
+<div class="text-[11px] text-secondary">₹3,78,000 INR Baseline Equiv</div>
+</div>
+<div class="text-right">
+<span class="font-headline text-2xl font-bold text-on-surface">$4,746.70</span>
+<span class="block text-[10px] font-bold text-tertiary">USD (Sandbox Currency)</span>
+</div>
+</div>
+<!-- Branded PayPal Button Container -->
+<div class="flex flex-col gap-3">
+<div class="text-[11px] text-center text-on-surface-variant flex items-center justify-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-primary text-[14px]">lock</span>
+            256-Bit Encrypted Multi-Party Escrow Handshake
+          </div>
+<!-- The Gold PayPal Button -->
+<button class="w-full py-3.5 px-6 rounded-xl bg-[#ffc439] hover:bg-[#f2ba32] text-[#003087] font-bold text-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.99] shadow-sm" id="payPalSandboxButton" onclick="triggerCheckoutModal()">
+<!-- Inline PayPal SVG Monogram -->
+<svg class="h-5 w-auto" fill="none" viewbox="0 0 100 32" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.5 4.5H23.7C27.9 4.5 30.8 5.6 32.2 7.7C33.2 9.2 33.5 11.2 33 13.5C32.1 17.5 29.5 20.3 25.5 21.8C24.1 22.3 22.4 22.5 20.5 22.5H16.8L14.7 33H8.3L12.5 4.5Z" fill="#003087"></path>
+<path d="M21.5 11.5H32.7C36.9 11.5 39.8 12.6 41.2 14.7C42.2 16.2 42.5 18.2 42 20.5C41.1 24.5 38.5 27.3 34.5 28.8C33.1 29.3 31.4 29.5 29.5 29.5H25.8L23.7 40H17.3L21.5 11.5Z" fill="#0079C1"></path>
+<text fill="#003087" font-family="'Nunito Sans', sans-serif" font-size="20" font-weight="800" x="44" y="24">PayPal</text>
+</svg>
+<span class="text-[#003087] font-extrabold text-sm ml-1 tracking-tight">Checkout Sandbox</span>
+</button>
+<p class="text-center text-[10px] text-on-surface-variant">
+            By clicking Checkout, you simulate funding to the FarmPay multi-signature vault.
+          </p>
+</div>
+</div>
+<!-- Trust Indicator Card -->
+<div class="p-4 rounded-xl bg-surface-container-low flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col text-xs text-on-surface-variant leading-relaxed">
+<span class="font-bold text-on-surface mb-0.5">APMC &amp; PayPal Sandbox Safeguard</span>
+          Farmer Rajesh Patel cannot withdraw funds until physical tare weighbridge slip #NIZ-WB-884 is cryptographically signed at Nizamabad Mandi gate.
+        </div>
+</div>
+</div>
+<!-- Right: Realistic PayPal Checkout Popup Mockup / Live Webhook Console (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col">
+<div class="rounded-xl bg-surface-container p-6 shadow-sm flex flex-col h-full">
+<!-- Tab Switches -->
+<div class="flex items-center justify-between pb-5">
+<div class="inline-flex p-1 rounded-xl bg-surface-container-high">
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-bold text-xs shadow-sm transition-all flex items-center gap-1.5" id="tabButtonModal" onclick="switchRightTab('modal')">
+<span class="material-symbols-outlined text-[15px]">open_in_new</span>
+              Interactive Sandbox Window
+            </button>
+<button class="px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-semibold text-xs transition-all flex items-center gap-1.5" id="tabButtonConsole" onclick="switchRightTab('console')">
+<span class="material-symbols-outlined text-[15px]">terminal</span>
+              Live Webhook Logs (Node.js)
+            </button>
+</div>
+<span class="text-[11px] font-mono text-on-surface-variant">Status: <span class="text-primary font-bold" id="currentStatusText">READY_TO_AUTHORIZE</span></span>
+</div>
+<!-- TAB A: Realistic PayPal Sandbox Popup Frame -->
+<div class="flex flex-col flex-1" id="tabContentModal">
+<!-- Browser-like Top Bar -->
+<div class="rounded-t-xl bg-[#002f86] px-4 py-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+<span class="ml-2 font-mono text-[11px] opacity-80 truncate max-w-[280px]">sandbox.paypal.com/checkoutnow?token=EC-884902194</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] font-bold bg-white/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+              PayPal Sandbox SSL
+            </div>
+</div>
+<!-- Sandbox Window Interior -->
+<div class="p-6 rounded-b-xl bg-surface-container-lowest flex flex-col justify-between flex-1">
+<div class="flex flex-col gap-4">
+<!-- Header inside Modal -->
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#003087] flex items-center justify-center text-white font-bold text-xs">P</div>
+<div>
+<div class="text-xs font-bold text-on-surface">AgroCorp Processing Mills Pvt Ltd</div>
+<div class="text-[11px] font-mono text-on-surface-variant">agrocorp-buyer@sandbox.farmpay.ai</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">Pay With</span>
+<span class="block text-xs font-bold text-primary">PayPal Sandbox Balance</span>
+</div>
+</div>
+<!-- Payment Method Selection -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-7 rounded bg-surface-container-high flex items-center justify-center font-bold text-[10px] text-tertiary">
+                    VISA
+                  </div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Chase Institutional Checking •••• 4892</span>
+<span class="text-[10px] text-on-surface-variant">Backup: PayPal Business Credit Balance ($42,000.00 USD)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">radio_button_checked</span>
+</div>
+<!-- Shipping / Delivery Destination Destination -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-1 text-xs">
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Delivery Vault Destination</span>
+<span class="font-bold text-on-surface">Nizamabad Central Warehouse &amp; Cold Storage, Shed #04</span>
+<span class="text-on-surface-variant text-[11px]">Consignment Gate: Tare Scale 02 (Telangana State Mandi Registry)</span>
+</div>
+<!-- Order Summary within modal -->
+<div class="p-3.5 rounded-xl bg-surface-container-high/60 flex items-center justify-between text-xs">
+<div>
+<span class="font-bold text-on-surface">FarmPay Escrow Contract</span>
+<span class="block text-[11px] text-on-surface-variant">Order #FP-ORD-884-2024 (150 Qtl Paddy)</span>
+</div>
+<div class="text-right">
+<span class="text-xs font-bold text-on-surface">$4,746.70 USD</span>
+<span class="block text-[10px] text-primary">Instant Sandbox Hold</span>
+</div>
+</div>
+</div>
+<!-- Actions inside Sandbox Modal -->
+<div class="mt-6 pt-4 flex flex-col gap-2">
+<button class="w-full py-3 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white font-bold text-xs tracking-wide transition-all shadow-sm flex items-center justify-center gap-2" id="modalCompleteButton" onclick="executeSandboxCapture()">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+<span id="modalBtnText">Complete Purchase (Capture Sandbox Hold)</span>
+</button>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant px-1">
+<span>Test Gateway: <strong>US-EAST-SANDBOX-CLUSTER</strong></span>
+<span class="text-tertiary font-medium">Cancel and return to FarmPay</span>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB B: Live Webhook & Terminal Console (Hidden initially) -->
+<div class="hidden flex-col flex-1" id="tabContentConsole">
+<div class="p-4 rounded-xl bg-inverse-surface text-inverse-on-surface font-mono text-xs flex-1 flex flex-col justify-between overflow-x-auto min-h-[380px]">
+<div>
+<div class="flex items-center justify-between pb-3 text-[11px] text-secondary-fixed-dim">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  node.js / express / paypal-webhook-listener:4000
+                </span>
+<span>SHA-256 HMAC VALID</span>
+</div>
+<div class="space-y-2 text-[11px] text-on-primary-container leading-relaxed" id="consoleLogs">
+<div class="text-surface-dim">[14:38:02 GMT+5:30] POST /v2/checkout/orders HTTP/1.1 (Payload: 150 Qtl Paddy) =&gt; 201 Created</div>
+<div class="text-surface-dim">[14:38:03 GMT+5:30] Generated PayPal Order ID: 9XP40288SL710294J</div>
+<div class="text-tertiary-fixed">[14:39:15 GMT+5:30] Webhook Received: CHECKOUT.ORDER.APPROVED</div>
+<div class="text-tertiary-fixed">[14:39:16 GMT+5:30] Verifying webhook signature against PayPal Sandbox Public Certificate... OK</div>
+<div class="text-primary-fixed-dim font-bold">[14:40:12 GMT+5:30] Executing /v2/checkout/orders/9XP40288SL710294J/capture... SUCCESS</div>
+<div class="text-inverse-on-surface">[14:40:12 GMT+5:30] Capture ID: CAP-8841-9920-SANDBOX | Vault State: DUAL_LOCKED</div>
+<div class="text-inverse-on-surface">[14:40:13 GMT+5:30] Dispatched Mandi Tare Webhook to Telangana APMC Ledger. Awaiting weighbridge.</div>
+</div>
+</div>
+<div class="pt-4 flex items-center justify-between text-[10px] text-outline-variant">
+<span>Webhook Event ID: WH-3849102-SANDBOX-AUTH</span>
+<button class="underline hover:text-white" onclick="clearConsoleDemo()">Clear Log Buffer</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Transaction Status & Audit Repository Ledger -->
+<div class="mb-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-wider text-tertiary">Cryptographic Ledger</span>
+<h2 class="font-headline text-2xl font-bold text-on-surface mt-0.5">Transaction Status &amp; Audit Repository</h2>
+<p class="text-xs text-on-surface-variant font-body mt-1">Cross-border PayPal captures matched with National Mandi Lot IDs.</p>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+<input class="pl-9 pr-4 py-2 rounded-xl bg-surface-container text-xs text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary w-56 md:w-64" id="ledgerSearchInput" onkeyup="filterLedger()" placeholder="Search Order ID, PayPal ID..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-2 overflow-x-auto pb-3 text-xs font-semibold">
+<button class="status-pill px-3 py-1.5 rounded-full bg-primary text-on-primary shadow-sm" onclick="filterByStatus('all')">All Transactions (4)</button>
+<button class="status-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high" onclick="filterByStatus('completed')">Completed (Captured)</button>
+<button class="status-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high" onclick="filterByStatus('processing')">Processing Escrow</button>
+<button class="status-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high" onclick="filterByStatus('cancelled')">Failed / Cancelled</button>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto rounded-xl bg-surface-container shadow-sm">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-surface-container-high text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">
+<th class="py-3.5 px-4">FarmPay Order &amp; Lot</th>
+<th class="py-3.5 px-4">PayPal Sandbox Capture ID</th>
+<th class="py-3.5 px-4">Commodity Specs</th>
+<th class="py-3.5 px-4">Counterparties (Buyer → Farmer)</th>
+<th class="py-3.5 px-4">Settlement Amount</th>
+<th class="py-3.5 px-4">Status &amp; Verification</th>
+<th class="py-3.5 px-4 text-right">Ledger Actions</th>
+</tr>
+</thead>
+<tbody class="text-on-surface" id="ledgerTableBody">
+<!-- Row 1: Active Lot 884 -->
+<tr class="ledger-row hover:bg-surface-container-low transition-colors" data-search="fp-ord-884-2024 cap-8841-9920-sandbox sona masoori paddy rajesh patel agrocorp" data-status="completed">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface">#FP-ORD-884-2024</div>
+<div class="text-[11px] font-mono text-tertiary">Lot #FP-2024-884</div>
+</td>
+<td class="py-4 px-4 font-mono text-[11px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-semibold">CAP-8841-9920-SANDBOX</span>
+<div class="text-[10px] text-on-surface-variant mt-0.5">Auth: 9XP40288SL710294J</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Sona Masoori Paddy</div>
+<div class="text-[11px] text-on-surface-variant">150 Qtl (Grade A+)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold">AgroCorp Processing Mills</div>
+<div class="text-[11px] text-secondary flex items-center gap-1">
+<span>→ Rajesh Patel (Nizamabad)</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-bold text-sm text-on-surface">$4,746.70 USD</div>
+<div class="text-[10px] text-on-surface-variant">₹3,74,976 INR Net</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-fixed text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">shield_with_heart</span>
+                Payment Completed &amp; Escrow Vaulted
+              </span>
+<div class="text-[10px] text-on-surface-variant mt-1">28 Oct 2024, 02:40 PM IST</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-primary" onclick="inspectReceiptDemo()" title="View Formal PayPal Receipt">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-secondary" onclick="downloadPdfDemo()" title="Download Mandi PDF">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-tertiary" onclick="switchRightTab('console')" title="Inspect Webhook Payload">
+<span class="material-symbols-outlined text-[18px]">data_object</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Order 882 -->
+<tr class="ledger-row hover:bg-surface-container-low transition-colors" data-search="fp-ord-882-2024 cap-8820-4100-sandbox sharbati wheat kaveri agri" data-status="processing">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface">#FP-ORD-882-2024</div>
+<div class="text-[11px] font-mono text-tertiary">Lot #FP-2024-882</div>
+</td>
+<td class="py-4 px-4 font-mono text-[11px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface">CAP-8820-4100-SANDBOX</span>
+<div class="text-[10px] text-on-surface-variant mt-0.5">Auth: 7YK19384LK8812</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Sharbati Wheat</div>
+<div class="text-[11px] text-on-surface-variant">100 Qtl (Premium)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold">Kaveri Agri Trading Co.</div>
+<div class="text-[11px] text-secondary">→ Devendra Sharma (MP)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-bold text-sm text-on-surface">$3,120.00 USD</div>
+<div class="text-[10px] text-on-surface-variant">₹2,46,480 INR Net</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">scale</span>
+                Awaiting Mandi Weight Gate
+              </span>
+<div class="text-[10px] text-on-surface-variant mt-1">28 Oct 2024, 11:15 AM IST</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-primary" onclick="alert('Viewing Pending Escrow Receipt #FP-ORD-882')">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-secondary" onclick="downloadPdfDemo()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Order 879 -->
+<tr class="ledger-row hover:bg-surface-container-low transition-colors" data-search="fp-ord-879-2024 cap-7711-2094-sandbox organic turmeric guntur spices" data-status="completed">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface">#FP-ORD-879-2024</div>
+<div class="text-[11px] font-mono text-tertiary">Lot #FP-2024-879</div>
+</td>
+<td class="py-4 px-4 font-mono text-[11px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface">CAP-7711-2094-SANDBOX</span>
+<div class="text-[10px] text-on-surface-variant mt-0.5">Auth: 4AA82910GG0012</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Organic Salem Turmeric</div>
+<div class="text-[11px] text-on-surface-variant">40 Qtl (High Curcumin 5.2%)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold">Guntur Spices Exporters</div>
+<div class="text-[11px] text-secondary">→ Lakshmi Narayana (AP)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-bold text-sm text-on-surface">$1,850.00 USD</div>
+<div class="text-[10px] text-on-surface-variant">₹1,46,150 INR Net</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-fixed text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Payment Completed &amp; Disbursed
+              </span>
+<div class="text-[10px] text-on-surface-variant mt-1">27 Oct 2024, 04:22 PM IST</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-primary" onclick="inspectReceiptDemo()">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-secondary" onclick="downloadPdfDemo()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Order 875 -->
+<tr class="ledger-row hover:bg-surface-container-low transition-colors" data-search="fp-ord-875-2024 buyer timeout maharashtra soybean" data-status="cancelled">
+<td class="py-4 px-4">
+<div class="font-bold text-on-surface">#FP-ORD-875-2024</div>
+<div class="text-[11px] font-mono text-tertiary">Lot #FP-2024-875</div>
+</td>
+<td class="py-4 px-4 font-mono text-[11px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-error font-medium">EXPIRED_AUTH_TOKEN</span>
+<div class="text-[10px] text-on-surface-variant mt-0.5">Session: TTL 30m Passed</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold text-on-surface">Yellow Soybean</div>
+<div class="text-[11px] text-on-surface-variant">80 Qtl (Standard)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-semibold">Venkateshwara Feeds</div>
+<div class="text-[11px] text-secondary">→ Santosh More (Latur)</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-bold text-sm text-on-surface-variant line-through">$2,400.00 USD</div>
+<div class="text-[10px] text-error font-semibold">Cancelled (Buyer Timeout)</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                Authorization Voided
+              </span>
+<div class="text-[10px] text-on-surface-variant mt-1">26 Oct 2024, 09:12 AM IST</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant" onclick="alert('Session Audit: Buyer did not approve order before expiry window.')">
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Cryptographic Transaction Confirmation Receipt Preview -->
+<div class="mb-10 p-8 rounded-xl bg-surface-container-low shadow-sm" id="receiptPreviewCard">
+<div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-xl p-8 shadow-md">
+<!-- Receipt Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 gap-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary">Cryptographic Settlement Proof</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed text-[10px] font-mono font-bold">SHA-256 HMAC VERIFIED</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface">PayPal Payment Successfully Verified &amp; Captured</h3>
+</div>
+</div>
+<!-- Co-brand Header -->
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-xl">
+<div class="flex flex-col text-right">
+<span class="font-headline font-bold text-xs text-on-surface">FarmPay AI</span>
+<span class="text-[9px] text-on-surface-variant uppercase font-semibold">Dual-Party Escrow</span>
+</div>
+<span class="text-outline text-xs">•</span>
+<div class="flex items-center text-[#003087] font-extrabold text-sm tracking-tight font-headline">
+            PayPal<span class="text-[#0079C1] text-xs font-mono ml-1 font-bold">Sandbox</span>
+</div>
+</div>
+</div>
+<!-- Core Receipt Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 rounded-xl bg-surface-container-low mb-6 text-xs">
+<div>
+<span class="text-on-surface-variant block text-[10px] uppercase font-bold tracking-wider">FarmPay Order ID</span>
+<span class="font-bold text-on-surface font-mono">#FP-ORD-884-2024</span>
+</div>
+<div>
+<span class="text-on-surface-variant block text-[10px] uppercase font-bold tracking-wider">PayPal Transaction ID</span>
+<span class="font-bold text-primary font-mono">9XP40288SL710294J</span>
+</div>
+<div>
+<span class="text-on-surface-variant block text-[10px] uppercase font-bold tracking-wider">Payment Timestamp</span>
+<span class="font-bold text-on-surface">28 Oct 2024, 14:40:12 GMT+5:30</span>
+</div>
+<div>
+<span class="text-on-surface-variant block text-[10px] uppercase font-bold tracking-wider">Escrow Settlement Mode</span>
+<span class="font-bold text-tertiary">Multi-Sig Sandbox Vault</span>
+</div>
+</div>
+<!-- Receipt Line Details -->
+<div class="flex flex-col gap-3 pb-6 text-xs font-medium">
+<div class="flex justify-between items-center py-2">
+<div>
+<span class="font-bold text-on-surface block">150.00 Quintals Sona Masoori Paddy (Grade A+)</span>
+<span class="text-[11px] text-on-surface-variant">Mandi Lot Reference: APMC-NZB-2024-LOT-884 • Moisture: 12.4%</span>
+</div>
+<div class="text-right">
+<span class="font-bold text-on-surface">$4,725.00 USD</span>
+<span class="block text-[10px] text-secondary">₹2,520 / Qtl</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-2">
+<div>
+<span class="text-on-surface">Mandi Subsidized Logistics Grant</span>
+<span class="text-[11px] text-on-surface-variant block">Cold Chain Transport Voucher #TS-CC-4019</span>
+</div>
+<span class="text-primary font-semibold">-$35.00 USD</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<div>
+<span class="text-on-surface">FarmPay AI Escrow Protocol &amp; Webhook Insurance (1.2%)</span>
+<span class="text-[11px] text-on-surface-variant block">Includes Multi-Sig Liquidity backing</span>
+</div>
+<span class="text-on-surface font-semibold">+$56.70 USD</span>
+</div>
+</div>
+<!-- Bottom Settlement Total Strip -->
+<div class="p-4 rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Net Captured via PayPal Sandbox</span>
+<span class="text-xs text-on-surface-variant">Settled to: <strong>FarmPay Multi-Sig Escrow Trust #40182</strong></span>
+</div>
+<div class="text-right">
+<div class="font-headline text-3xl font-bold text-primary">$4,746.70 USD</div>
+<div class="text-[11px] font-bold text-tertiary">Equivalent to ₹3,74,976 INR Disbursal Value</div>
+</div>
+</div>
+<!-- Parties and ETA Milestone Note -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-xl bg-surface-container-low text-xs mb-8">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-outline block mb-1">Originating Counterparty</span>
+<div class="font-bold text-on-surface">Buyer: AgroCorp Processing Mills Pvt Ltd</div>
+<div class="text-[11px] text-on-surface-variant">PayPal Account: agrocorp-buyer@sandbox.farmpay.ai</div>
+<div class="text-[10px] text-primary font-semibold mt-1">Status: Funds Captured in Sandbox</div>
+</div>
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-outline block mb-1">Beneficiary Mandi Vault</span>
+<div class="font-bold text-on-surface">Farmer: Rajesh Patel (Nizamabad Kisan FPO #04)</div>
+<div class="text-[11px] text-on-surface-variant">Bank: ICICI Mandi Nodal Escrow A/c •••• 9104</div>
+<div class="text-[10px] text-tertiary font-bold mt-1">Disbursal Milestone: Tare Weighbridge Verification Required</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+<div class="flex items-center gap-2">
+<button class="px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold flex items-center gap-2 transition-all" onclick="printReceiptDemo()">
+<span class="material-symbols-outlined text-[16px]">print</span>
+            Print Official Tax Invoice
+          </button>
+<button class="px-4 py-2.5 rounded-xl bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container text-xs font-bold flex items-center gap-2 transition-all" onclick="downloadPdfDemo()">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+            Download Dual-Signed PDF
+          </button>
+</div>
+<button class="px-4 py-2.5 rounded-xl bg-primary text-on-primary text-xs font-bold hover:bg-primary/90 flex items-center gap-2 transition-all shadow-sm" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+          Return to Farmer Command Hub
+        </button>
+</div>
+</div>
+</div>
+<!-- Technical Accuracy & Regulatory Disclaimers -->
+<div class="mb-12 p-5 rounded-xl bg-surface-container flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary text-[24px] shrink-0 mt-0.5">policy</span>
+<div class="flex flex-col gap-1 text-xs text-on-surface-variant leading-relaxed">
+<div class="flex items-center gap-2 font-bold text-on-surface">
+<span>Regulatory &amp; Sandbox Execution Notice</span>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed font-mono text-[10px]">APMC Compliance v4.2</span>
+</div>
+<p>
+        Notice: FarmPay AI utilizes official <strong>PayPal Sandbox v2/checkout/orders APIs</strong> for cross-border institutional agricultural procurement testing. Simulated transactions use non-fungible test credits. Production deployment binds PayPal settlement captures directly to Indian Banking Service (RTGS/NEFT) escrow gateways under Agricultural Produce Market Committee (APMC) Model Act specifications and dual-signature physical weighbridge authentication.
+      </p>
+</div>
+</div>
+</div>
+<!-- Inline Vanilla JavaScript Micro-interactions -->
+<script>
+  function switchRightTab(tabName) {
+    const modalTab = document.getElementById('tabContentModal');
+    const consoleTab = document.getElementById('tabContentConsole');
+    const btnModal = document.getElementById('tabButtonModal');
+    const btnConsole = document.getElementById('tabButtonConsole');
+
+    if (tabName === 'modal') {
+      modalTab.classList.remove('hidden');
+      modalTab.classList.add('flex');
+      consoleTab.classList.add('hidden');
+      consoleTab.classList.remove('flex');
+
+      btnModal.className = 'px-3.5 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-bold text-xs shadow-sm transition-all flex items-center gap-1.5';
+      btnConsole.className = 'px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-semibold text-xs transition-all flex items-center gap-1.5';
+    } else {
+      consoleTab.classList.remove('hidden');
+      consoleTab.classList.add('flex');
+      modalTab.classList.add('hidden');
+      modalTab.classList.remove('flex');
+
+      btnConsole.className = 'px-3.5 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-bold text-xs shadow-sm transition-all flex items-center gap-1.5';
+      btnModal.className = 'px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-semibold text-xs transition-all flex items-center gap-1.5';
+    }
+  }
+
+  function triggerCheckoutModal() {
+    switchRightTab('modal');
+    const btn = document.getElementById('payPalSandboxButton');
+    btn.classList.add('opacity-75');
+    setTimeout(() => {
+      btn.classList.remove('opacity-75');
+      document.getElementById('tabContentModal').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 200);
+  }
+
+  function executeSandboxCapture() {
+    const btn = document.getElementById('modalCompleteButton');
+    const btnText = document.getElementById('modalBtnText');
+    const statusText = document.getElementById('currentStatusText');
+
+    btnText.textContent = 'Contacting PayPal Sandbox Gateway...';
+    btn.disabled = true;
+    btn.classList.add('opacity-75');
+
+    setTimeout(() => {
+      btnText.textContent = 'Verifying HMAC Signature & Mandi Cess...';
+      statusText.textContent = 'PROCESSING_CAPTURE';
+      statusText.className = 'text-tertiary font-bold';
+
+      setTimeout(() => {
+        btnText.textContent = 'Payment Captured & Escrow Vaulted!';
+        btn.className = 'w-full py-3 rounded-xl bg-primary text-white font-bold text-xs tracking-wide transition-all shadow-sm flex items-center justify-center gap-2';
+        statusText.textContent = 'PAYMENT_COMPLETED_VAULTED';
+        statusText.className = 'text-primary font-bold';
+
+        // Add log to console
+        const consoleLogs = document.getElementById('consoleLogs');
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString();
+        const newLog = document.createElement('div');
+        newLog.className = 'text-primary-fixed-dim font-bold';
+        newLog.innerHTML = `[${timeStr}] ORDER.CAPTURED: Manual Sandbox trigger executed for #FP-ORD-884-2024 ($4,746.70 USD) => SHA-256 OK`;
+        consoleLogs.appendChild(newLog);
+
+        // Highlight receipt preview
+        const receipt = document.getElementById('receiptPreviewCard');
+        receipt.scrollIntoView({ behavior: 'smooth' });
+      }, 1000);
+    }, 1000);
+  }
+
+  function simulateCaptureDemo() {
+    switchRightTab('console');
+    const consoleLogs = document.getElementById('consoleLogs');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString();
+    const pingLog = document.createElement('div');
+    pingLog.className = 'text-tertiary-fixed font-mono';
+    pingLog.innerHTML = `[${timeStr}] TEST_WEBHOOK: Simulating inbound PayPal Webhook Event [PAYMENT.CAPTURE.COMPLETED] for #FP-ORD-884-2024`;
+    consoleLogs.appendChild(pingLog);
+  }
+
+  function clearConsoleDemo() {
+    document.getElementById('consoleLogs').innerHTML = '<div class="text-surface-dim">[Console cleared. Listening for incoming PayPal Sandbox Webhooks...]</div>';
+  }
+
+  function filterLedger() {
+    const input = document.getElementById('ledgerSearchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('.ledger-row');
+
+    rows.forEach(row => {
+      const searchData = row.getAttribute('data-search').toLowerCase();
+      if (searchData.includes(input)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function filterByStatus(status) {
+    const rows = document.querySelectorAll('.ledger-row');
+    const pills = document.querySelectorAll('.status-pill');
+
+    pills.forEach(pill => {
+      pill.className = 'status-pill px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all text-xs font-semibold';
+    });
+    event.target.className = 'status-pill px-3 py-1.5 rounded-full bg-primary text-on-primary shadow-sm text-xs font-semibold';
+
+    rows.forEach(row => {
+      if (status === 'all' || row.getAttribute('data-status') === status) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function inspectReceiptDemo() {
+    document.getElementById('receiptPreviewCard').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function printReceiptDemo() {
+    window.print();
+  }
+
+  function downloadPdfDemo() {
+    alert('Simulating PDF Generation:\n\nFarmPay_PayPal_Escrow_Receipt_FP-ORD-884-2024.pdf\n- Dual Cryptographic Signature Included\n- APMC Weighbridge Tare Blank Attached');
+  }
+</script></main></div></body></html>
