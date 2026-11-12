@@ -1,6 +1,6 @@
 # FarmPay AI — Current Progress
 
-**Last updated:** 2026-11-09
+**Last updated:** 2026-11-12
 **Branch:** `main`
 **Baseline commit:** `ed727d7` (Phase 1.1 checkpoint)
 **Worktree:** Contains pre-existing uncommitted changes and the stabilization changes described below. They have not been committed or discarded.
@@ -9,6 +9,7 @@
 
 | Area | Status | Evidence / limitation |
 |---|---|---|
+| FairBid & AG Grid Community | Verified & Integrated | AG Grid Community v36.3.0 is installed and integrated into [frontend/src/pages/FairBid.jsx](../frontend/src/pages/FairBid.jsx) and [frontend/src/components/OfferGrid.jsx](../frontend/src/components/OfferGrid.jsx) via [frontend/src/components/FairBidOfferGrid.jsx](../frontend/src/components/FairBidOfferGrid.jsx). Includes sorting by net take-home, number/text filters, quick search, pagination, dynamic metrics, deceptive headline rate flags, INR formatting, and CSV export (FarmPay_AI_Buyer_Offers.csv). |
 | Authentication and role authorization | Verified in the current worktree | Frontend route guards in [frontend/src/App.jsx](../frontend/src/App.jsx) enforce FARMER/BUYER/ADMIN protection, and session validation in [frontend/src/context/AuthContext.jsx](../frontend/src/context/AuthContext.jsx) clears invalid or expired sessions. Backend JWT configuration in [backend/app/auth.py](../backend/app/auth.py) requires an environment secret and fail-closes if it is absent or weak. |
 | Marketplace and orders | Verified as database-backed in code and tests | Demo-only public offers remain clearly labelled and the legacy demo order creation route in [backend/app/main.py](../backend/app/main.py) intentionally returns HTTP 410. Real listing and offer flows are implemented in [backend/app/listings.py](../backend/app/listings.py) and [backend/app/offers.py](../backend/app/offers.py), and the backend suite passed. Live transaction verification against a real MySQL instance is still pending outside the local test environment. |
 | Payments | Existing PayPal validation preserved | The current code keeps the existing PayPal capture validation flow intact and does not claim that PayPal Sandbox settles Indian Rupee orders. No live PayPal capture was performed for this assignment. |
@@ -33,6 +34,35 @@
 3. Only after stabilization verification, begin a separately scoped Lovable design integration.
 
 See [the test report](./test_reports/AUTH_MARKETPLACE_STABILIZATION_TEST_RESULTS_2026_11_08.md) for exact commands, results, and mock/live distinctions.
+
+## 2026-11-12 AG Grid Community FairBid Integration Update
+
+- **Dependency Installation:** Installed and declared ag-grid-community@^36.3.0 alongside ag-grid-react@^36.3.0 in frontend/package.json.
+- **Modular Community Registration:** Registered AllCommunityModule via ModuleRegistry.registerModules([AllCommunityModule]). Strict zero-enterprise compliance.
+- **New Component FairBidOfferGrid.jsx:**
+  - Designed custom theme using themeQuartz.withParams({...}) honoring FarmPay AI's Rooted Warmth palette (Forest Green #4a7c59, Warm Cream #faf6f0, Slate #2e3230).
+  - Added dynamic summary cards above grid: Total Available Offers, Highest Headline Rate, Best Confirmed Net Take-Home (with buyer name), and Incomplete Deductions count.
+  - Implemented 12 comprehensive columns: Buyer & Identity, Offered Rate, Quantity, Gross Amount, Transport Cost, Moisture/Dockage, Cess & User Fee, Total Deductions, True Net Take-Home, Status, Trust & Escrow, and Action buttons.
+  - Added Multi-column sorting (default sorted by highest Net Take-Home).
+  - Added Column filters and instant quick-search input.
+  - Added Pagination with configurable page size ([5, 10, 20]).
+  - Added CSV Export to FarmPay_AI_Buyer_Offers.csv preserving INR denominations and excluding interactive buttons.
+  - Added Deceptive headline rate flag (warns farmers when an offer quotes a higher headline price but yields lower net take-home due to shifted freight/dockage).
+  - Added Disqualification invariant: incomplete/unverified deductions are never labeled as confirmed best offers.
+- **Enhanced FairBid.jsx & OfferGrid.jsx:**
+  - Connected FairBidOfferGrid into the FairBid Net Yield Matrix section (/fairbid).
+  - Added segmented view toggle: [ 📊 AG Grid Matrix ] (default) vs [ 📋 4-Column Cards ].
+  - Added AG Grid view mode to OfferGrid.jsx for instant calculator results.
+- **Test Results:**
+  - 
+pm test (
+ode test-aggrid.mjs): All 5 test suites passed.
+  - 
+pm run lint: 0 errors, 0 warnings.
+  - 
+pm run build: Vite production build passed in 1.58s.
+  - Backend pytest: 91/91 tests passed in 23.30s.
+  - Documentation: See [AG_GRID_COMMUNITY_FAIRBID_INTEGRATION_2026_11_12.md](./implementation_reports/AG_GRID_COMMUNITY_FAIRBID_INTEGRATION_2026_11_12.md) and [AG_GRID_COMMUNITY_FAIRBID_TEST_RESULTS_2026_11_12.md](./test_reports/AG_GRID_COMMUNITY_FAIRBID_TEST_RESULTS_2026_11_12.md).
 
 ## 2026-11-09 execution update
 

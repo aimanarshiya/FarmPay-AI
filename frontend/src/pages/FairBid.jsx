@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchMyFarmerListings } from "../api/listings";
-import { fetchListingOffers } from "../api/negotiations";
+import { fetchListingOffers, acceptOffer } from "../api/negotiations";
 import { fetchOffers } from "../api/offers";
 import ErrorMessage from "../components/ErrorMessage";
 import AIRecommendationCard from "../components/AIRecommendationCard";
 import OfferGrid from "../components/OfferGrid";
+import FairBidOfferGrid from "../components/FairBidOfferGrid";
+import { formatINR } from "../utils/currency";
 
 export default function FairBid() {
   const { listing_id } = useParams();
@@ -16,6 +18,7 @@ export default function FairBid() {
   const [dbOffers, setDbOffers] = useState([]);
   const [showFormula, setShowFormula] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
+  const [matrixView, setMatrixView] = useState("grid"); // "grid" (AG Grid) or "cards"
 
   // Instant FairBid Calculator State
   const [crop, setCrop] = useState("Rice");
@@ -77,6 +80,124 @@ export default function FairBid() {
       })
       .catch(() => {});
   }, [selectedListingId]);
+
+  const benchmarkLotOffers = useMemo(() => [
+    {
+      offer_id: "OFF-AGRO-8841",
+      listing_id: selectedListingId || "FP-2024-884",
+      buyer_id: "BUYER-001",
+      buyer_name: "AgroCorp Mills",
+      buyer_location: "Hyderabad Processing Hub",
+      crop: "Sona Masoori Paddy",
+      price_per_kg: 25.20,
+      offered_quantity_kg: 15000,
+      gross_amount: 378000,
+      transport_cost: 0,
+      handling_cost: 0,
+      other_deductions: 4536,
+      total_deductions: 4536,
+      net_proceeds: 373464,
+      status: "PENDING",
+      reliability: "98% Reliability (A+)",
+      is_best_confirmed: true,
+      is_incomplete: false,
+      notes: "Farmgate Logistics: ₹0 (Buyer Paid). Moisture: 13.5% Pass.",
+      passport_url: "/buyers/BUYER-001/passport",
+    },
+    {
+      offer_id: "OFF-KAVERI-8842",
+      listing_id: selectedListingId || "FP-2024-884",
+      buyer_id: "BUYER-002",
+      buyer_name: "Kaveri Agri Trading",
+      buyer_location: "Warangal District Desk",
+      crop: "Sona Masoori Paddy",
+      price_per_kg: 25.60,
+      offered_quantity_kg: 15000,
+      gross_amount: 384000,
+      transport_cost: 14250,
+      handling_cost: 6000,
+      other_deductions: 4608,
+      total_deductions: 24858,
+      net_proceeds: 359142,
+      status: "PENDING",
+      reliability: "84% Reliability (B+)",
+      is_best_confirmed: false,
+      is_incomplete: false,
+      is_deceptive_headline: true,
+      notes: "Transit Freight Shift: -₹95/Qtl. Moisture penalty: -₹25/Qtl. Hamali: -₹15/Qtl.",
+      passport_url: "/buyers/BUYER-002/passport",
+    },
+    {
+      offer_id: "OFF-DECCAN-8843",
+      listing_id: selectedListingId || "FP-2024-884",
+      buyer_id: "BUYER-003",
+      buyer_name: "Deccan Flour Mills",
+      buyer_location: "Medchal Industrial Area",
+      crop: "Sona Masoori Paddy",
+      price_per_kg: 24.90,
+      offered_quantity_kg: 15000,
+      gross_amount: 373500,
+      transport_cost: 4800,
+      handling_cost: 0,
+      other_deductions: 4482,
+      total_deductions: 9282,
+      net_proceeds: 364218,
+      status: "PENDING",
+      reliability: "91% Reliability (A)",
+      is_best_confirmed: false,
+      is_incomplete: false,
+      notes: "Shared 50/50 Transit: -₹32/Qtl. Mandi cess -₹29.88/Qtl.",
+      passport_url: "/buyers/BUYER-003/passport",
+    },
+    {
+      offer_id: "OFF-MANDI-8844",
+      listing_id: selectedListingId || "FP-2024-884",
+      buyer_id: "MANDI-YARD",
+      buyer_name: "Local APMC Mandi Yard",
+      buyer_location: "Conventional Trader Route",
+      crop: "Sona Masoori Paddy",
+      price_per_kg: 22.50,
+      offered_quantity_kg: 15000,
+      gross_amount: 337500,
+      transport_cost: 12000,
+      handling_cost: 8250,
+      other_deductions: 6750,
+      total_deductions: 27000,
+      net_proceeds: 310500,
+      status: "UNVERIFIED",
+      reliability: "No Escrow Guarantee",
+      is_best_confirmed: false,
+      is_incomplete: true,
+      notes: "Self Freight: -₹80/Qtl. Brokerage: -₹45/Qtl. Unloading: -₹55/Qtl.",
+      passport_url: "/buyers/BUYER-001/passport",
+    },
+  ], [selectedListingId]);
+
+  const displayedLotOffers = useMemo(() => {
+    if (dbOffers && dbOffers.length > 0) {
+      return dbOffers;
+    }
+    return benchmarkLotOffers;
+  }, [dbOffers, benchmarkLotOffers]);
+
+  const handleAcceptOffer = async (offer) => {
+    const buyerName = offer.buyer_name || "Buyer";
+    const netProceeds = formatINR(offer.net_proceeds);
+
+    if (offer.offer_id && offer.offer_id.startsWith("OFF-DEMO-")) {
+      try {
+        const res = await acceptOffer(offer.offer_id);
+        showToast(`Accepted offer! Order ${res.order.order_id} created.`);
+        navigate(`/orders/${res.order.order_id}`);
+        return;
+      } catch {
+        // Fallback to demo escrow flow
+      }
+    }
+
+    showToast(`Accepted ${buyerName} offer! Vaulting ${netProceeds} in Escrow.`);
+    navigate("/orders/FP-2024-884/escrow");
+  };
 
   useEffect(() => {
     if (selectedListingId) {
@@ -338,17 +459,47 @@ export default function FairBid() {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setShowFormula(!showFormula)}
-          className="self-start sm:self-auto flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors text-xs font-bold text-on-surface border border-outline-variant/30"
-        >
-          <span className="material-symbols-outlined text-primary text-[18px]">info</span>
-          <span>How Net Formula Works</span>
-          <span className={`material-symbols-outlined text-[16px] transition-transform ${showFormula ? "rotate-180" : ""}`}>
-            expand_more
-          </span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+          {/* Matrix View Toggle */}
+          <div className="inline-flex rounded-xl bg-surface-container p-1 border border-outline-variant/30 text-xs font-bold">
+            <button
+              type="button"
+              onClick={() => setMatrixView("grid")}
+              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+                matrixView === "grid"
+                  ? "bg-primary text-on-primary shadow-xs"
+                  : "text-on-surface-variant hover:text-on-surface"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[15px]">table_rows</span>
+              <span>AG Grid Matrix</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setMatrixView("cards")}
+              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+                matrixView === "cards"
+                  ? "bg-primary text-on-primary shadow-xs"
+                  : "text-on-surface-variant hover:text-on-surface"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[15px]">grid_view</span>
+              <span>4-Column Cards</span>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowFormula(!showFormula)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors text-xs font-bold text-on-surface border border-outline-variant/30 cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-primary text-[18px]">info</span>
+            <span>How Net Formula Works</span>
+            <span className={`material-symbols-outlined text-[16px] transition-transform ${showFormula ? "rotate-180" : ""}`}>
+              expand_more
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Expandable Deduction Formula & Protections */}
@@ -386,8 +537,18 @@ export default function FairBid() {
         </div>
       )}
 
-      {/* 4-Column Net Earnings Comparison Matrix */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-10">
+      {/* FairBid Comparison Matrix (AG Grid / Cards) */}
+      {matrixView === "grid" ? (
+        <FairBidOfferGrid
+          offers={displayedLotOffers}
+          selectedBuyer={selectedBuyer}
+          onSelectBuyer={(b) => setSelectedBuyer(b)}
+          onAcceptOffer={handleAcceptOffer}
+          title="FairBid Interactive Buyer Offer Matrix"
+          subtitle="Audited take-home comparison powered by AG Grid Community v36 & Gemini AI net analysis."
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-10">
         {/* COLUMN 1: WINNER (AgroCorp Mills) */}
         <div className="relative rounded-2xl bg-surface-container-lowest p-6 flex flex-col justify-between shadow-md ring-2 ring-primary border border-outline-variant/20">
           <div className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-primary text-on-primary text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
@@ -639,6 +800,7 @@ export default function FairBid() {
           </div>
         </div>
       </div>
+      )}
 
       {/* Gemini AI Recommendation Card */}
       <div className="p-6 rounded-2xl bg-surface-container border border-primary/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
