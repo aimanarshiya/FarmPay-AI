@@ -214,3 +214,6 @@ Thumbs.db
 # Sensitive development-only migration helper
 backend/app/run_migration.py
 backend/app/migrate_as_root.sql
+
+# Retired standalone simulation file
+farmpay_ai_simulation.html
